@@ -1,1 +1,104 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --purple: #762e61;
+  --putple-lighter: #943979;
+  --lightblue: #26a9bf;
+  --violet: #5642ff;
+  --error: #ff4e13;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+}
+
+/* Typography */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Generic */
+.container {
+  padding: 1.6rem;
+}
+
+@media screen and (min-width: 75rem) {
+  .container {
+    padding: 0;
+    max-width: 140rem;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.top-offset {
+  margin-top: 15rem;
+}
+
+.section-title {
+  color: #444;
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+/* Form */
+.input-group {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--violet);
+  font-weight: 300;
+}
+
+.input-field {
+  font-size: 1.6rem;
+  width: 100%;
+  padding: 1rem;
+  outline: none;
+  border: 1px solid var(--violet);
+  border-radius: 0.5rem;
+  color: #444;
+}
+
+/* Button */
+.btn {
+  color: #fff;
+  background-color: var(--purple);
+  font-weight: 100;
+  font-size: 1.5rem;
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: 2px solid var(--purple);
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.btn:hover {
+  background-color: var(--putple-lighter);
+  border-color: var(--putple-lighter);
+}

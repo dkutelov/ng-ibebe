@@ -1,0 +1,123 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-title {
+  text-transform: uppercase;
+  font-size: 2rem;
+  position: relative;
+  color: #fff;
+}
+
+.login-title::after {
+  content: '';
+  position: absolute;
+  top: -9rem;
+  left: -6rem;
+  width: 22rem;
+  height: 22rem;
+  background-image: url('/assets/images/bg-green.svg');
+  background-repeat: no-repeat;
+  z-index: -1;
+  background-repeat: no-repeat;
+  transform: rotate(-170deg);
+}
+
+.login-form {
+  margin-top: 4.5rem;
+  padding: 0.2rem;
+  max-width: 40rem;
+  width: 100%;
+  /* background-image: linear-gradient(to right, #52ff11, yellow, #ff4014); */
+  border-top-left-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+  position: relative;
+  background-color: rgba(245, 245, 245, 0.5);
+}
+
+.form-inner-wrapper {
+  padding: 5rem;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-top-left-radius: 2.85rem;
+  border-bottom-right-radius: 2.85rem;
+}
+
+.login-form::before {
+  content: '';
+  position: absolute;
+  bottom: -23rem;
+  left: -20rem;
+  width: 45rem;
+  height: 45rem;
+  background-image: url('/assets/images/bg-green.svg');
+  background-repeat: no-repeat;
+  transform: rotate(30deg);
+  z-index: -1;
+}
+
+.login-form::after {
+  content: '';
+  position: absolute;
+  top: 0rem;
+  right: -13rem;
+  width: 33rem;
+  height: 33rem;
+  background-image: url('/assets/images/bg-green.svg');
+  background-repeat: no-repeat;
+  z-index: -1;
+  transform: rotate(-70deg);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.input-label,
+.input-field {
+  color: #a740ff;
+  font-size: 1.4rem;
+}
+
+.input-field {
+  border-color: rgba(167, 64, 255, 0.5);
+  padding: 0.75rem 1rem;
+}
+
+.input-field:focus,
+.input-field:active {
+  border-color: var(--violet);
+}
+
+.input-field-error {
+  font-size: 1rem;
+  color: var(--error);
+  font-weight: 300;
+  margin-left: 0.5rem;
+  position: absolute;
+  left: 0;
+  bottom: -1.5rem;
+}
+
+.btn-submit {
+  margin-top: 1rem;
+  background-color: #a740ff;
+  border-color: #a740ff;
+}
+
+.btn-submit:hover {
+  background-color: var(--violet);
+  border-color: var(--violet);
+}
+
+.register-text {
+  margin-top: 4rem;
+  color: #444;
+  font-size: 1.3rem;
+}

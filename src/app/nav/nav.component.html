@@ -1,0 +1,26 @@
+<nav class="nav container">
+  <a routerLink="/" routerLinkActive="nav-active">
+    <img
+      [ngClass]="[shrinkHeader ? 'logo-small' : 'logo']"
+      srcset="
+        https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_400/v1548513244/ibebe/logo-large.png  400w,
+        https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_300/v1548513244/ibebe/logo-medium.png 300w,
+        https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_200/v1548513244/ibebe/logo-small.png  200w
+      "
+      sizes="(min-width: 600px) 33vw, 15vw"
+      alt="лого на ibebe"
+  /></a>
+  <ul class="nav-list">
+    <ng-container *ngIf="!isAuthenticated">
+      <li class="nav-list-item">
+        <a routerLink="register" routerLinkActive="nav-active">Register</a>
+      </li>
+      <li class="nav-list-item">
+        <a routerLink="login" routerLinkActive="nav-active">Login</a>
+      </li>
+    </ng-container>
+    <li class="nav-list-item" *ngIf="isAuthenticated">
+      <button (click)="logout()">Logout</button>
+    </li>
+  </ul>
+</nav>
