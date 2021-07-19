@@ -1,0 +1,65 @@
+<div class="container top-offset">
+  <h2 class="section-title">New Question</h2>
+  <div class="form-wrapper">
+    <form #questionForm="ngForm" (ngSubmit)="createQuestion()">
+      <div class="input-group">
+        <label class="input-label" for="title">Title</label>
+        <input
+          [(ngModel)]="question.title"
+          class="input-field"
+          type="text"
+          id="title"
+          name="title"
+        />
+        <span class="input-field-error">Username</span>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="text">Text</label>
+        <textarea
+          [(ngModel)]="question.text"
+          class="input-field"
+          id="text"
+          name="text"
+          rows="10"
+        ></textarea>
+        <span class="input-field-error">Username</span>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="category">Category</label>
+        <select [(ngModel)]="question.category" name="category" id="category">
+          <option
+            *ngFor="let category of categories"
+            value="{{ category._id }}"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+        <span class="input-field-error">Username</span>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="tags">Tags</label>
+        <select [(ngModel)]="question.tags" name="tags" id="tags" multiple>
+          <option *ngFor="let tag of tags" value="{{ tag._id }}">
+            {{ tag.name }}
+          </option>
+        </select>
+        <span class="input-field-error">Username</span>
+      </div>
+      <input class="btn" type="submit" value="Create" />
+    </form>
+    <div *ngIf="imageURLs.length">
+      <div *ngFor="let imageURL of imageURLs">
+        <img [src]="imageURL" alt="uploaded image {{ imageURL }}" />
+      </div>
+    </div>
+    <div>
+      <label for="file">Choose file</label>
+      <input
+        id="file"
+        type="file"
+        #filePicker
+        (change)="onImagePicked($event)"
+      />
+    </div>
+  </div>
+</div>

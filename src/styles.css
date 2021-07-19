@@ -1,9 +1,11 @@
 :root {
   --purple: #762e61;
-  --putple-lighter: #943979;
+  --purple-lighter: #943979;
+  --magento: #ae4589;
   --lightblue: #26a9bf;
   --violet: #5642ff;
   --error: #ff4e13;
+  --lightgreen: #51fd4f;
 }
 
 html {

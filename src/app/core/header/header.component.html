@@ -19,8 +19,13 @@
         <a routerLink="login" routerLinkActive="nav-active">Login</a>
       </li>
     </ng-container>
-    <li class="nav-list-item" *ngIf="isAuthenticated">
-      <button (click)="logout()">Logout</button>
-    </li>
+    <ng-container *ngIf="isAuthenticated">
+      <li class="nav-list-item-button">
+        <a class="btn" routerLink="question-create">Ask A Question</a>
+      </li>
+      <li class="nav-list-item">
+        <button (click)="logout()">Logout</button>
+      </li>
+    </ng-container>
   </ul>
 </nav>

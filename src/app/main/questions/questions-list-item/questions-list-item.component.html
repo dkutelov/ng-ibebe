@@ -1,0 +1,18 @@
+<div *ngIf="question" class="question-card">
+  <div class="question-card-votes">
+    <i class="vote-icon">
+      <img src="assets/images/up-arrow.svg" alt="vote question up" />
+    </i>
+    <span class="vote-number">{{
+      question.votes.up - question.votes.down
+    }}</span>
+    <i class="vote-icon">
+      <img src="assets/images/check.svg" alt="vote question up" />
+    </i>
+  </div>
+  <div class="question-card-content">
+    <p class="question-card-text">
+      {{ question.text }}
+    </p>
+  </div>
+</div>

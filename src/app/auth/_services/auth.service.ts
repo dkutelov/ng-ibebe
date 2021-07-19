@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../../../environments/environment';
 
-import { AuthUser } from './auth.model';
+import { AuthUser } from '../_models/auth.model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,10 @@ export class AuthService {
     return this.authStatusListener$.asObservable();
   }
 
+  getToken() {
+    return this.token;
+  }
+
   autoAuthUser() {
     const authInfo = this.getAuthData();
     if (!authInfo) return;
@@ -45,7 +50,7 @@ export class AuthService {
   loginUser(username: string, password: string) {
     const user = { username, password };
     this.httpClient
-      .post<AuthUser>('http://localhost:5000/api/auth/login', { user })
+      .post<AuthUser>(`${environment.baseApiUrl}/auth/login`, { user })
       .subscribe((response) => {
         this.setAuth(response);
       });
@@ -54,7 +59,7 @@ export class AuthService {
   registerUser(username: string, email: string, password: string) {
     const user = { username, password, email };
     this.httpClient
-      .post<AuthUser>('http://localhost:5000/api/auth/register', { user })
+      .post<AuthUser>(`${environment.baseApiUrl}/auth/register`, { user })
       .subscribe((response) => {
         this.setAuth(response);
       });
@@ -97,5 +102,6 @@ export class AuthService {
 
   private clearCookie() {
     this.cookieService.delete('token');
+    this.cookieService.delete('id');
   }
 }

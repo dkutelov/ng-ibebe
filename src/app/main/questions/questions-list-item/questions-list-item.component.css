@@ -1,0 +1,33 @@
+.question-card {
+  display: grid;
+  grid-template-columns: 10% 1fr;
+}
+
+.question-card-votes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vote-icon {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+}
+
+.vote-icon:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.vote-icon img {
+  max-width: 100%;
+}
+
+.vote-number {
+  display: inline-block;
+  margin: 0.5rem 0;
+  font-size: 2rem;
+  color: var(--purple-lighter);
+}
