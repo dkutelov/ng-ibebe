@@ -1,0 +1,140 @@
+.section-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title--new-question {
+  text-align: center;
+  margin-bottom: 7rem;
+  font-weight: 200;
+  color: var(--blue);
+}
+
+@media screen and (min-width: 75rem) {
+  .section-content {
+    flex-direction: row;
+  }
+}
+
+.form-wrapper {
+  border-radius: 3rem;
+  background-color: rgba(245, 245, 245, 0.5);
+  padding: 5rem;
+}
+
+@media screen and (min-width: 75rem) {
+  .form-wrapper {
+    flex: 0 0 60%;
+  }
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.input-label,
+.input-field {
+  color: rgb(86, 66, 255);
+  font-size: 1.4rem;
+}
+
+.input-label {
+  font-weight: 600;
+}
+
+.input-field {
+  border-color: rgba(86, 66, 255, 0.3);
+  padding: 1.5rem 1rem;
+}
+
+.input-field:focus,
+.input-field:active {
+  border-color: var(--violet);
+}
+
+.input-group--half-width {
+  width: 50%;
+}
+
+.input-field-error {
+  font-size: 1rem;
+  color: var(--error);
+  font-weight: 300;
+  margin-left: 0.5rem;
+  position: absolute;
+  left: 0;
+  bottom: -1.5rem;
+}
+
+.btn-submit {
+  margin-top: 1rem;
+  background-color: var(--violet);
+  border-color: var(--violet);
+}
+
+.btn-submit:hover {
+  background-color: var(--blue);
+  border-color: var(--blue);
+}
+
+.btn-submit:disabled {
+  background-color: #9a8fff;
+  border-color: #9a8fff;
+}
+
+select {
+  width: 100%;
+  margin: 0;
+  margin-top: 1em;
+  outline: 0;
+  border: 1px solid transparent;
+  border-color: rgba(86, 66, 255, 0.3);
+  border-radius: 0.5rem;
+  padding: 1.5rem 20px;
+  -webkit-appearance: none;
+  -moz-appearance: window;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  display: block;
+  height: 51px;
+  padding-left: 10px;
+  font-weight: 300;
+  overflow: hidden;
+  background-position: 95% 60%;
+  font-size: 0.9em;
+  color: #9da3a8;
+  background: url('/assets/images/down-arrow.svg') no-repeat #fff;
+  background-size: 15px;
+  background-position: 97.5% 50%;
+}
+
+select:focus,
+select:active {
+  border-color: var(--violet);
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.img-preview {
+  max-height: 15rem;
+  background-color: #fff;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.img-preview-wrapper {
+  height: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.img-preview-wrapper {
+  height: 100%;
+}
+
+.instructions {
+  padding: 5rem;
+}

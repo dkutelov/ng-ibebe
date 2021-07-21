@@ -1,7 +1,7 @@
 export interface IQuestion {
   title: string;
   text: string;
-  imageURL: string;
+  imageURL: string[];
   views: number;
   votes: Votes;
   tags: string[];
@@ -16,4 +16,12 @@ export interface IQuestion {
 export interface Votes {
   up: number;
   down: number;
+}
+
+export interface IQuestionCreate {
+  title: string;
+  text: string;
+  category: string;
+  tags: string[];
+  imageURL: string[];
 }

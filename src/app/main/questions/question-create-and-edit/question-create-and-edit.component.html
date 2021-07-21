@@ -1,0 +1,97 @@
+<div class="container top-offset">
+  <h2 class="section-title section-title--new-question">Ask New Question</h2>
+  <div class="section-content">
+    <div class="form-wrapper">
+      <form
+        #questionForm="ngForm"
+        (ngSubmit)="createQuestion()"
+        id="questionForm"
+      >
+        <div class="input-group">
+          <label class="input-label" for="title">Question Title</label>
+          <input
+            [(ngModel)]="question.title"
+            class="input-field"
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Be specific and imagine you’re asking a question to another person"
+          />
+          <span class="input-field-error">Username</span>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="text">Question Description</label>
+          <textarea
+            [(ngModel)]="question.text"
+            class="input-field"
+            id="text"
+            name="text"
+            rows="8"
+            placeholder="Include all the information someone would need to answer your question"
+          ></textarea>
+          <span class="input-field-error">Username</span>
+        </div>
+        <div class="input-group input-group--half-width">
+          <label class="input-label" for="category">Category</label>
+          <select [(ngModel)]="question.category" name="category" id="category">
+            <option
+              *ngFor="let category of categories"
+              value="{{ category._id }}"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+          <span class="input-field-error">Username</span>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="tags">Tags</label>
+          <select [(ngModel)]="question.tags" name="tags" id="tags" multiple>
+            <option *ngFor="let tag of tags" value="{{ tag._id }}">
+              {{ tag.name }}
+            </option>
+          </select>
+          <span class="input-field-error">Username</span>
+        </div>
+      </form>
+      <app-tag-select></app-tag-select>
+      <div *ngIf="question.imageURL.length" class="img-preview">
+        <div
+          *ngFor="let imageURL of question.imageURL"
+          class="img-preview-wrapper"
+        >
+          <img [src]="imageURL" alt="uploaded image {{ imageURL }}" />
+        </div>
+      </div>
+      <div>
+        <label for="file">Choose file</label>
+        <input
+          id="file"
+          type="file"
+          #filePicker
+          (change)="onImagePicked($event)"
+        />
+      </div>
+      <div>
+        <button
+          form="questionForm"
+          class="btn btn-submit"
+          type="submit"
+          [disabled]="!questionForm.dirty"
+        >
+          Ask Question
+        </button>
+      </div>
+    </div>
+    <aside class="instructions">
+      <p>
+        The community is here to help you with specific coding, algorithm, or
+        language problems. Avoid asking opinion-based questions. Asking a good
+        question You’re ready to ask your first programming-related question and
+        the community is here to help! To get you the best answers, we’ve
+        provided some guidance: Before you post, search the site to make sure
+        your question hasn’t been answered. 1. Summarize the problem 2. Describe
+        what you’ve tried 3. When appropriate, show some code
+      </p>
+    </aside>
+  </div>
+</div>

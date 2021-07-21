@@ -5,14 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { QuestionsListComponent } from './questions/questions-list/questions-list.component';
 import { QuestionsListItemComponent } from './questions/questions-list-item/questions-list-item.component';
-import { QuestionCreateComponent } from './questions/question-create/question-create.component';
+import { QuestionDetailComponent } from './questions/question-detail/question-detail.component';
+import { TagSelectComponent } from './tags/tag-select/tag-select.component';
+import { QuestionCreateAndEditComponent } from './questions/question-create-and-edit/question-create-and-edit.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     QuestionsListComponent,
     QuestionsListItemComponent,
-    QuestionCreateComponent,
+    QuestionDetailComponent,
+    TagSelectComponent,
+    QuestionCreateAndEditComponent,
   ],
   imports: [CommonModule, FormsModule],
 })

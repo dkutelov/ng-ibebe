@@ -1,10 +1,11 @@
-import { QuestionCreateComponent } from './main/questions/question-create/question-create.component';
+import { QuestionCreateAndEditComponent } from './main/questions/question-create-and-edit/question-create-and-edit.component';
 import { HomeComponent } from './main/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { QuestionsListComponent } from './main/questions/questions-list/questions-list.component';
+import { ProtectUnsavedChangesQuestionGuard } from './main/_guards/protect-unsaved-changes-question.guard';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
   },
   {
     path: 'question-create',
-    component: QuestionCreateComponent,
+    component: QuestionCreateAndEditComponent,
+    canDeactivate: [ProtectUnsavedChangesQuestionGuard],
   },
 ];
 

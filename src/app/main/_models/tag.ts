@@ -1,4 +1,4 @@
 export interface ITag {
-  _id: string;
+  _id: string | undefined;
   name: string;
 }

@@ -1,0 +1,18 @@
+<div class="tags-wrapper">
+  <span class="selected-tags"></span>
+  <input
+    class="tags-search-or-input"
+    type="text"
+    placeholder="e.g. pregnancy"
+    (input)="onInputChange($event)"
+  />
+</div>
+<div *ngIf="tagsSuggestions.length" class="tags-suggestions">
+  <ul>
+    <li *ngFor="let tagSuggestion of tagsSuggestions">
+      <span (click)="addToSelectedTags(tagSuggestion)">{{
+        tagSuggestion.name
+      }}</span>
+    </li>
+  </ul>
+</div>

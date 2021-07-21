@@ -1,8 +1,9 @@
 import { ITag } from './../../_models/tag';
-import { Component, OnInit } from '@angular/core';
-import { IQuestion } from '../../_models/question';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { IQuestionCreate } from '../../_models/question';
 import { ICategory } from '../../_models/category';
 import { ImageService } from '../../_services/image.service';
+import { NgForm } from '@angular/forms';
 
 const TAGS: ITag[] = [
   {
@@ -30,20 +31,29 @@ const CATEGORIES: ICategory[] = [
 ];
 
 @Component({
-  selector: 'app-question-create',
-  templateUrl: './question-create.component.html',
-  styleUrls: ['./question-create.component.css'],
+  selector: 'app-question-create-and-edit',
+  templateUrl: './question-create-and-edit.component.html',
+  styleUrls: ['./question-create-and-edit.component.css'],
 })
-export class QuestionCreateComponent implements OnInit {
-  question = {
+export class QuestionCreateAndEditComponent implements OnInit {
+  @ViewChild('questionForm') questionForm!: NgForm;
+  question: IQuestionCreate = {
     title: '',
     text: '',
     category: '',
     tags: [],
+    imageURL: [],
   };
   tags!: ITag[];
   categories!: ICategory[];
-  imageURLs: string[] = [];
+
+  @HostListener('window:beforeunload', ['$event']) unloadNotification(
+    $event: any,
+  ) {
+    if (this.questionForm.dirty) {
+      $event.returnValue = true;
+    }
+  }
 
   constructor(private imageService: ImageService) {}
 
@@ -62,7 +72,7 @@ export class QuestionCreateComponent implements OnInit {
     this.imageService
       .addImage(file)
       .subscribe((response: { message: string; url: string }) => {
-        this.imageURLs.push(response.url);
+        this.question.imageURL.push(response.url);
       });
   }
 
