@@ -1,18 +1,32 @@
 <div class="tags-wrapper">
-  <span class="selected-tags"></span>
+  <span class="selected-tags" *ngIf="selectedTags.length">
+    <span *ngFor="let selectedTag of selectedTags" class="selected-tag"
+      >{{ selectedTag.name }}
+      <img
+        src="/assets/images/cancel.svg"
+        alt="cancel icon"
+        (click)="removeTag(selectedTag)"
+      />
+    </span>
+  </span>
   <input
     class="tags-search-or-input"
     type="text"
-    placeholder="e.g. pregnancy"
+    [placeholder]="tagsPlaceholder"
+    [(ngModel)]="searchTerm"
     (input)="onInputChange($event)"
+    (keyup.enter)="onTagEnter()"
   />
+  <div *ngIf="tagsSuggestions.length" class="tags-suggestions">
+    <ul>
+      <li *ngFor="let tagSuggestion of tagsSuggestions">
+        <span (click)="addToSelectedTags(tagSuggestion)">{{
+          tagSuggestion.name
+        }}</span>
+      </li>
+    </ul>
+  </div>
 </div>
-<div *ngIf="tagsSuggestions.length" class="tags-suggestions">
-  <ul>
-    <li *ngFor="let tagSuggestion of tagsSuggestions">
-      <span (click)="addToSelectedTags(tagSuggestion)">{{
-        tagSuggestion.name
-      }}</span>
-    </li>
-  </ul>
-</div>
+<span class="sub-text"
+  >Max 5 tags. Select from existing tags or use Enter to create new tag.</span
+>

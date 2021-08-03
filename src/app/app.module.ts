@@ -14,11 +14,11 @@ import { CoreModule } from './core/core.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     AuthModule,
     MainModule,
     CoreModule,
+    AppRoutingModule,
   ],
   // exports: [AppRoutingModule],
   providers: [

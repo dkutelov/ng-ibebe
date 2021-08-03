@@ -28,6 +28,8 @@ const TAGS: ITag[] = [
 export class TagSelectComponent implements OnInit {
   tagsSuggestions: ITag[] = [];
   selectedTags: ITag[] = [];
+  searchTerm: string = '';
+  tagsPlaceholder = 'e.g. pregnancy';
 
   constructor() {}
 
@@ -36,12 +38,39 @@ export class TagSelectComponent implements OnInit {
   onInputChange(event: Event): void {
     let value = (event.target as HTMLInputElement).value;
     // exclude already selected
-    this.tagsSuggestions = TAGS.filter((x) =>
-      x.name.toLowerCase().includes(value.toLowerCase()),
-    );
+    if (value) {
+      this.tagsSuggestions = TAGS.filter((x) =>
+        x.name.toLowerCase().includes(value.toLowerCase()),
+      );
+    }
+  }
+
+  onTagEnter() {
+    console.log(this.searchTerm);
+    this.selectedTags = this.selectedTags.concat({
+      _id: undefined,
+      name: this.searchTerm,
+    });
+    this.reset();
   }
 
   addToSelectedTags(tag: ITag): void {
+    if (this.selectedTags.includes(tag)) return;
     this.selectedTags = [...this.selectedTags, tag];
+    this.reset();
+  }
+
+  removeTag(tag: ITag) {
+    this.selectedTags = this.selectedTags.filter((t) => t.name !== tag.name);
+
+    if (!this.selectedTags.length) {
+      this.tagsPlaceholder = 'e.g. pregnancy';
+    }
+  }
+
+  reset() {
+    this.searchTerm = '';
+    this.tagsSuggestions = [];
+    this.tagsPlaceholder = '';
   }
 }

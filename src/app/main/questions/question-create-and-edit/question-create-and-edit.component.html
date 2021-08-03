@@ -43,33 +43,43 @@
           </select>
           <span class="input-field-error">Username</span>
         </div>
-        <div class="input-group">
-          <label class="input-label" for="tags">Tags</label>
-          <select [(ngModel)]="question.tags" name="tags" id="tags" multiple>
-            <option *ngFor="let tag of tags" value="{{ tag._id }}">
-              {{ tag.name }}
-            </option>
-          </select>
-          <span class="input-field-error">Username</span>
-        </div>
       </form>
-      <app-tag-select></app-tag-select>
-      <div *ngIf="question.imageURL.length" class="img-preview">
-        <div
-          *ngFor="let imageURL of question.imageURL"
-          class="img-preview-wrapper"
-        >
-          <img [src]="imageURL" alt="uploaded image {{ imageURL }}" />
-        </div>
+      <div class="input-group">
+        <label class="input-label" for="tags">Tags</label>
+        <app-tag-select></app-tag-select>
       </div>
-      <div>
-        <label for="file">Choose file</label>
-        <input
-          id="file"
-          type="file"
-          #filePicker
-          (change)="onImagePicked($event)"
-        />
+
+      <div class="input-group">
+        <label class="input-label">Photos</label>
+        <div *ngIf="question.imageURL.length" class="img-preview">
+          <div
+            *ngFor="let imageURL of question.imageURL"
+            class="img-preview-wrapper"
+          >
+            <img [src]="imageURL" alt="uploaded image {{ imageURL }}" />
+          </div>
+        </div>
+        <div>
+          <label class="photo-upload-label" for="file">
+            <img
+              *ngIf="!loading"
+              class="photo-upload-icon"
+              src="/assets/images/image.svg"
+              alt="photo upload"
+            />
+            <div *ngIf="loading" class="loader">
+              <img src="/assets/images/loader.svg" alt="loading" />
+            </div>
+            <span>Choose a photo (max 5 photos allowed)</span>
+          </label>
+          <input
+            class="photo-upload-input"
+            id="file"
+            type="file"
+            #filePicker
+            (change)="onImagePicked($event)"
+          />
+        </div>
       </div>
       <div>
         <button

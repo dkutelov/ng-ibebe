@@ -46,6 +46,7 @@ export class QuestionCreateAndEditComponent implements OnInit {
   };
   tags!: ITag[];
   categories!: ICategory[];
+  loading = false;
 
   @HostListener('window:beforeunload', ['$event']) unloadNotification(
     $event: any,
@@ -67,12 +68,14 @@ export class QuestionCreateAndEditComponent implements OnInit {
     const files = (event.target as HTMLInputElement).files;
 
     if (!files) return;
+    this.loading = true;
     const file = files[0];
 
     this.imageService
       .addImage(file)
       .subscribe((response: { message: string; url: string }) => {
         this.question.imageURL.push(response.url);
+        this.loading = false;
       });
   }
 

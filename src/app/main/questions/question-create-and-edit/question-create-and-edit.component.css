@@ -40,7 +40,8 @@
 }
 
 .input-label {
-  font-weight: 600;
+  font-weight: 400;
+  font-size: 1.7rem;
 }
 
 .input-field {
@@ -86,7 +87,6 @@
 select {
   width: 100%;
   margin: 0;
-  margin-top: 1em;
   outline: 0;
   border: 1px solid transparent;
   border-color: rgba(86, 66, 255, 0.3);
@@ -118,8 +118,10 @@ select::-ms-expand {
   display: none;
 }
 
+/* Uploaded Images Preview  */
 .img-preview {
-  max-height: 15rem;
+  height: 15rem;
+  display: flex;
   background-color: #fff;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -129,11 +131,47 @@ select::-ms-expand {
   height: 100%;
   border-radius: 0.5rem;
   overflow: hidden;
+  margin-right: 1rem;
 }
 
 .img-preview-wrapper {
   height: 100%;
+  width: fit-content;
 }
+
+.img-preview-wrapper img {
+  height: 100%;
+}
+
+/* Image upload label and input */
+.photo-upload-label {
+  display: flex;
+  align-items: center;
+}
+
+.photo-upload-label span {
+  color: gray;
+  font-size: 1.4rem;
+}
+
+.photo-upload-icon,
+.loader {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
+}
+
+.loader {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 0.5rem;
+}
+
+.photo-upload-input {
+  display: none;
+}
+
+/* Aside */
 
 .instructions {
   padding: 5rem;
