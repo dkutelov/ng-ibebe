@@ -1,6 +1,6 @@
 import { AuthService } from '../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,20 +8,16 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
   isLoading = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 
-  saveForm() {
-    if (this.loginForm.invalid) return;
+  onLoginSubmit(form: NgForm) {
+    if (form.invalid) return;
 
-    const { username, password } = this.loginForm.value;
+    const { username, password } = form.value;
     this.isLoading = true;
     this.authService.loginUser(username, password);
   }

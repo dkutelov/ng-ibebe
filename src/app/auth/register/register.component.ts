@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,22 +8,16 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  registerForm = new FormGroup({
-    username: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    rePassword: new FormControl(''),
-  });
   isLoading = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 
-  saveForm() {
-    if (this.registerForm.invalid) return;
+  saveForm(form: NgForm) {
+    if (form.invalid) return;
 
-    const { username, email, password, rePassword } = this.registerForm.value;
+    const { username, email, password, rePassword } = form.value;
     if (password !== rePassword) return;
 
     this.isLoading = true;

@@ -1,6 +1,6 @@
 <section class="login top-offset">
   <h2 class="section-title login-title">Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="saveForm()" class="login-form">
+  <form #form="ngForm" (ngSubmit)="onLoginSubmit(form)" class="login-form">
     <div class="form-inner-wrapper">
       <div class="input-group">
         <label class="input-label" for="username">Username</label>
@@ -8,9 +8,22 @@
           class="input-field"
           type="text"
           id="username"
-          formControlName="username"
+          name="username"
+          ngModel
+          #usernameInput="ngModel"
+          required
+          [minlength]="8"
         />
-        <span class="input-field-error">Username</span>
+        <ng-container *ngIf="usernameInput.touched">
+          <span *ngIf="usernameInput.errors?.required" class="input-field-error"
+            >Username is required</span
+          >
+          <span
+            *ngIf="usernameInput.errors?.minlength"
+            class="input-field-error"
+            >Username should be min 8 characters long</span
+          >
+        </ng-container>
       </div>
       <div class="input-group">
         <label class="input-label" for="password">Password</label>
@@ -18,11 +31,27 @@
           class="input-field"
           type="password"
           id="password"
-          formControlName="password"
+          name="password"
+          ngModel
+          #passwordInput="ngModel"
+          required
+          [minlength]="8"
         />
+        <ng-container *ngIf="passwordInput.touched">
+          <span *ngIf="passwordInput.errors?.required" class="input-field-error"
+            >Password is required</span
+          >
+          <span
+            *ngIf="passwordInput.errors?.minlength"
+            class="input-field-error"
+            >Password should be min 8 characters long</span
+          >
+        </ng-container>
       </div>
       <div>
-        <button class="btn btn-submit" type="submit">Login</button>
+        <button [disabled]="form.invalid" class="btn btn-submit" type="submit">
+          Login
+        </button>
       </div>
     </div>
   </form>

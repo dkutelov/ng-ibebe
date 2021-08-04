@@ -105,6 +105,14 @@
   bottom: -1.5rem;
 }
 
+input.ng-valid {
+  border: 1px solid var(--lightgreen);
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid var(--error);
+}
+
 .btn-submit {
   margin-top: 1rem;
   background-color: #a740ff;
@@ -114,6 +122,11 @@
 .btn-submit:hover {
   background-color: var(--violet);
   border-color: var(--violet);
+}
+
+button[type='submit']:disabled {
+  background-color: var(--disabled);
+  border-color: var(--disabled);
 }
 
 .register-text {
