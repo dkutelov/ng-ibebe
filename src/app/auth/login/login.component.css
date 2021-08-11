@@ -33,13 +33,12 @@
   width: 100%;
   /* background-image: linear-gradient(to right, #52ff11, yellow, #ff4014); */
   border-top-left-radius: 3rem;
-  border-bottom-right-radius: 3rem;
   position: relative;
   background-color: rgba(245, 245, 245, 0.5);
 }
 
 .form-inner-wrapper {
-  padding: 5rem;
+  padding: 5rem 5rem 0;
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -81,7 +80,7 @@
 
 .input-label,
 .input-field {
-  color: #a740ff;
+  color: var(--lightmagento);
   font-size: 1.4rem;
 }
 
@@ -115,8 +114,10 @@ input.ng-touched.ng-invalid {
 
 .btn-submit {
   margin-top: 1rem;
-  background-color: #a740ff;
-  border-color: #a740ff;
+  background-color: var(--lightmagento);
+  border-color: var(--lightmagento);
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .btn-submit:hover {
@@ -125,7 +126,7 @@ input.ng-touched.ng-invalid {
 }
 
 .register-text {
-  margin-top: 4rem;
+  margin-top: 1rem;
   color: #444;
   font-size: 1.3rem;
 }
@@ -133,4 +134,63 @@ input.ng-touched.ng-invalid {
 button[type='submit']:disabled {
   background-color: var(--disabled);
   border-color: var(--disabled);
+}
+
+.separator {
+  color: lightslategray;
+  position: relative;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.separator::after,
+.separator::before {
+  content: '';
+  position: absolute;
+  height: 0.1rem;
+  width: 2rem;
+  background-color: lightslategray;
+  top: 1rem;
+}
+
+.separator::before {
+  left: -2.5rem;
+}
+
+.separator::after {
+  left: 2rem;
+}
+
+.social-login {
+  background-color: rgba(245, 245, 245, 0.5);
+  border-bottom-right-radius: 3rem;
+  width: 100%;
+  max-width: 40rem;
+  padding: 0rem 5rem 5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-login-btn {
+  width: 100%;
+  background: transparent;
+  color: lightslategray;
+  border: 1px solid lightslategray;
+  padding: 0.25rem 2rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.social-login-btn:first-of-type {
+  margin-bottom: 0.75rem;
+}
+
+.social-login-icon {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1rem;
+  margin-left: 3rem;
 }

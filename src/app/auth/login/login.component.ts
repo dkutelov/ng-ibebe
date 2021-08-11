@@ -1,6 +1,11 @@
 import { AuthService } from '../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { SocialAuthService } from 'angularx-social-login';
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+} from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +15,10 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
   isLoading = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private socialAuthService: SocialAuthService,
+  ) {}
 
   ngOnInit(): void {}
 
@@ -20,5 +28,21 @@ export class LoginComponent implements OnInit {
     const { username, password } = form.value;
     this.isLoading = true;
     this.authService.loginUser(username, password);
+  }
+
+  signInWithGoogle(): void {
+    this.socialAuthService
+      .signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then((user) => {
+        console.log(user);
+      });
+  }
+
+  signInWithFacebook():void {
+    
+  }
+
+  signOut(): void {
+    this.socialAuthService.signOut();
   }
 }

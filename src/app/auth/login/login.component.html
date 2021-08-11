@@ -55,5 +55,35 @@
       </div>
     </div>
   </form>
-  <div class="register-text">Do not have an account? Register here.</div>
+  <div class="social-login">
+    <p class="separator">or</p>
+    <button
+      type="button"
+      (click)="signInWithGoogle()"
+      class="btn social-login-btn"
+    >
+      <img
+        src="assets/icons/google-plus.svg"
+        alt="google plus icon"
+        class="social-login-icon"
+      />
+      <span>Login With Google</span>
+    </button>
+    <button
+      type="button"
+      (click)="signInWithFacebook()"
+      class="btn social-login-btn"
+    >
+      <img
+        src="assets/icons/facebook.svg"
+        alt="facebhook icon"
+        class="social-login-icon"
+      />
+      <span>Login With Facebook</span>
+    </button>
+  </div>
+
+  <div class="register-text">
+    Do not have an account? <a routerLink="/register">Register here</a>.
+  </div>
 </section>
