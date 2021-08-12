@@ -119,4 +119,13 @@ export class AuthService {
     this.cookieService.delete('token');
     this.cookieService.delete('id');
   }
+
+  checkUsernameExists(username: string) {
+    return this.httpClient.post<{ usernameExists: boolean }>(
+      `${environment.baseApiUrl}/auth/username-exsists`,
+      {
+        username,
+      },
+    );
+  }
 }

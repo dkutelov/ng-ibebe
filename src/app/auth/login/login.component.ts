@@ -1,6 +1,6 @@
 import { AuthService } from '../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import {
   FacebookLoginProvider,
@@ -14,16 +14,15 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
-  isLoading = false;
+export class LoginComponent {
+  isLoading: boolean = false;
+  nameExists: boolean | null = null;
 
   constructor(
     private authService: AuthService,
     private socialAuthService: SocialAuthService,
     private router: Router,
   ) {}
-
-  ngOnInit(): void {}
 
   onLoginSubmit(form: NgForm) {
     if (form.invalid) return;
@@ -61,6 +60,15 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/']);
           },
         });
+    });
+  }
+
+  checkUsernameExists(inputElement: NgModel): void {
+    const username = inputElement.control.value;
+    this.authService.checkUsernameExists(username).subscribe((response) => {
+      console.log(response.usernameExists);
+
+      this.nameExists = response.usernameExists;
     });
   }
 }

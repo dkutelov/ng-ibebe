@@ -13,7 +13,22 @@
           #usernameInput="ngModel"
           required
           [minlength]="8"
+          (focusout)="checkUsernameExists(usernameInput)"
         />
+        <span *ngIf="nameExists">
+          <img
+            class="approve-icon"
+            src="assets/icons/approved.svg"
+            alt="ok icon"
+          />
+        </span>
+        <span *ngIf="!nameExists && nameExists !== null">
+          <img
+            class="disapprove-icon"
+            src="assets/icons/cancelRed.svg"
+            alt="not ok icon"
+          />
+        </span>
         <ng-container *ngIf="usernameInput.touched">
           <span *ngIf="usernameInput.errors?.required" class="input-field-error"
             >Username is required</span
