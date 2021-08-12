@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import { NgForm } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   isLoading = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -21,6 +22,10 @@ export class RegisterComponent implements OnInit {
     if (password !== rePassword) return;
 
     this.isLoading = true;
-    this.authService.registerUser(username, email, password);
+    this.authService.registerUser(username, email, password).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+    });
   }
 }

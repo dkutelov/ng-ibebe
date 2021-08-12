@@ -1,11 +1,13 @@
 import { AuthService } from '../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { SocialAuthService } from 'angularx-social-login';
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import {
   FacebookLoginProvider,
   GoogleLoginProvider,
 } from 'angularx-social-login';
+import { from, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private socialAuthService: SocialAuthService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {}
@@ -27,22 +30,37 @@ export class LoginComponent implements OnInit {
 
     const { username, password } = form.value;
     this.isLoading = true;
-    this.authService.loginUser(username, password);
+    this.authService.loginUser(username, password).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+    });
   }
 
   signInWithGoogle(): void {
-    this.socialAuthService
-      .signIn(GoogleLoginProvider.PROVIDER_ID)
-      .then((user) => {
-        console.log(user);
-      });
+    const googleResponse: Observable<SocialUser> = from(
+      this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID),
+    );
+    this.socialLogin(googleResponse);
   }
 
-  signInWithFacebook():void {
-    
+  signInWithFacebook(): void {
+    const facebookResponse: Observable<SocialUser> = from(
+      this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID),
+    );
+    this.socialLogin(facebookResponse);
   }
 
-  signOut(): void {
-    this.socialAuthService.signOut();
+  socialLogin(socialReponse: Observable<SocialUser>): void {
+    socialReponse.subscribe((response) => {
+      const { authToken, photoUrl, email, provider } = response;
+      this.authService
+        .socialLogin({ authToken, photoUrl, email, provider })
+        .subscribe({
+          next: () => {
+            this.router.navigate(['/']);
+          },
+        });
+    });
   }
 }

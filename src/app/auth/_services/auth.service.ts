@@ -1,3 +1,4 @@
+import { SocialAuthService } from 'angularx-social-login';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -6,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../../environments/environment';
 
 import { AuthUser } from '../_models/auth.model';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +17,13 @@ export class AuthService {
   private isAuthenticated = false;
   private authStatusListener$ = new Subject<{ isAuth: boolean }>();
   private userId: string | null;
+  private isSocial: boolean = false;
 
   constructor(
     private httpClient: HttpClient,
     private router: Router,
     private cookieService: CookieService,
+    private socialAuthService: SocialAuthService,
   ) {
     this.token = null;
     this.userId = '';
@@ -49,20 +53,28 @@ export class AuthService {
 
   loginUser(username: string, password: string) {
     const user = { username, password };
-    this.httpClient
+    return this.httpClient
       .post<AuthUser>(`${environment.baseApiUrl}/auth/login`, { user })
-      .subscribe((response) => {
-        this.setAuth(response);
-      });
+      .pipe(tap((response) => this.setAuth(response)));
+  }
+
+  socialLogin(data: {
+    email: string;
+    authToken: string;
+    photoUrl: string;
+    provider: string;
+  }) {
+    this.isSocial = true;
+    return this.httpClient
+      .post<AuthUser>(`${environment.baseApiUrl}/auth/social-login`, data)
+      .pipe(tap((response) => this.setAuth(response)));
   }
 
   registerUser(username: string, email: string, password: string) {
     const user = { username, password, email };
-    this.httpClient
+    return this.httpClient
       .post<AuthUser>(`${environment.baseApiUrl}/auth/register`, { user })
-      .subscribe((response) => {
-        this.setAuth(response);
-      });
+      .pipe(tap((response) => this.setAuth(response)));
   }
 
   setAuth(response: AuthUser) {
@@ -73,7 +85,6 @@ export class AuthService {
       this.userId = response.user.id;
       this.authStatusListener$.next({ isAuth: true });
       this.setCookie(this.token, this.userId, expiresIn);
-      this.router.navigate(['/']);
     }
   }
 
@@ -83,6 +94,10 @@ export class AuthService {
     this.userId = null;
     this.authStatusListener$.next({ isAuth: false });
     this.clearCookie();
+    if (this.isSocial) {
+      this.socialAuthService.signOut();
+      this.isSocial = false;
+    }
     this.router.navigate(['/']);
   }
 

@@ -7,6 +7,8 @@ export const environment = {
   baseApiUrl: 'http://localhost:5000/api',
   googleAuthClientId:
     '634593305331-rejuprm7fmoec7rmdde964m413kg97q8.apps.googleusercontent.com',
+  facebookAppId: '982079329312547',
+  //facebookAppId: '1004842483584026',
 };
 
 /*
