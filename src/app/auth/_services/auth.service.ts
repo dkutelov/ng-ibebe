@@ -1,8 +1,9 @@
+import { CurrentUser } from './../_models/auth.model';
 import { SocialAuthService } from 'angularx-social-login';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../../environments/environment';
 
@@ -13,10 +14,10 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  private token: string | null;
-  private isAuthenticated = false;
-  private authStatusListener$ = new Subject<{ isAuth: boolean }>();
-  private userId: string | null;
+  private token: string | null = null;
+  private currentUser = new BehaviorSubject<CurrentUser | null>(null);
+  currentUser$ = this.currentUser.asObservable();
+  public usernameExists$ = new BehaviorSubject<boolean | null>(null);
   private isSocial: boolean = false;
 
   constructor(
@@ -24,31 +25,32 @@ export class AuthService {
     private router: Router,
     private cookieService: CookieService,
     private socialAuthService: SocialAuthService,
-  ) {
-    this.token = null;
-    this.userId = '';
-  }
+  ) {}
 
-  getIsAuth(): boolean {
-    return this.isAuthenticated;
-  }
-
-  getAuthStatusListener() {
-    return this.authStatusListener$.asObservable();
-  }
-
-  getToken() {
+  get getToken() {
     return this.token;
   }
 
   autoAuthUser() {
-    const authInfo = this.getAuthData();
-    if (!authInfo) return;
+    const token = this.cookieService.get('token');
+    const userId = this.cookieService.get('userId');
 
-    this.isAuthenticated = true;
-    this.userId = authInfo.userId;
-    this.token = authInfo.token;
-    this.authStatusListener$.next({ isAuth: true });
+    if (!token || !userId) return;
+    this.token = token;
+    this.httpClient
+      .post<{ user: CurrentUser | null }>(
+        `${environment.baseApiUrl}/auth/current-user`,
+        {
+          userId,
+        },
+      )
+      .subscribe((response) => {
+        console.log(response);
+
+        if (response.user) {
+          this.currentUser.next(response.user);
+        }
+      });
   }
 
   loginUser(username: string, password: string) {
@@ -77,23 +79,18 @@ export class AuthService {
       .pipe(tap((response) => this.setAuth(response)));
   }
 
-  setAuth(response: AuthUser) {
-    this.token = response.user.token;
-    if (this.token) {
-      const expiresIn = response.expiresIn;
-      this.isAuthenticated = true;
-      this.userId = response.user.id;
-      this.authStatusListener$.next({ isAuth: true });
-      this.setCookie(this.token, this.userId, expiresIn);
+  setAuth(response: AuthUser): void {
+    const { user, expiresIn } = response;
+    if (user.token) {
+      this.token = user.token;
+      this.setCookie(user.token, user.id, expiresIn);
+      this.currentUser.next(user);
     }
   }
 
   logoutUser() {
-    this.token = null;
-    this.isAuthenticated = false;
-    this.userId = null;
-    this.authStatusListener$.next({ isAuth: false });
     this.clearCookie();
+    this.currentUser.next(null);
     if (this.isSocial) {
       this.socialAuthService.signOut();
       this.isSocial = false;
@@ -101,31 +98,32 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
-  private getAuthData() {
-    const token = this.cookieService.get('token');
-    const userId = this.cookieService.get('token');
-
-    if (!token || !userId) return;
-
-    return { token, userId };
-  }
-
   private setCookie(token: string, userId: string, expiresIn: number) {
     this.cookieService.set('token', token, { expires: expiresIn });
-    this.cookieService.set('id', userId, { expires: expiresIn });
+    this.cookieService.set('userId', userId, { expires: expiresIn });
   }
 
   private clearCookie() {
     this.cookieService.delete('token');
-    this.cookieService.delete('id');
+    this.cookieService.delete('userId');
   }
 
-  checkUsernameExists(username: string) {
-    return this.httpClient.post<{ usernameExists: boolean }>(
-      `${environment.baseApiUrl}/auth/username-exsists`,
-      {
-        username,
-      },
-    );
+  checkUsernameExists(username: string): void {
+    this.httpClient
+      .post<{ usernameExists: boolean }>(
+        `${environment.baseApiUrl}/auth/username-exsists`,
+        {
+          username,
+        },
+      )
+      .subscribe({
+        next: (response) => {
+          if (response.usernameExists) {
+            this.usernameExists$.next(true);
+          } else {
+            this.usernameExists$.next(false);
+          }
+        },
+      });
   }
 }

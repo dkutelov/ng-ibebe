@@ -13,16 +13,16 @@ export class HeaderComponent implements OnInit {
   isAuthenticated = false;
   private authListenerSubscription!: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
     this.handleHeaderSize();
-    this.isAuthenticated = this.authService.getIsAuth();
-    this.authListenerSubscription = this.authService
-      .getAuthStatusListener()
-      .subscribe(({ isAuth }) => {
-        this.isAuthenticated = isAuth;
-      });
+    // this.isAuthenticated = this.authService.getIsAuth();
+    // this.authListenerSubscription = this.authService
+    //   .getAuthStatusListener()
+    //   .subscribe(({ isAuth }) => {
+    //     this.isAuthenticated = isAuth;
+    //   });
   }
 
   ngOnDestroy(): void {}

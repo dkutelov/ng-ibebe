@@ -11,7 +11,7 @@
       alt="лого на ibebe"
   /></a>
   <ul class="nav-list">
-    <ng-container *ngIf="!isAuthenticated">
+    <ng-container *ngIf="!(authService.currentUser$ | async)">
       <li class="nav-list-item">
         <a routerLink="register" routerLinkActive="nav-active">Register</a>
       </li>
@@ -19,7 +19,8 @@
         <a routerLink="login" routerLinkActive="nav-active">Login</a>
       </li>
     </ng-container>
-    <ng-container *ngIf="isAuthenticated">
+    <ng-container *ngIf="authService.currentUser$ | async as user">
+      {{ user.username }}
       <li class="nav-list-item-button">
         <a class="btn" routerLink="question-create">Ask A Question</a>
       </li>

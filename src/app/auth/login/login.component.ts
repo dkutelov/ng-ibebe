@@ -19,7 +19,7 @@ export class LoginComponent {
   nameExists: boolean | null = null;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private socialAuthService: SocialAuthService,
     private router: Router,
   ) {}
@@ -65,10 +65,11 @@ export class LoginComponent {
 
   checkUsernameExists(inputElement: NgModel): void {
     const username = inputElement.control.value;
-    this.authService.checkUsernameExists(username).subscribe((response) => {
-      console.log(response.usernameExists);
+    this.authService.checkUsernameExists(username);
+    // .subscribe((response) => {
+    //   console.log(response.usernameExists);
 
-      this.nameExists = response.usernameExists;
-    });
+    //   this.nameExists = response.usernameExists;
+    // });
   }
 }

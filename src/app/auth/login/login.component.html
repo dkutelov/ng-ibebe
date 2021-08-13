@@ -15,14 +15,21 @@
           [minlength]="8"
           (focusout)="checkUsernameExists(usernameInput)"
         />
-        <span *ngIf="nameExists">
+
+        <span *ngIf="authService.usernameExists$ | async">
           <img
             class="approve-icon"
             src="assets/icons/approved.svg"
             alt="ok icon"
           />
         </span>
-        <span *ngIf="!nameExists && nameExists !== null">
+
+        <span
+          *ngIf="
+            !(authService.usernameExists$ | async) &&
+            (authService.usernameExists$ | async) !== null
+          "
+        >
           <img
             class="disapprove-icon"
             src="assets/icons/cancelRed.svg"

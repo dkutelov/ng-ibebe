@@ -8,12 +8,21 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CurrentUser } from 'src/app/auth/_models/auth.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private authSerivce: AuthService) {}
+  private user: CurrentUser | null = null;
+
+  constructor(private router: Router, private authService: AuthService) {
+    this.authService.currentUser$.subscribe((currentUser) => {
+      if (currentUser) {
+        this.user = currentUser;
+      }
+    });
+  }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
@@ -26,7 +35,7 @@ export class AuthGuard implements CanActivate {
       route.data;
     if (
       typeof authenticationRequired === 'boolean' &&
-      authenticationRequired === this.authSerivce.getIsAuth()
+      authenticationRequired === !!this.user
     ) {
       return true;
     }
