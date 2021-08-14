@@ -45,8 +45,6 @@ export class AuthService {
         },
       )
       .subscribe((response) => {
-        console.log(response);
-
         if (response.user) {
           this.currentUser.next(response.user);
         }

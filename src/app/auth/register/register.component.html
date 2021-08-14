@@ -13,17 +13,23 @@
           #usernameInput="ngModel"
           required
           [minlength]="8"
+          [appCustomValidator]="usernameValidator"
         />
-        <ng-container *ngIf="usernameInput.touched">
+        <div *ngIf="usernameInput.touched" class="input-field-error-wrapper">
           <span *ngIf="usernameInput.errors?.required" class="input-field-error"
-            >Username is required</span
-          >
+            >Username is required.
+          </span>
           <span
             *ngIf="usernameInput.errors?.minlength"
             class="input-field-error"
-            >Username should be min 8 characters long</span
+            >Username should be min 8 characters long.</span
           >
-        </ng-container>
+          <span
+            *ngIf="usernameInput.errors?.invalidUsername"
+            class="input-field-error"
+            >Username should contain only English letter and numbers!</span
+          >
+        </div>
       </div>
       <div class="input-group">
         <label class="input-label" for="email">Email</label>
@@ -37,14 +43,14 @@
           required
           email
         />
-        <ng-container *ngIf="emailInput.touched">
+        <div *ngIf="emailInput.touched" class="input-field-error-wrapper">
           <span *ngIf="emailInput.errors?.required" class="input-field-error"
-            >Email is required</span
+            >Email is required.</span
           >
           <span *ngIf="emailInput.errors?.email" class="input-field-error"
-            >Please, enter valid email</span
+            >Please, enter valid email.</span
           >
-        </ng-container>
+        </div>
       </div>
       <div class="input-group">
         <label class="input-label" for="password">Password</label>
@@ -57,17 +63,24 @@
           #passwordInput="ngModel"
           required
           [minlength]="8"
+          [appCustomValidator]="passwordValidator"
         />
-        <ng-container *ngIf="passwordInput.touched">
+        <div *ngIf="passwordInput.touched" class="input-field-error-wrapper">
           <span *ngIf="passwordInput.errors?.required" class="input-field-error"
-            >Password is required</span
+            >Password is required.</span
           >
           <span
             *ngIf="passwordInput.errors?.minlength"
             class="input-field-error"
-            >Password should be min 8 characters long</span
+            >Password should be min 8 characters long.</span
           >
-        </ng-container>
+          <span
+            *ngIf="passwordInput.errors?.invalidPassword"
+            class="input-field-error"
+            >Password should contain at least one uppercase letter, one
+            lowercase letter, one special characters and one number!</span
+          >
+        </div>
       </div>
       <div class="input-group">
         <label class="input-label" for="re-password">Confirm Password</label>
@@ -79,26 +92,20 @@
           ngModel
           #rePasswordInput="ngModel"
           required
-          [minlength]="8"
           appSameValue="password"
         />
-        <ng-container *ngIf="rePasswordInput.touched">
+        <div *ngIf="rePasswordInput.touched" class="input-field-error-wrapper">
           <span
             *ngIf="rePasswordInput.errors?.required"
             class="input-field-error"
             >Confirm password is required</span
           >
           <span
-            *ngIf="rePasswordInput.errors?.minlength"
-            class="input-field-error"
-            >Password should be min 8 characters long</span
-          >
-          <span
             *ngIf="rePasswordInput.errors?.sameValue"
             class="input-field-error"
-            >Passwords do not match</span
+            >Passwords do not match!</span
           >
-        </ng-container>
+        </div>
       </div>
       <div>
         <button [disabled]="form.invalid" class="btn btn-submit" type="submit">

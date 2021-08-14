@@ -17,6 +17,7 @@ import { SameValueDirective } from './same-value.directive';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { environment } from '../../environments/environment';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,13 @@ import { environment } from '../../environments/environment';
     SameValueDirective,
     ProfileComponent,
   ],
-  imports: [CommonModule, FormsModule, SocialLoginModule, AuthRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SocialLoginModule,
+    SharedModule,
+    AuthRoutingModule,
+  ],
   providers: [
     CookieService,
     {

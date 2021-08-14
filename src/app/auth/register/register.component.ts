@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { usernameValidator, passwordValidator } from '../../shared/validators';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   isLoading = false;
+  usernameValidator = usernameValidator;
+  passwordValidator = passwordValidator;
 
   constructor(private authService: AuthService, private router: Router) {}
 

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IQuestion } from '../../_models/question';
+import { IQuestion } from '../../../shared/_models/question';
 
 @Component({
   selector: 'app-questions-list-item',

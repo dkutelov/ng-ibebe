@@ -1,9 +1,12 @@
-import { ITag } from './../../_models/tag';
+import { QuestionService } from './../../../shared/_services/question.service';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import { IQuestionCreate } from '../../_models/question';
-import { ICategory } from '../../_models/category';
-import { ImageService } from '../../_services/image.service';
 import { NgForm } from '@angular/forms';
+
+import { ITag } from '../../../shared/_models/tag';
+import { IQuestionCreate } from '../../../shared/_models/question';
+import { ICategory } from '../../../shared/_models/category';
+import { ImageService } from '../../../shared/_services/image.service';
+import { Router } from '@angular/router';
 
 const TAGS: ITag[] = [
   {
@@ -56,7 +59,11 @@ export class QuestionCreateAndEditComponent implements OnInit {
     }
   }
 
-  constructor(private imageService: ImageService) {}
+  constructor(
+    private questionService: QuestionService,
+    private imageService: ImageService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.tags = TAGS;
@@ -79,7 +86,18 @@ export class QuestionCreateAndEditComponent implements OnInit {
       });
   }
 
+  updateTagsHandler(tags: ITag[]) {
+    this.question.tags = [...tags];
+  }
+
   createQuestion() {
-    console.log(this.question);
+    if (this.questionForm.invalid) return;
+    this.question = { ...this.question, ...this.questionForm.value };
+    this.questionService.createQuestion(this.question).subscribe({
+      next: () => {
+        this.questionForm.resetForm();
+        this.router.navigate(['/']);
+      },
+    });
   }
 }

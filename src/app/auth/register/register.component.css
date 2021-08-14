@@ -95,14 +95,20 @@
   border-color: var(--violet);
 }
 
-.input-field-error {
+.input-field-error-wrapper {
   font-size: 1rem;
   color: var(--error);
   font-weight: 300;
   margin-left: 0.5rem;
-  position: absolute;
+  padding-top: 0.5rem;
+  position: relative;
   left: 0;
-  bottom: -1.5rem;
+  bottom: 0;
+}
+
+.input-field-error {
+  font-size: inherit;
+  color: inherit;
 }
 
 input.ng-valid {

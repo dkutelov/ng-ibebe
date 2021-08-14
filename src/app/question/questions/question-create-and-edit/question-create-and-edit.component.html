@@ -10,30 +10,57 @@
         <div class="input-group">
           <label class="input-label" for="title">Question Title</label>
           <input
-            [(ngModel)]="question.title"
             class="input-field"
             type="text"
             id="title"
             name="title"
+            ngModel
+            #titleInput="ngModel"
+            required
+            [minlength]="15"
             placeholder="Be specific and imagine you’re asking a question to another person"
           />
-          <span class="input-field-error">Username</span>
+          <ng-container *ngIf="titleInput.touched">
+            <span *ngIf="titleInput.errors?.required" class="input-field-error"
+              >Question title is required</span
+            >
+            <span *ngIf="titleInput.errors?.minlength" class="input-field-error"
+              >Question title should be minumum 15 characters long!</span
+            >
+          </ng-container>
         </div>
         <div class="input-group">
           <label class="input-label" for="text">Question Description</label>
           <textarea
-            [(ngModel)]="question.text"
             class="input-field"
             id="text"
             name="text"
             rows="8"
+            ngModel
+            #textInput="ngModel"
+            required
+            [minlength]="15"
             placeholder="Include all the information someone would need to answer your question"
           ></textarea>
-          <span class="input-field-error">Username</span>
+          <ng-container *ngIf="textInput.touched">
+            <span *ngIf="textInput.errors?.required" class="input-field-error"
+              >Question description is required</span
+            >
+            <span *ngIf="textInput.errors?.minlength" class="input-field-error"
+              >Question description should be minumum 15 characters long!</span
+            >
+          </ng-container>
         </div>
         <div class="input-group input-group--half-width">
           <label class="input-label" for="category">Category</label>
-          <select [(ngModel)]="question.category" name="category" id="category">
+          <select
+            ngModel
+            #categoryInput="ngModel"
+            name="category"
+            id="category"
+            required
+          >
+            <option disabled selected value>Please, select a category</option>
             <option
               *ngFor="let category of categories"
               value="{{ category._id }}"
@@ -41,12 +68,20 @@
               {{ category.name }}
             </option>
           </select>
-          <span class="input-field-error">Username</span>
+          <ng-container *ngIf="categoryInput.touched">
+            <span
+              *ngIf="categoryInput.errors?.required"
+              class="input-field-error"
+              >Category is required</span
+            >
+          </ng-container>
         </div>
       </form>
       <div class="input-group">
         <label class="input-label" for="tags">Tags</label>
-        <app-tag-select></app-tag-select>
+        <app-tag-select
+          (updatedSelectedTags)="updateTagsHandler($event)"
+        ></app-tag-select>
       </div>
 
       <div class="input-group">

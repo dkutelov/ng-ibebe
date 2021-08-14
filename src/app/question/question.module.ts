@@ -1,3 +1,4 @@
+import { QuestionRoutingModule } from './question-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +19,6 @@ import { QuestionCreateAndEditComponent } from './questions/question-create-and-
     TagSelectComponent,
     QuestionCreateAndEditComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, QuestionRoutingModule],
 })
-export class MainModule {}
+export class QuestionModule {}

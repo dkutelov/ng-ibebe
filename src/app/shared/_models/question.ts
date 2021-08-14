@@ -1,3 +1,5 @@
+import { ITag } from './tag';
+
 export interface IQuestion {
   title: string;
   text: string;
@@ -22,6 +24,6 @@ export interface IQuestionCreate {
   title: string;
   text: string;
   category: string;
-  tags: string[];
+  tags: ITag[];
   imageURL: string[];
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ITag } from '../../_models/tag';
+import { BehaviorSubject } from 'rxjs';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { ITag } from '../../../shared/_models/tag';
 
 const TAGS: ITag[] = [
   {
@@ -25,15 +26,15 @@ const TAGS: ITag[] = [
   templateUrl: './tag-select.component.html',
   styleUrls: ['./tag-select.component.css'],
 })
-export class TagSelectComponent implements OnInit {
+export class TagSelectComponent {
   tagsSuggestions: ITag[] = [];
   selectedTags: ITag[] = [];
   searchTerm: string = '';
   tagsPlaceholder = 'e.g. pregnancy';
 
-  constructor() {}
+  @Output() updatedSelectedTags = new EventEmitter<ITag[]>();
 
-  ngOnInit(): void {}
+  constructor() {}
 
   onInputChange(event: Event): void {
     let value = (event.target as HTMLInputElement).value;
@@ -46,17 +47,18 @@ export class TagSelectComponent implements OnInit {
   }
 
   onTagEnter() {
-    console.log(this.searchTerm);
     this.selectedTags = this.selectedTags.concat({
       _id: undefined,
       name: this.searchTerm,
     });
+    this.updatedSelectedTags.emit(this.selectedTags);
     this.reset();
   }
 
   addToSelectedTags(tag: ITag): void {
     if (this.selectedTags.includes(tag)) return;
     this.selectedTags = [...this.selectedTags, tag];
+    this.updatedSelectedTags.emit(this.selectedTags);
     this.reset();
   }
 
@@ -66,6 +68,7 @@ export class TagSelectComponent implements OnInit {
     if (!this.selectedTags.length) {
       this.tagsPlaceholder = 'e.g. pregnancy';
     }
+    this.updatedSelectedTags.emit(this.selectedTags);
   }
 
   reset() {

@@ -171,6 +171,18 @@ select::-ms-expand {
   display: none;
 }
 
+input.ng-valid,
+textarea.ng-valid,
+select.ng-valid {
+  border: 1px solid var(--lightgreen);
+}
+
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border: 1px solid var(--error);
+}
+
 /* Aside */
 
 .instructions {

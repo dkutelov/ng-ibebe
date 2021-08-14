@@ -14,15 +14,16 @@ import { CurrentUser } from 'src/app/auth/_models/auth.model';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  private user: CurrentUser | null = null;
+  //private user: CurrentUser | null = null;
 
   constructor(private router: Router, private authService: AuthService) {
-    this.authService.currentUser$.subscribe((currentUser) => {
-      if (currentUser) {
-        this.user = currentUser;
-      }
-    });
+    // this.authService.currentUser$.subscribe((currentUser) => {
+    //   if (currentUser) {
+    //     this.user = currentUser;
+    //   }
+    // });
   }
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
@@ -35,15 +36,13 @@ export class AuthGuard implements CanActivate {
       route.data;
     if (
       typeof authenticationRequired === 'boolean' &&
-      authenticationRequired === !!this.user
+      authenticationRequired === !!this.authService.getToken
     ) {
       return true;
     }
 
     let authRedirectUrl = authenticationFailureRedirectUrl;
     if (authenticationRequired) {
-      console.log(route.url);
-
       const loginRedirectUrl = route.url.reduce(
         (acc, s) => `${acc}/${s.path}`,
         '',
