@@ -1,5 +1,6 @@
+import { TagsService } from './../../../shared/_services/tags.service';
 import { BehaviorSubject } from 'rxjs';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { ITag } from '../../../shared/_models/tag';
 
 const TAGS: ITag[] = [
@@ -26,7 +27,8 @@ const TAGS: ITag[] = [
   templateUrl: './tag-select.component.html',
   styleUrls: ['./tag-select.component.css'],
 })
-export class TagSelectComponent {
+export class TagSelectComponent implements OnInit {
+  tags: ITag[] = [];
   tagsSuggestions: ITag[] = [];
   selectedTags: ITag[] = [];
   searchTerm: string = '';
@@ -34,13 +36,19 @@ export class TagSelectComponent {
 
   @Output() updatedSelectedTags = new EventEmitter<ITag[]>();
 
-  constructor() {}
+  constructor(private tagsService: TagsService) {}
+
+  ngOnInit(): void {
+    this.tagsService.getTags().subscribe((tags) => {
+      this.tags = tags;
+    });
+  }
 
   onInputChange(event: Event): void {
     let value = (event.target as HTMLInputElement).value;
     // exclude already selected
     if (value) {
-      this.tagsSuggestions = TAGS.filter((x) =>
+      this.tagsSuggestions = this.tags.filter((x) =>
         x.name.toLowerCase().includes(value.toLowerCase()),
       );
     }

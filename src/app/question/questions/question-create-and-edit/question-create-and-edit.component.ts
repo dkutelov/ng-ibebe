@@ -1,3 +1,5 @@
+import { CategoriesService } from './../../../shared/_services/categories.service';
+import { TagsService } from './../../../shared/_services/tags.service';
 import { QuestionService } from './../../../shared/_services/question.service';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -7,31 +9,6 @@ import { IQuestionCreate } from '../../../shared/_models/question';
 import { ICategory } from '../../../shared/_models/category';
 import { ImageService } from '../../../shared/_services/image.service';
 import { Router } from '@angular/router';
-
-const TAGS: ITag[] = [
-  {
-    _id: '601175e6d67fd469c75e8df3',
-    name: 'Колики',
-  },
-  {
-    _id: '60117602d67fd469c75e8df4',
-    name: 'Хранене',
-  },
-  {
-    _id: '6011760bd67fd469c75e8df5',
-    name: 'Първи зъбки',
-  },
-  {
-    _id: '6012b62c5e04207183ea09ea',
-    name: 'Кърмене',
-  },
-];
-const CATEGORIES: ICategory[] = [
-  { _id: '600d59189523cf2606d0a873', name: 'Бъдещи майки' },
-  { _id: '600d59489523cf2606d0a874', name: 'Проблемна бременност' },
-  { _id: '600d59569523cf2606d0a875', name: 'Име на бебето' },
-  { _id: '600d5e3e86de9c26d2d10139', name: 'Кърмене' },
-];
 
 @Component({
   selector: 'app-question-create-and-edit',
@@ -47,7 +24,6 @@ export class QuestionCreateAndEditComponent implements OnInit {
     tags: [],
     imageURL: [],
   };
-  tags!: ITag[];
   categories!: ICategory[];
   loading = false;
 
@@ -61,13 +37,17 @@ export class QuestionCreateAndEditComponent implements OnInit {
 
   constructor(
     private questionService: QuestionService,
+    private categoriesService: CategoriesService,
     private imageService: ImageService,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.tags = TAGS;
-    this.categories = CATEGORIES;
+    this.categoriesService.getCategories().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+      },
+    });
   }
 
   onImagePicked(event: Event) {
