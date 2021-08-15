@@ -1,0 +1,29 @@
+.notification {
+  position: absolute;
+  top: 0;
+  right: 10rem;
+  border: 1px solid black;
+  padding: 4rem;
+  border-radius: 1rem;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.success {
+  border-color: var(--lightgreen);
+  background-color: var(--lightgreen);
+}
+
+.error {
+  border-color: var(--error);
+  background-color: var(--error);
+}
+
+.close {
+  width: 1rem;
+  height: 1rem;
+  position: inherit;
+  top: 0.5rem;
+  right: 1.5rem;
+  cursor: pointer;
+}

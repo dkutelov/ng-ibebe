@@ -1,0 +1,6 @@
+<div *ngIf="toaster" class="{{ setCssClass(toaster) }}">
+  <a class="close" (click)="removeToaster()">
+    <img src="assets/images/cancel.svg" alt="cancel" />
+  </a>
+  <span [innerHTML]="toaster.message"></span>
+</div>

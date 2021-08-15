@@ -1,7 +1,9 @@
 <div class="container top-offset">
-  <app-questions-list-item
-    *ngFor="let question of questions"
-    [question]="question"
-  >
-  </app-questions-list-item>
+  <ng-container *ngIf="questions">
+    <app-questions-list-item
+      *ngFor="let question of questions"
+      [question]="question"
+    >
+    </app-questions-list-item>
+  </ng-container>
 </div>

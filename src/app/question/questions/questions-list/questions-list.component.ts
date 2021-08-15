@@ -9,15 +9,11 @@ import { QuestionService } from '../../../shared/_services/question.service';
 })
 export class QuestionsListComponent implements OnInit {
   questions: IQuestion[] = [];
-  constructor(private questionService: QuestionService) {}
+
+  constructor(public questionService: QuestionService) {}
+  loadQuestions = this.questionService.loadQuestions;
 
   ngOnInit(): void {
-    this.getQuestions();
-  }
-
-  getQuestions(): void {
-    this.questionService
-      .getQuestions()
-      .subscribe((questions) => (this.questions = questions));
+    this.loadQuestions().subscribe((q) => (this.questions = q));
   }
 }

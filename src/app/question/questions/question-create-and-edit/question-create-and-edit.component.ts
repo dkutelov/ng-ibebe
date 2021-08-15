@@ -1,3 +1,4 @@
+import { ToasterService } from './../../../toaster/toaster.service';
 import { CategoriesService } from './../../../shared/_services/categories.service';
 import { TagsService } from './../../../shared/_services/tags.service';
 import { QuestionService } from './../../../shared/_services/question.service';
@@ -40,6 +41,7 @@ export class QuestionCreateAndEditComponent implements OnInit {
     private categoriesService: CategoriesService,
     private imageService: ImageService,
     private router: Router,
+    private toasterService: ToasterService,
   ) {}
 
   ngOnInit(): void {
@@ -76,6 +78,7 @@ export class QuestionCreateAndEditComponent implements OnInit {
     this.questionService.createQuestion(this.question).subscribe({
       next: () => {
         this.questionForm.resetForm();
+        this.toasterService.success('Qestion created successfully!');
         this.router.navigate(['/']);
       },
     });
