@@ -1,6 +1,8 @@
 .question-card {
   display: grid;
   grid-template-columns: 10% 1fr;
+  background: rgba(245, 245, 245, 0.6);
+  border-radius: 1rem;
 }
 
 .question-card-votes {

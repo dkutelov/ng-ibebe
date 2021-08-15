@@ -1,5 +1,5 @@
 <div class="container top-offset">
-  <ng-container *ngIf="questions">
+  <ng-container *ngIf="questions$ | async as questions">
     <app-questions-list-item
       *ngFor="let question of questions"
       [question]="question"

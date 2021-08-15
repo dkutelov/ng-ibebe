@@ -6,6 +6,8 @@ export interface IQuestion {
   imageURL: string[];
   views: number;
   votes: Votes;
+  upVotesCount: number;
+  downVotesCount: number;
   tags: string[];
   answers: any[];
   comments: any[];

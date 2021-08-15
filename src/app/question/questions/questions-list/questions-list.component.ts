@@ -8,12 +8,11 @@ import { QuestionService } from '../../../shared/_services/question.service';
   styleUrls: ['./questions-list.component.css'],
 })
 export class QuestionsListComponent implements OnInit {
-  questions: IQuestion[] = [];
+  questions$ = this.questionService.questions$;
 
   constructor(public questionService: QuestionService) {}
-  loadQuestions = this.questionService.loadQuestions;
 
   ngOnInit(): void {
-    this.loadQuestions().subscribe((q) => (this.questions = q));
+    this.questionService.loadQuestions();
   }
 }

@@ -1,16 +1,15 @@
 <div *ngIf="question" class="question-card">
   <div class="question-card-votes">
-    <i class="vote-icon">
-      <img src="assets/images/up-arrow.svg" alt="vote question up" />
-    </i>
-    <span class="vote-number">{{
-      question.votes.up - question.votes.down
-    }}</span>
-    <i class="vote-icon">
-      <img src="assets/images/check.svg" alt="vote question up" />
-    </i>
+    <div>
+      <p>Votes: 0</p>
+      <p>Answers: 0</p>
+      <p>Views: 0</p>
+    </div>
   </div>
   <div class="question-card-content">
+    <a [routerLink]="['/questions', question?.id]"
+      ><h2>{{ question.title }}</h2></a
+    >
     <p class="question-card-text">
       {{ question.text }}
     </p>

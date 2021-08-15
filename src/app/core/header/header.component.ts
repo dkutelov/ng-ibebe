@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { AuthService } from '../../auth/_services/auth.service';
 
 @Component({
@@ -10,22 +9,12 @@ import { AuthService } from '../../auth/_services/auth.service';
 export class HeaderComponent implements OnInit {
   shrinkHeader = false;
   isMobileMenuOpen = false;
-  isAuthenticated = false;
-  private authListenerSubscription!: Subscription;
 
   constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
     this.handleHeaderSize();
-    // this.isAuthenticated = this.authService.getIsAuth();
-    // this.authListenerSubscription = this.authService
-    //   .getAuthStatusListener()
-    //   .subscribe(({ isAuth }) => {
-    //     this.isAuthenticated = isAuth;
-    //   });
   }
-
-  ngOnDestroy(): void {}
 
   handleHeaderSize() {
     window.onscroll = () => {
