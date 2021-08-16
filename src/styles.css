@@ -66,6 +66,12 @@ h6 {
   font-weight: 400;
 }
 
+.container-three-columns {
+  display: grid;
+  grid-template-columns: 15% 1fr 20%;
+  column-gap: 2rem;
+}
+
 /* Form */
 .input-group {
   margin-bottom: 2rem;

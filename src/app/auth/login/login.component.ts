@@ -1,5 +1,5 @@
 import { AuthService } from '../_services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import {
@@ -66,10 +66,5 @@ export class LoginComponent {
   checkUsernameExists(inputElement: NgModel): void {
     const username = inputElement.control.value;
     this.authService.checkUsernameExists(username);
-    // .subscribe((response) => {
-    //   console.log(response.usernameExists);
-
-    //   this.nameExists = response.usernameExists;
-    // });
   }
 }

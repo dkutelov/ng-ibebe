@@ -9,6 +9,7 @@ import { QuestionsListItemComponent } from './questions/questions-list-item/ques
 import { QuestionDetailComponent } from './questions/question-detail/question-detail.component';
 import { TagSelectComponent } from './tags/tag-select/tag-select.component';
 import { QuestionCreateAndEditComponent } from './questions/question-create-and-edit/question-create-and-edit.component';
+import { AnswerModule } from '../answer/answer.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,6 @@ import { QuestionCreateAndEditComponent } from './questions/question-create-and-
     TagSelectComponent,
     QuestionCreateAndEditComponent,
   ],
-  imports: [CommonModule, FormsModule, QuestionRoutingModule],
+  imports: [CommonModule, FormsModule, AnswerModule, QuestionRoutingModule],
 })
 export class QuestionModule {}

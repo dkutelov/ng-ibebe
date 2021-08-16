@@ -56,6 +56,21 @@
   animation: fadeIn 0.5s ease-in forwards;
 }
 
+.question-card-content {
+  padding-right: 1.5rem;
+}
+
 .question-card-title {
   color: var(--magento);
+}
+
+.question-card-text {
+  color: #333;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.auth-invitaiton {
+  color: var(--blue);
+  font-weight: 300;
 }

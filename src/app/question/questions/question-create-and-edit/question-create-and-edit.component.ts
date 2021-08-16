@@ -1,6 +1,5 @@
 import { ToasterService } from './../../../toaster/toaster.service';
 import { CategoriesService } from './../../../shared/_services/categories.service';
-import { TagsService } from './../../../shared/_services/tags.service';
 import { QuestionService } from './../../../shared/_services/question.service';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -78,7 +77,7 @@ export class QuestionCreateAndEditComponent implements OnInit {
     this.questionService.createQuestion(this.question).subscribe({
       next: () => {
         this.questionForm.resetForm();
-        this.toasterService.success('Qestion created successfully!');
+        this.toasterService.success('Question created successfully!');
         this.router.navigate(['/']);
       },
     });

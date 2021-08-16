@@ -1,25 +1,49 @@
-<div class="container top-offset">
-  <div *ngIf="question$ | async as question" class="question-card">
-    <div class="question-card-votes">
-      <span class="no-auth-warning" *ngIf="!(authService.currentUser$ | async)"
-        >Please, login to be able to vote!</span
-      >
-      <i class="vote-icon" (click)="vote(question.id, 'up')">
-        <img src="assets/images/up-arrow.svg" alt="vote question up" />
-      </i>
-      <span class="vote-number">{{
-        question.upVotesCount - question.downVotesCount
-      }}</span>
-      <i class="vote-icon" (click)="vote(question.id, 'down')">
-        <img src="assets/images/check.svg" alt="vote question up" />
-      </i>
-    </div>
-    <div class="question-card-content">
-      <h2 class="question-card-title">{{ question.title }}</h2>
-      <p class="question-card-text">
-        {{ question.text }}
+<div class="container top-offset container-three-columns">
+  <aside class="aside-left">navigation</aside>
+  <section class="main-content">
+    <section *ngIf="question$ | async as question" class="question-card">
+      <div class="question-card-votes">
+        <span
+          class="no-auth-warning"
+          *ngIf="!(authService.currentUser$ | async)"
+          >Please, login to be able to vote!</span
+        >
+        <i class="vote-icon" (click)="vote(question.id, 'up')">
+          <img src="assets/images/up-arrow.svg" alt="vote question up" />
+        </i>
+        <span class="vote-number">{{
+          question.upVotesCount - question.downVotesCount
+        }}</span>
+        <i class="vote-icon" (click)="vote(question.id, 'down')">
+          <img src="assets/images/check.svg" alt="vote question up" />
+        </i>
+      </div>
+      <div class="question-card-content">
+        <h2 class="question-card-title">{{ question.title }}</h2>
+        <p class="question-card-text">
+          {{ question.text }}
+        </p>
+      </div>
+      <!-- {{ question | json }} -->
+    </section>
+    <section>
+      <app-answer-list></app-answer-list>
+    </section>
+    <section>
+      <app-answer-create-and-edit
+        *ngIf="user && (question$ | async) as question"
+        [questionData]="{
+          questionId: question.id,
+          userId: user.id,
+          authorId: question.author
+        }"
+      ></app-answer-create-and-edit>
+      <p *ngIf="!user" class="auth-invitaiton">
+        You have a valuable answer for this question? Log in
+        <a routerLink="/login">here</a>
+        to post it!
       </p>
-    </div>
-    {{ question | json }}
-  </div>
+    </section>
+  </section>
+  <aside class="aside-right">Something here</aside>
 </div>

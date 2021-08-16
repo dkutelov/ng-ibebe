@@ -4,6 +4,7 @@ export interface IQuestion {
   title: string;
   text: string;
   imageURL: string[];
+  author: string;
   views: number;
   votes: Votes;
   upVotesCount: number;

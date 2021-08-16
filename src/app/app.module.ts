@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { QuestionModule } from './question/question.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth/_interceptors/auth.interceptor';
+import { AnswerModule } from './answer/answer.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { AuthInterceptor } from './auth/_interceptors/auth.interceptor';
     BrowserModule,
     HttpClientModule,
     AuthModule,
+    AnswerModule,
     QuestionModule,
     CoreModule,
     SharedModule,
