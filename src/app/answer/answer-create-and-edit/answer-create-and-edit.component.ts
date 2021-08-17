@@ -3,7 +3,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { ImageService } from './../../shared/_services/image.service';
-import { AnswersService } from 'src/app/shared/_services/answers.service';
+import { AnswersService } from '../answers.service';
 
 @Component({
   selector: 'app-answer-create-and-edit',
@@ -18,9 +18,7 @@ export class AnswerCreateAndEditComponent implements OnInit {
   };
 
   @ViewChild('answerForm') answerForm!: NgForm;
-  answer: any = {
-    imageURL: [],
-  };
+  imageURL: string[] = [];
   loading = false;
   saving = false;
 
@@ -30,9 +28,7 @@ export class AnswerCreateAndEditComponent implements OnInit {
     private answersService: AnswersService,
   ) {}
 
-  ngOnInit(): void {
-    console.log(this.questionData);
-  }
+  ngOnInit(): void {}
 
   onImagePicked(event: Event) {
     if (!event || !event.target) return;
@@ -45,7 +41,7 @@ export class AnswerCreateAndEditComponent implements OnInit {
     this.imageService
       .addImage(file)
       .subscribe((response: { message: string; url: string }) => {
-        this.answer.imageURL.push(response.url);
+        this.imageURL.push(response.url);
         this.loading = false;
       });
   }
@@ -61,18 +57,18 @@ export class AnswerCreateAndEditComponent implements OnInit {
 
     if (this.answerForm.invalid) return;
 
-    this.answer = {
-      ...this.answer,
+    const answer = {
       ...this.answerForm.value,
+      imageURL: this.imageURL,
       questionId: this.questionData.questionId,
       userId: this.questionData.userId,
     };
     this.saving = true;
-    this.answersService.createAnswer(this.answer).subscribe({
+    this.answersService.createAnswer(answer).subscribe({
       next: () => {
         this.toasterService.success('Thank you for your answer!');
         this.answerForm.resetForm();
-        this.answer.imageURL = [];
+        this.imageURL = [];
         this.saving = false;
       },
     });

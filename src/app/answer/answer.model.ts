@@ -7,5 +7,7 @@ export interface IAnswer {
   created: Date;
   upVotes: string[];
   downVotes: string[];
+  upVotesCount: number;
+  downVotesCount: number;
   comments: string[];
 }

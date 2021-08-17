@@ -1,0 +1,4 @@
+.no-show {
+  text-align: center;
+  color: var(--disabled);
+}

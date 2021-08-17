@@ -4,12 +4,12 @@ export interface IQuestion {
   title: string;
   text: string;
   imageURL: string[];
-  author: string;
+  author: IAuthor;
   views: number;
   votes: Votes;
   upVotesCount: number;
   downVotesCount: number;
-  tags: string[];
+  tags: ITag[];
   answers: any[];
   comments: any[];
   category: string;
@@ -29,4 +29,19 @@ export interface IQuestionCreate {
   category: string;
   tags: ITag[];
   imageURL: string[];
+}
+
+export interface IAuthor {
+  _id: string;
+  username: string | undefined;
+  email: string;
+  avatar: string;
+}
+
+export interface IQuestionVote {
+  message: string;
+  updatedVotesCount: {
+    upVotesCount: number;
+    downVotesCount: number;
+  };
 }

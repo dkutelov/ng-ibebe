@@ -1,0 +1,21 @@
+<div *ngIf="answer" class="answer-card">
+  <div class="answer-card-votes">
+    <span class="no-auth-warning" *ngIf="!(authService.currentUser$ | async)"
+      >Please, login to be able to vote!</span
+    >
+    <i class="vote-icon" (click)="vote(answer._id!, 'up')">
+      <img src="assets/icons/triangle-up.svg" alt="vote answer up" />
+    </i>
+    <span class="vote-number">{{
+      answer.upVotesCount - answer.downVotesCount
+    }}</span>
+    <i class="vote-icon" (click)="vote(answer!._id!, 'down')">
+      <img src="assets/icons/triangle-down.svg" alt="vote answer down" />
+    </i>
+  </div>
+  <div class="answer-card-content">
+    <p class="answer-card-text">
+      {{ answer.text }}
+    </p>
+  </div>
+</div>

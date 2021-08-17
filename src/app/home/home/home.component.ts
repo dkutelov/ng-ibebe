@@ -1,4 +1,4 @@
-import { ToasterService } from './../../toaster/toaster.service';
+import { ToasterService } from '../../toaster/toaster.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

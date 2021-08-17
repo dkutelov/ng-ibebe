@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { IQuestion, IQuestionCreate } from '../_models/question';
+import { IQuestion, IQuestionCreate, IQuestionVote } from '../_models/question';
 
 @Injectable({
   providedIn: 'root',
@@ -25,19 +25,21 @@ export class QuestionService {
     this.httpClient
       .get<IQuestion[]>(`${environment.baseApiUrl}/questions`)
       .subscribe((questions) => {
-        console.log(questions);
-        this.questions.next(questions);
+        if (questions.length > 0) {
+          this.questions.next(questions);
+        }
       });
   }
 
   loadQuestion = (id: number) => {
     this.question.next(null);
 
-    this.httpClient
-      .get<IQuestion>(`${environment.baseApiUrl}/questions/${id}`)
-      .subscribe((question) => {
-        this.question.next(question);
-      });
+    return this.httpClient.get<IQuestion>(
+      `${environment.baseApiUrl}/questions/${id}`,
+    );
+    // .subscribe((question) => {
+    //   this.question.next(question);
+    // });
   };
 
   createQuestion(data: IQuestionCreate) {
@@ -48,7 +50,7 @@ export class QuestionService {
   }
 
   vote(questionId: string, voteType: string, userId: string) {
-    return this.httpClient.post<IQuestion>(
+    return this.httpClient.post<IQuestionVote>(
       `${environment.baseApiUrl}/questions/vote`,
       { questionId, voteType, userId },
     );

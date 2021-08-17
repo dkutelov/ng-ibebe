@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { IAnswer } from '../_models/answer';
+import { IAnswer } from './answer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,15 +16,14 @@ export class AnswersService {
 
   constructor(private httpClient: HttpClient) {}
 
-  loadAnswers(): void {
-    this.httpClient.get(`${environment.baseApiUrl}/questions`);
-    let query = '';
+  loadAnswers(questionId: string): void {
     this.answers.next(null);
 
     this.httpClient
-      .get<IAnswer[]>(`${environment.baseApiUrl}/answers`)
+      .get<IAnswer[]>(
+        `${environment.baseApiUrl}/answers?questionId=${questionId}`,
+      )
       .subscribe((answers) => {
-        console.log(answers);
         this.answers.next(answers);
       });
   }
@@ -46,10 +45,10 @@ export class AnswersService {
     );
   }
 
-  vote(questionId: string, voteType: string, userId: string) {
+  vote(answerId: string, voteType: string, userId: string) {
     return this.httpClient.post<IAnswer>(
-      `${environment.baseApiUrl}/questions/vote`,
-      { questionId, voteType, userId },
+      `${environment.baseApiUrl}/answers/vote`,
+      { answerId, voteType, userId },
     );
   }
 }

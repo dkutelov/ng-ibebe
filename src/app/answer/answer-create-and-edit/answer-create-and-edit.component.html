@@ -26,11 +26,8 @@
       </form>
       <div class="input-group">
         <label class="input-label-photos">Photos</label>
-        <div *ngIf="answer.imageURL.length" class="img-preview">
-          <div
-            *ngFor="let imageURL of answer.imageURL"
-            class="img-preview-wrapper"
-          >
+        <div *ngIf="imageURL.length" class="img-preview">
+          <div *ngFor="let imageURL of imageURL" class="img-preview-wrapper">
             <img [src]="imageURL" alt="uploaded image {{ imageURL }}" />
           </div>
         </div>

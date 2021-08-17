@@ -1,0 +1,70 @@
+.answer-card {
+  display: grid;
+  grid-template-columns: 10% 1fr;
+  /* background: rgba(245, 245, 245, 0.6); */
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.answer-card-votes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  position: relative;
+}
+
+.vote-icon {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+}
+
+.vote-icon:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.vote-icon img {
+  max-width: 100%;
+}
+
+.vote-number {
+  display: inline-block;
+  margin: 0.5rem 0;
+  font-size: 2rem;
+  color: var(--purple-lighter);
+}
+
+.no-auth-warning {
+  color: var(--lightblue);
+  font-size: 1.2rem;
+  position: absolute;
+  padding: 1rem;
+  top: 5rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 10;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--lightblue);
+  border-radius: 0.5rem;
+  opacity: 0;
+}
+
+.answer-card-votes:hover .no-auth-warning {
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+.answer-card-text {
+  color: #333;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+}
+
+.auth-invitaiton {
+  color: var(--blue);
+  font-weight: 300;
+}

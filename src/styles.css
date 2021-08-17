@@ -107,11 +107,12 @@ h6 {
   border: 2px solid var(--purple);
   cursor: pointer;
   transition: all 0.3s ease-in;
+  text-decoration: none;
 }
 
 .btn:hover {
-  background-color: var(--putple-lighter);
-  border-color: var(--putple-lighter);
+  background-color: var(--purple-lighter);
+  border-color: var(--purple-lighter);
 }
 
 /* Animations */

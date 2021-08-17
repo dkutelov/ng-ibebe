@@ -1,7 +1,7 @@
 <div class="container top-offset container-three-columns">
   <aside class="aside-left">navigation</aside>
   <section class="main-content">
-    <section *ngIf="question$ | async as question" class="question-card">
+    <section *ngIf="question" class="question-card">
       <div class="question-card-votes">
         <span
           class="no-auth-warning"
@@ -23,19 +23,23 @@
         <p class="question-card-text">
           {{ question.text }}
         </p>
+
+        <app-question-card-details
+          [question]="question"
+        ></app-question-card-details>
       </div>
       <!-- {{ question | json }} -->
     </section>
-    <section>
-      <app-answer-list></app-answer-list>
+    <section *ngIf="question">
+      <app-answer-list [questionId]="question!.id"></app-answer-list>
     </section>
     <section>
       <app-answer-create-and-edit
-        *ngIf="user && (question$ | async) as question"
+        *ngIf="user && question"
         [questionData]="{
           questionId: question.id,
           userId: user.id,
-          authorId: question.author
+          authorId: question.author._id
         }"
       ></app-answer-create-and-edit>
       <p *ngIf="!user" class="auth-invitaiton">

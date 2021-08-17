@@ -1,17 +1,26 @@
 <div *ngIf="question" class="question-card">
-  <div class="question-card-votes">
-    <div>
-      <p>Votes: 0</p>
-      <p>Answers: 0</p>
-      <p>Views: 0</p>
-    </div>
+  <div class="question-card-info">
+    <p class="question-card-info-section">
+      <span>{{ question.upVotesCount - question.downVotesCount }}</span>
+      <span>{{
+        'vote' | pluralize: question.upVotesCount - question.downVotesCount
+      }}</span>
+    </p>
+    <p class="question-card-info-section">
+      <span>{{ question.answersCount }}</span
+      ><span>{{ 'answer' | pluralize: question.answersCount }}</span>
+    </p>
+    <p>{{ question.views }} {{ 'view' | pluralize: question.views }}</p>
   </div>
   <div class="question-card-content">
-    <a [routerLink]="['/questions', question?.id]"
-      ><h2>{{ question.title }}</h2></a
-    >
+    <h2 class="question-card-title">
+      <a [routerLink]="['/questions', question?.id]">{{ question.title }}</a>
+    </h2>
     <p class="question-card-text">
-      {{ question.text }}
+      {{ question.text | shortenText: 300 }}
     </p>
+    <app-question-card-details
+      [question]="question"
+    ></app-question-card-details>
   </div>
 </div>
