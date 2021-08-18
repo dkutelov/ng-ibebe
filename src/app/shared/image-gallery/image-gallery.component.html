@@ -1,0 +1,5 @@
+<div *ngIf="imageArr.length > 0" class="images-wrapper">
+  <div *ngFor="let image of imageArr" class="image-wrapper">
+    <img [src]="image.imageURL" [alt]="image.imageURL" />
+  </div>
+</div>

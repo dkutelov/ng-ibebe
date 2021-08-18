@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { IAnswer } from './answer.model';
+import { IAnswer, IAnswerVote } from './answer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -46,7 +46,7 @@ export class AnswersService {
   }
 
   vote(answerId: string, voteType: string, userId: string) {
-    return this.httpClient.post<IAnswer>(
+    return this.httpClient.post<IAnswerVote>(
       `${environment.baseApiUrl}/answers/vote`,
       { answerId, voteType, userId },
     );

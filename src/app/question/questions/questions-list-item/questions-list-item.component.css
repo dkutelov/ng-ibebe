@@ -4,7 +4,7 @@
   background: rgba(245, 245, 245, 0.6);
   border-radius: 1rem;
   margin-bottom: 1.5rem;
-  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.4);
+  /* box-shadow: inset 1px 1px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .question-card-info {
@@ -49,14 +49,4 @@
   justify-content: space-between;
   padding-bottom: 1.5rem;
   padding-right: 2rem;
-}
-
-.question-tag {
-  font-size: 1.4rem;
-  display: inline-block;
-  color: #fff;
-  background-color: #9a8fff;
-  padding: 0.5rem;
-  margin-right: 1rem;
-  border-radius: 0.5rem;
 }

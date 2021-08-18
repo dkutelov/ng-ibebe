@@ -1,7 +1,7 @@
 <div class="question-details">
   <div class="question-detail-info">
     <p class="question-date">
-      Asked: {{ question.created | date: 'dd.MM.yyyy' }}
+      Asked: {{ question.created | date: 'dd-MM-yyyy' }}
     </p>
     <div class="question-tags">
       <span *ngFor="let tag of question.tags" class="question-tag">{{

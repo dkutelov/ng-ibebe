@@ -1,7 +1,12 @@
 <div *ngIf="answers$ | async as answers">
-  <div>{{ answers.length }} {{ 'Answer' | pluralize: answers.length }}</div>
+  <div *ngIf="answers.length > 0" class="answers-heading">
+    {{ answers.length }} {{ 'Answer' | pluralize: answers.length }}
+  </div>
+  <p *ngIf="answers.length === 0" class="no-answers-message">
+    Be the first to provide an answer to this question!
+  </p>
   <app-answer-list-item
     *ngFor="let answer of answers"
-    [answer]="answer"
+    [answerData]="answer"
   ></app-answer-list-item>
 </div>

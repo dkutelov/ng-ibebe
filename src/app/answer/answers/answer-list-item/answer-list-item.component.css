@@ -3,15 +3,19 @@
   grid-template-columns: 10% 1fr;
   /* background: rgba(245, 245, 245, 0.6); */
   border-radius: 1rem;
-  padding: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .answer-card-votes {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 1rem;
+  padding: 1rem;
   position: relative;
+  background: rgba(245, 245, 245, 0.6);
+  border-radius: 1rem;
+  margin-right: 1.5rem;
+  align-self: start;
 }
 
 .vote-icon {
@@ -61,10 +65,39 @@
   color: #333;
   font-weight: 300;
   line-height: 1.4;
-  margin-top: 0.5rem;
+  margin-top: 0rem;
 }
 
 .auth-invitaiton {
   color: var(--blue);
   font-weight: 300;
+}
+
+.answer-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.answer-author {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  width: 12rem;
+  justify-content: flex-start;
+}
+
+.answer-author p {
+  color: var(--lightblue);
+  font-size: 1.2rem;
+}
+
+.answer-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.3rem;
+}
+
+.answer-date {
+  color: var(--disabled);
+  font-size: 1.2rem;
 }

@@ -1,5 +1,5 @@
 import { ToasterService } from './../../toaster/toaster.service';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { ImageService } from './../../shared/_services/image.service';
@@ -16,8 +16,9 @@ export class AnswerCreateAndEditComponent implements OnInit {
     userId: string;
     authorId: string;
   };
-
-  @ViewChild('answerForm') answerForm!: NgForm;
+  @Output()
+  @ViewChild('answerForm')
+  answerForm!: NgForm;
   imageURL: string[] = [];
   loading = false;
   saving = false;
@@ -70,6 +71,7 @@ export class AnswerCreateAndEditComponent implements OnInit {
         this.answerForm.resetForm();
         this.imageURL = [];
         this.saving = false;
+        this.answersService.loadAnswers(questionId);
       },
     });
   }

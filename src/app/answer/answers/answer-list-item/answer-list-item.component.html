@@ -17,5 +17,19 @@
     <p class="answer-card-text">
       {{ answer.text }}
     </p>
+    <app-image-gallery [images]="answer.imageURL"></app-image-gallery>
+    <div class="answer-details">
+      <p class="answer-date">
+        Answered on: {{ answer.created | date: 'dd-MM-yyyy' }}
+      </p>
+      <div class="answer-author">
+        <img
+          class="answer-avatar"
+          [src]="answer.author.avatar"
+          alt="answer.author.username"
+        />
+        <p>{{ answer.author.username || 'Anonymous' }}</p>
+      </div>
+    </div>
   </div>
 </div>

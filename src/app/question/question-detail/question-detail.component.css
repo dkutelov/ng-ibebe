@@ -34,7 +34,7 @@
   display: inline-block;
   margin: 0.5rem 0;
   font-size: 2rem;
-  color: var(--purple-lighter);
+  color: var(--lightblue);
 }
 
 .no-auth-warning {

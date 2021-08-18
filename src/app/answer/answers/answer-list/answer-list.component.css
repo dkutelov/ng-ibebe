@@ -1,0 +1,10 @@
+.answers-heading {
+  margin: 4rem 0 1rem;
+}
+
+.no-answers-message {
+  text-align: left;
+  font-weight: 300;
+  margin: 1rem 0;
+  color: var(--disabled);
+}

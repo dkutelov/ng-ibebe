@@ -24,6 +24,10 @@
           {{ question.text }}
         </p>
 
+        <ng-container *ngIf="question.imageURL">
+          <app-image-gallery [images]="question.imageURL"></app-image-gallery>
+        </ng-container>
+
         <app-question-card-details
           [question]="question"
         ></app-question-card-details>

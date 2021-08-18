@@ -3,7 +3,7 @@ import { ITag } from './tag';
 export interface IQuestion {
   title: string;
   text: string;
-  imageURL: string[];
+  imageURL: { imageURL: string }[];
   author: IAuthor;
   views: number;
   votes: Votes;

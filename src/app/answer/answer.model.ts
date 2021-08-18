@@ -2,12 +2,23 @@ export interface IAnswer {
   _id: string | undefined;
   question: string;
   text: string;
-  imageURL: string[];
-  author: string;
+  imageURL: { imageURL: string }[];
+  author: {
+    username: string;
+    avatar: string;
+  };
   created: Date;
   upVotes: string[];
   downVotes: string[];
   upVotesCount: number;
   downVotesCount: number;
   comments: string[];
+}
+
+export interface IAnswerVote {
+  message: string;
+  updatedVotesCount: {
+    upVotesCount: number;
+    downVotesCount: number;
+  };
 }

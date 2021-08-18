@@ -1,0 +1,17 @@
+.images-wrapper {
+  height: 10rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.image-wrapper {
+  height: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.image-wrapper img {
+  height: 100%;
+}

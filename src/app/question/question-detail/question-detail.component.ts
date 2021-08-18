@@ -1,11 +1,12 @@
-import { ToasterService } from '../../toaster/toaster.service';
-import { IQuestion, IQuestionVote } from '../../shared/_models/question';
-import { CurrentUser } from '../../auth/_models/auth.model';
-import { AuthService } from '../../auth/_services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { ToasterService } from '../../toaster/toaster.service';
 import { QuestionService } from '../../shared/_services/question.service';
+import { AuthService } from '../../auth/_services/auth.service';
+
+import { IQuestion, IQuestionVote } from '../../shared/_models/question';
+import { CurrentUser } from '../../auth/_models/auth.model';
 
 @Component({
   selector: 'app-question-detail',
@@ -33,6 +34,8 @@ export class QuestionDetailComponent implements OnInit {
       this.questionService
         .loadQuestion(questionId)
         .subscribe((q: IQuestion) => {
+          console.log(q);
+
           this.question = q;
         });
     });
@@ -48,6 +51,4 @@ export class QuestionDetailComponent implements OnInit {
           response.updatedVotesCount.downVotesCount;
       });
   }
-
-  downvote() {}
 }
