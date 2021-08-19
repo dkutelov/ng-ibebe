@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { IQuestion, IQuestionCreate, IQuestionVote } from '../_models/question';
+import { IComment } from 'src/app/comment/comment.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,9 @@ export class QuestionService {
 
   private question = new BehaviorSubject<IQuestion | null>(null);
   question$ = this.question.asObservable();
+
+  private questionComments = new BehaviorSubject<IComment[] | null>(null);
+  questionComments$ = this.questionComments.asObservable();
 
   constructor(private httpClient: HttpClient) {}
 
@@ -51,5 +55,18 @@ export class QuestionService {
       `${environment.baseApiUrl}/questions/vote`,
       { questionId, voteType, userId },
     );
+  }
+
+  loadCommentsByQuestionId(questionId: string) {
+    this.questionComments.next(null);
+    this.httpClient
+      .get<IComment[]>(
+        `${environment.baseApiUrl}/questions/${questionId}/comments`,
+      )
+      .subscribe((comments) => {
+        console.log(comments);
+
+        this.questionComments.next(comments);
+      });
   }
 }

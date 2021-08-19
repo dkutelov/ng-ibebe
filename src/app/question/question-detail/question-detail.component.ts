@@ -19,7 +19,7 @@ export class QuestionDetailComponent implements OnInit {
   isCommentOpen = false;
 
   constructor(
-    private questionService: QuestionService,
+    public questionService: QuestionService,
     private activatedRoute: ActivatedRoute,
     public authService: AuthService,
     private toasterService: ToasterService,
@@ -35,10 +35,9 @@ export class QuestionDetailComponent implements OnInit {
       this.questionService
         .loadQuestion(questionId)
         .subscribe((q: IQuestion) => {
-          console.log(q);
-
           this.question = q;
         });
+      this.questionService.loadCommentsByQuestionId(questionId);
     });
   }
 
@@ -55,5 +54,9 @@ export class QuestionDetailComponent implements OnInit {
 
   openComment() {
     this.isCommentOpen = true;
+  }
+
+  updateComments() {
+    this.questionService.loadCommentsByQuestionId(this.question!.id);
   }
 }

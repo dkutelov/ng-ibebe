@@ -1,1 +1,6 @@
-<p>comment-list works!</p>
+<div class="comments-wrapper">
+  <app-comment-list-item
+    *ngFor="let comment of comments"
+    [commentData]="comment"
+  ></app-comment-list-item>
+</div>

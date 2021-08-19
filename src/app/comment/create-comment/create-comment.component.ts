@@ -1,7 +1,7 @@
 import { CommentService } from './../comment.service';
 import { ICommentCreate } from './../comment.model';
 import { AuthService } from './../../auth/_services/auth.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CurrentUser } from 'src/app/auth/_models/auth.model';
 
@@ -21,6 +21,7 @@ export class CreateCommentComponent implements OnInit {
   @Input() questionOrAnswerAuthor!: string;
   @Input() commentTo!: string;
   @Input() questionOrAnswerId!: string;
+  @Output() commentCreated = new EventEmitter<boolean>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -52,7 +53,8 @@ export class CreateCommentComponent implements OnInit {
       this.commentService
         .createCommentToQuestion(questionId, this.comment)
         .subscribe((c) => {
-          console.log(c);
+          this.form.reset();
+          this.commentCreated.emit(true);
         });
     } else if (this.commentTo === 'answer') {
       const answerId = this.questionOrAnswerId;
@@ -60,7 +62,8 @@ export class CreateCommentComponent implements OnInit {
       this.commentService
         .createCommentToAnswer(answerId, this.comment)
         .subscribe((c) => {
-          console.log(c);
+          this.form.reset();
+          this.commentCreated.emit(true);
         });
     }
   }

@@ -1,7 +1,7 @@
 <div class="container top-offset container-three-columns">
   <aside class="aside-left">navigation</aside>
-  <section class="main-content">
-    <section *ngIf="question" class="question-card">
+  <section *ngIf="question" class="main-content">
+    <section class="question-card">
       <div class="question-card-votes">
         <span
           class="no-auth-warning"
@@ -33,14 +33,20 @@
         ></app-question-card-details>
       </div>
     </section>
-    <section *ngIf="question" class="comments">
+    <section class="comments">
+      <ng-container
+        *ngIf="questionService.questionComments$ | async as comments"
+      >
+        <app-comment-list [comments]="comments"></app-comment-list>
+      </ng-container>
       <app-create-comment
         [questionOrAnswerId]="question.id"
         [commentTo]="'question'"
         [questionOrAnswerAuthor]="question!.author._id"
+        (commentCreated)="updateComments()"
       ></app-create-comment>
     </section>
-    <section *ngIf="question">
+    <section>
       <app-answer-list [questionId]="question!.id"></app-answer-list>
     </section>
     <section>

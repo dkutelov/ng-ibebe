@@ -1,3 +1,4 @@
+import { IComment } from 'src/app/comment/comment.model';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ToasterService } from './../../../toaster/toaster.service';
@@ -16,16 +17,18 @@ export class AnswerListItemComponent implements OnInit {
   answer: IAnswer | null = null;
   user: CurrentUser | null = null;
   isCommentOpen = false;
+  comments!: IComment[];
 
   constructor(
     public authService: AuthService,
-    private answersService: AnswersService,
+    public answersService: AnswersService,
     private toasterService: ToasterService,
   ) {}
 
   ngOnInit(): void {
     this.answer = this.answerData;
     this.authService.currentUser$.subscribe((u) => (this.user = u));
+    this.loadAnswerComments();
   }
 
   vote(answerId: string, voteType: string) {
@@ -41,5 +44,17 @@ export class AnswerListItemComponent implements OnInit {
 
   openComment() {
     this.isCommentOpen = true;
+  }
+
+  updateComments() {
+    this.loadAnswerComments();
+  }
+
+  loadAnswerComments() {
+    this.answersService
+      .loadCommentsByAnswerId(this.answer!._id!)
+      .subscribe((comments) => {
+        this.comments = comments;
+      });
   }
 }

@@ -1,1 +1,20 @@
-<p>comment-list-item works!</p>
+<div class="comment">
+  <div class="comment-likes">
+    <div class="comment-likes-CTA">
+      <img (click)="like()" src="assets/icons/like.svg" alt="like icon" />
+    </div>
+    <span class="comment-likes-count">
+      {{ comment.likes }}
+    </span>
+  </div>
+  <div class="comment-content">
+    <span class="comment-text">{{ comment.text }}</span> -
+    <span class="comment-author">{{
+      comment.author.username || 'Anonymous'
+    }}</span>
+    -
+    <span class="comment-date">
+      {{ comment.created | date: 'dd-MM-yyyy' }}
+    </span>
+  </div>
+</div>

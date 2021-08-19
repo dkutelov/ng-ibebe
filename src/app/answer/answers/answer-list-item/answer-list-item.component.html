@@ -32,10 +32,14 @@
       </div>
     </div>
     <section class="comments">
+      <ng-container *ngIf="comments">
+        <app-comment-list [comments]="comments"></app-comment-list>
+      </ng-container>
       <app-create-comment
         [questionOrAnswerId]="answer._id!"
         [commentTo]="'answer'"
         [questionOrAnswerAuthor]="answer.author!._id"
+        (commentCreated)="updateComments()"
       ></app-create-comment>
     </section>
   </div>
