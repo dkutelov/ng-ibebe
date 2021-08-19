@@ -5,3 +5,8 @@ export interface IComment {
   created: Date;
   likes: number;
 }
+
+export interface ICommentCreate {
+  text: string;
+  author: string;
+}

@@ -4,6 +4,7 @@ export interface IAnswer {
   text: string;
   imageURL: { imageURL: string }[];
   author: {
+    _id: string;
     username: string;
     avatar: string;
   };

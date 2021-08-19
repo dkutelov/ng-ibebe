@@ -1,3 +1,4 @@
+import { CommentModule } from './../comment/comment.module';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
     AnswerListItemComponent,
     AnswerCreateAndEditComponent,
   ],
-  imports: [CommonModule, SharedModule, FormsModule],
+  imports: [CommonModule, SharedModule, FormsModule, CommentModule],
   exports: [AnswerListComponent, AnswerCreateAndEditComponent],
 })
 export class AnswerModule {}

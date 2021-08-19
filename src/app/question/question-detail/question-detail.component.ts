@@ -16,6 +16,7 @@ import { CurrentUser } from '../../auth/_models/auth.model';
 export class QuestionDetailComponent implements OnInit {
   question!: IQuestion | null;
   user: CurrentUser | null = null;
+  isCommentOpen = false;
 
   constructor(
     private questionService: QuestionService,
@@ -50,5 +51,9 @@ export class QuestionDetailComponent implements OnInit {
         this.question!.downVotesCount =
           response.updatedVotesCount.downVotesCount;
       });
+  }
+
+  openComment() {
+    this.isCommentOpen = true;
   }
 }

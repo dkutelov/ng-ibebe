@@ -31,5 +31,12 @@
         <p>{{ answer.author.username || 'Anonymous' }}</p>
       </div>
     </div>
+    <section class="comments">
+      <app-create-comment
+        [questionOrAnswerId]="answer._id!"
+        [commentTo]="'answer'"
+        [questionOrAnswerAuthor]="answer.author!._id"
+      ></app-create-comment>
+    </section>
   </div>
 </div>

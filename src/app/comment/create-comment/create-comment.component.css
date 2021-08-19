@@ -1,0 +1,94 @@
+.comment-CTA {
+  color: var(--disabled);
+  font-weight: 300;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.comment-CTA:hover {
+  color: var(--lightblue);
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.comment-label {
+  color: var(--disabled);
+  font-weight: 300;
+  font-size: 1.3rem;
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+.input-field {
+  color: #333;
+  font-size: 1.2rem;
+  border-color: lightgray;
+  padding: 0.75rem;
+}
+
+.input-field:focus,
+.input-field:active {
+  border-color: var(--lightblue);
+}
+
+.input-field-error {
+  font-size: 1rem;
+  color: var(--error);
+  font-weight: 300;
+  margin-left: 0.5rem;
+  position: absolute;
+  left: 0;
+  bottom: -1rem;
+}
+
+.btn-submit {
+  font-size: 1.2rem;
+  margin-top: 0;
+  background-color: var(--lightblue);
+  border-color: var(--lightblue);
+  align-self: flex-end;
+}
+
+.btn-submit:hover {
+  background-color: var(--blue);
+  border-color: var(--blue);
+}
+
+.btn-submit:disabled {
+  background-color: #9a8fff;
+  border-color: #9a8fff;
+}
+
+.loader {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+}
+
+.loader {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
+}
+
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border: 1px solid var(--error);
+}
+
+.btn-spinner {
+  width: 17rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

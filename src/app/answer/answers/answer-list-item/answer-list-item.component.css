@@ -100,4 +100,17 @@
 .answer-date {
   color: var(--disabled);
   font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.comment-CTA {
+  color: var(--lightblue);
+  font-weight: 300;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.comment-CTA:hover {
+  color: var(--disabled);
 }

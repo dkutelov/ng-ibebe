@@ -32,7 +32,13 @@
           [question]="question"
         ></app-question-card-details>
       </div>
-      <!-- {{ question | json }} -->
+    </section>
+    <section *ngIf="question" class="comments">
+      <app-create-comment
+        [questionOrAnswerId]="question.id"
+        [commentTo]="'question'"
+        [questionOrAnswerAuthor]="question!.author._id"
+      ></app-create-comment>
     </section>
     <section *ngIf="question">
       <app-answer-list [questionId]="question!.id"></app-answer-list>

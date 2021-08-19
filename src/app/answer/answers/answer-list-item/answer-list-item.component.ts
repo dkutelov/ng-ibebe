@@ -15,6 +15,7 @@ export class AnswerListItemComponent implements OnInit {
   @Input() answerData!: IAnswer;
   answer: IAnswer | null = null;
   user: CurrentUser | null = null;
+  isCommentOpen = false;
 
   constructor(
     public authService: AuthService,
@@ -36,5 +37,9 @@ export class AnswerListItemComponent implements OnInit {
         this.answer!.upVotesCount = upVotesCount;
         this.answer!.downVotesCount = downVotesCount;
       });
+  }
+
+  openComment() {
+    this.isCommentOpen = true;
   }
 }

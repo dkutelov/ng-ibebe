@@ -37,9 +37,6 @@ export class QuestionService {
     return this.httpClient.get<IQuestion>(
       `${environment.baseApiUrl}/questions/${id}`,
     );
-    // .subscribe((question) => {
-    //   this.question.next(question);
-    // });
   };
 
   createQuestion(data: IQuestionCreate) {

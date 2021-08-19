@@ -1,3 +1,4 @@
+import { CommentModule } from './comment/comment.module';
 import { HomeModule } from './home/home.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,9 +20,9 @@ import { AnswerModule } from './answer/answer.module';
     BrowserModule,
     HttpClientModule,
     AuthModule,
+    QuestionModule,
     AnswerModule,
     HomeModule,
-    QuestionModule,
     CoreModule,
     SharedModule,
     ToasterModule,

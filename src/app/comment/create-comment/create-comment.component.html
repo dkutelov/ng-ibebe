@@ -1,0 +1,34 @@
+<p *ngIf="!isCommentOpen" (click)="toggleComment(true)" class="comment-CTA">
+  Add a comment
+</p>
+<form
+  *ngIf="isCommentOpen"
+  [formGroup]="form"
+  (ngSubmit)="addComment()"
+  class="comment-form"
+>
+  <div class="input-group">
+    <label for="commentText" class="comment-label">Your comment</label>
+    <textarea
+      class="input-field"
+      id="commentText"
+      name="commentText"
+      rows="2"
+      formControlName="commentText"
+      placehoder="Post your comment here"
+    ></textarea>
+    <ng-container *ngIf="form.get('commentText')?.touched">
+      <span
+        *ngIf="form.get('commentText')?.errors?.required"
+        class="input-field-error"
+        >Plase, write your comment!</span
+      >
+      <span
+        *ngIf="form.get('commentText')?.errors?.minlength"
+        class="input-field-error"
+        >Your answer should be minumum 10 characters long!</span
+      >
+    </ng-container>
+  </div>
+  <button class="btn btn-submit" [disabled]="form.invalid">Post</button>
+</form>
