@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IQuestion } from '../../../shared/_models/question';
-import { QuestionService } from '../../../shared/_services/question.service';
+import { QuestionService } from '../../../core/services/question.service';
 
 @Component({
   selector: 'app-questions-list',

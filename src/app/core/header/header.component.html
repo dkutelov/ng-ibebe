@@ -1,32 +1,35 @@
-<nav class="nav container">
-  <a routerLink="/" routerLinkActive="nav-active">
-    <img
-      [ngClass]="[shrinkHeader ? 'logo-small' : 'logo']"
-      srcset="
-        https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_400/v1548513244/ibebe/logo-large.png  400w,
-        https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_300/v1548513244/ibebe/logo-medium.png 300w,
-        https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_200/v1548513244/ibebe/logo-small.png  200w
-      "
-      sizes="(min-width: 600px) 33vw, 15vw"
-      alt="лого на ibebe"
-  /></a>
-  <ul class="nav-list">
-    <ng-container *ngIf="!(authService.currentUser$ | async)">
-      <li class="nav-list-item">
-        <a routerLink="register" routerLinkActive="nav-active">Register</a>
-      </li>
-      <li class="nav-list-item">
-        <a routerLink="login" routerLinkActive="nav-active">Login</a>
-      </li>
-    </ng-container>
-    <ng-container *ngIf="authService.currentUser$ | async as user">
-      {{ user.username }}
-      <li class="nav-list-item-button">
-        <a class="btn" routerLink="question-create">Ask A Question</a>
-      </li>
-      <li class="nav-list-item">
-        <button (click)="logout()">Logout</button>
-      </li>
-    </ng-container>
-  </ul>
-</nav>
+<header class="header">
+  <nav class="nav container">
+    <a routerLink="/" routerLinkActive="nav-active">
+      <img
+        [ngClass]="[shrinkHeader ? 'logo-small' : 'logo']"
+        srcset="
+          https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_400/v1548513244/ibebe/logo-large.png  400w,
+          https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_300/v1548513244/ibebe/logo-medium.png 300w,
+          https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_200/v1548513244/ibebe/logo-small.png  200w
+        "
+        sizes="(min-width: 600px) 33vw, 15vw"
+        alt="лого на ibebe"
+    /></a>
+    <ul class="nav-list">
+      <ng-container *ngIf="!(userService.currentUser$ | async)">
+        <li class="nav-list-item">
+          <a routerLink="register" routerLinkActive="nav-active">Register</a>
+        </li>
+        <li class="nav-list-item">
+          <a routerLink="login" routerLinkActive="nav-active">Login</a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="userService.currentUser$ | async as user">
+        <li class="nav-list-item-button">
+          <a class="btn" routerLink="question-create">Ask A Question</a>
+        </li>
+        <li class="nav-list-item">
+          <button (click)="logout()">Logout</button>
+        </li>
+        {{ user.username }}
+      </ng-container>
+    </ul>
+  </nav>
+  <div class="header-bottom-border-gradient"></div>
+</header>

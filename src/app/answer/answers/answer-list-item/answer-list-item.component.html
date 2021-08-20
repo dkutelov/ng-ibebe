@@ -1,6 +1,6 @@
 <div *ngIf="answer" class="answer-card">
   <div class="answer-card-votes">
-    <span class="no-auth-warning" *ngIf="!(authService.currentUser$ | async)"
+    <span class="no-auth-warning" *ngIf="!(userService.currentUser$ | async)"
       >Please, login to be able to vote!</span
     >
     <i class="vote-icon" (click)="vote(answer._id!, 'up')">
@@ -19,9 +19,7 @@
     </p>
     <app-image-gallery [images]="answer.imageURL"></app-image-gallery>
     <div class="answer-details">
-      <p class="answer-date">
-        Answered on: {{ answer.created | date: 'dd-MM-yyyy' }}
-      </p>
+      <p class="answer-date">Answered: {{ answer.created | timeDifference }}</p>
       <div class="answer-author">
         <img
           class="answer-avatar"

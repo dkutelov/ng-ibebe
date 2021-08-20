@@ -43,6 +43,10 @@ h6 {
 }
 
 /* Generic */
+.page-content {
+  min-height: calc(100vh - 250px);
+}
+
 .container {
   padding: 1.6rem;
 }

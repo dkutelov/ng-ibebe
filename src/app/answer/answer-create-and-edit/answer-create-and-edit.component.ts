@@ -1,9 +1,9 @@
-import { ToasterService } from './../../toaster/toaster.service';
 import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { ImageService } from './../../shared/_services/image.service';
-import { AnswersService } from '../answers.service';
+import { ToasterService } from '../../core/services/toaster.service';
+import { ImageService } from 'src/app/core/services/image.service';
+import { AnswersService } from 'src/app/core/services/answers.service';
 
 @Component({
   selector: 'app-answer-create-and-edit',

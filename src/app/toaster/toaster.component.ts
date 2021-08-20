@@ -2,8 +2,8 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { ToasterType, Toaster } from './toaster.model';
-import { ToasterService } from './toaster.service';
+import { ToasterType, Toaster } from '../shared/interfaces/toaster';
+import { ToasterService } from '../core/services/toaster.service';
 
 @Component({
   selector: 'app-toaster',

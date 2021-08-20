@@ -31,5 +31,6 @@ import { QuestionCardDetailsComponent } from './question-card-details/question-c
     SharedModule,
     QuestionRoutingModule,
   ],
+  exports: [QuestionsListComponent],
 })
 export class QuestionModule {}

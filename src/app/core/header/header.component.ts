@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../auth/_services/auth.service';
+
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ export class HeaderComponent implements OnInit {
   shrinkHeader = false;
   isMobileMenuOpen = false;
 
-  constructor(public authService: AuthService) {}
+  constructor(public userService: UserService) {}
 
   ngOnInit(): void {
     this.handleHeaderSize();
@@ -35,6 +36,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logoutUser();
+    this.userService.logoutUser();
   }
 }

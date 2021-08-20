@@ -1,11 +1,12 @@
-import { IComment } from 'src/app/comment/comment.model';
+import { IComment } from 'src/app/shared/interfaces/comment';
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ToasterService } from './../../../toaster/toaster.service';
-import { AnswersService } from '../../answers.service';
-import { AuthService } from './../../../auth/_services/auth.service';
-import { IAnswer, IAnswerVote } from '../../answer.model';
-import { CurrentUser } from 'src/app/auth/_models/auth.model';
+import { ToasterService } from 'src/app/core/services/toaster.service';
+import { AnswersService } from 'src/app/core/services/answers.service';
+import { UserService } from 'src/app/core/services/user.service';
+
+import { IAnswer, IAnswerVote } from 'src/app/shared/interfaces/answer';
+import { CurrentUser } from 'src/app/shared/interfaces/user';
 
 @Component({
   selector: 'app-answer-list-item',
@@ -20,14 +21,14 @@ export class AnswerListItemComponent implements OnInit {
   comments!: IComment[];
 
   constructor(
-    public authService: AuthService,
+    public userService: UserService,
     public answersService: AnswersService,
     private toasterService: ToasterService,
   ) {}
 
   ngOnInit(): void {
     this.answer = this.answerData;
-    this.authService.currentUser$.subscribe((u) => (this.user = u));
+    this.userService.currentUser$.subscribe((u) => (this.user = u));
     this.loadAnswerComments();
   }
 

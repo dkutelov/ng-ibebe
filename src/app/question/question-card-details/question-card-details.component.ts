@@ -1,4 +1,4 @@
-import { IQuestion } from './../../shared/_models/question';
+import { IQuestion } from '../../shared/interfaces/question';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

@@ -1,4 +1,4 @@
-import { AuthService } from './auth/_services/auth.service';
+import { UserService } from './core/services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.authService.autoAuthUser();
+    this.userService.autoAuthUser();
   }
 }

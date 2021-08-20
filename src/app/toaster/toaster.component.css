@@ -1,17 +1,18 @@
 .notification {
   position: absolute;
-  top: 0;
+  top: 12rem;
   right: 10rem;
   border: 1px solid black;
-  padding: 4rem;
-  border-radius: 1rem;
+  padding: 2rem 4rem;
+  border-radius: 0.3rem;
   color: #fff;
-  opacity: 0.9;
+  opacity: 0.7;
+  font-size: 1.3rem;
 }
 
 .success {
-  border-color: var(--lightgreen);
-  background-color: var(--lightgreen);
+  border-color: var(--lightblue);
+  background-color: var(--lightblue);
 }
 
 .error {
@@ -20,10 +21,10 @@
 }
 
 .close {
-  width: 1rem;
-  height: 1rem;
+  width: 0.75rem;
+  height: 0.75rem;
   position: inherit;
   top: 0.5rem;
-  right: 1.5rem;
+  right: 1rem;
   cursor: pointer;
 }

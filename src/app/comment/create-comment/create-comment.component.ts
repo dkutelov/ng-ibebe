@@ -1,9 +1,11 @@
-import { CommentService } from './../comment.service';
-import { ICommentCreate } from './../comment.model';
-import { AuthService } from './../../auth/_services/auth.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CurrentUser } from 'src/app/auth/_models/auth.model';
+
+import { CommentService } from '../../core/services/comment.service';
+import { UserService } from '../../core/services/user.service';
+
+import { ICommentCreate } from '../../shared/interfaces/comment';
+import { CurrentUser } from 'src/app/shared/interfaces/user';
 
 @Component({
   selector: 'app-create-comment',
@@ -25,7 +27,7 @@ export class CreateCommentComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    private userService: UserService,
     private commentService: CommentService,
   ) {
     this.form = this.formBuilder.group({
@@ -34,7 +36,7 @@ export class CreateCommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.currentUser$.subscribe((u) => (this.user = u));
+    this.userService.currentUser$.subscribe((u) => (this.user = u));
     this.comment.author = this.user!.id;
   }
 

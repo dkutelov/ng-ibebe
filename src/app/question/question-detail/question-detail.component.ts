@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ToasterService } from '../../toaster/toaster.service';
-import { QuestionService } from '../../shared/_services/question.service';
-import { AuthService } from '../../auth/_services/auth.service';
+import { ToasterService } from '../../core/services/toaster.service';
+import { QuestionService } from '../../core/services/question.service';
+import { UserService } from '../../core/services/user.service';
 
-import { IQuestion, IQuestionVote } from '../../shared/_models/question';
-import { CurrentUser } from '../../auth/_models/auth.model';
+import { IQuestion, IQuestionVote } from '../../shared/interfaces/question';
+import { CurrentUser } from '../../shared/interfaces/user';
 
 @Component({
   selector: 'app-question-detail',
@@ -21,13 +21,13 @@ export class QuestionDetailComponent implements OnInit {
   constructor(
     public questionService: QuestionService,
     private activatedRoute: ActivatedRoute,
-    public authService: AuthService,
+    public userService: UserService,
     private toasterService: ToasterService,
   ) {}
 
   ngOnInit(): void {
     this.loadQuestion();
-    this.authService.currentUser$.subscribe((u) => (this.user = u));
+    this.userService.currentUser$.subscribe((u) => (this.user = u));
   }
 
   loadQuestion() {

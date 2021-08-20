@@ -1,7 +1,7 @@
-import { TagsService } from './../../../shared/_services/tags.service';
-import { BehaviorSubject } from 'rxjs';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { ITag } from '../../../shared/_models/tag';
+
+import { TagsService } from '../../../core/services/tags.service';
+import { ITag } from '../../../shared/interfaces/tag';
 
 const TAGS: ITag[] = [
   {

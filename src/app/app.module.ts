@@ -2,39 +2,36 @@ import { CommentModule } from './comment/comment.module';
 import { HomeModule } from './home/home.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ToasterModule } from './toaster/toaster.module';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 import { QuestionModule } from './question/question.module';
 import { AppComponent } from './app.component';
-import { AuthInterceptor } from './auth/_interceptors/auth.interceptor';
 import { AnswerModule } from './answer/answer.module';
+
+import { authInterceptorProvider } from './core/interceptors/auth.interceptor';
+import { errorInterceptorProvider } from './core/interceptors/error.inteceptor';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AuthModule,
+    UserModule,
     QuestionModule,
     AnswerModule,
     HomeModule,
+    CommentModule,
     CoreModule,
     SharedModule,
     ToasterModule,
     AppRoutingModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
-  ],
+  providers: [authInterceptorProvider, errorInterceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

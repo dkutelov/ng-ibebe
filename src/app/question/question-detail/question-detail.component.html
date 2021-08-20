@@ -5,7 +5,7 @@
       <div class="question-card-votes">
         <span
           class="no-auth-warning"
-          *ngIf="!(authService.currentUser$ | async)"
+          *ngIf="!(userService.currentUser$ | async)"
           >Please, login to be able to vote!</span
         >
         <i class="vote-icon" (click)="vote(question.id, 'up')">

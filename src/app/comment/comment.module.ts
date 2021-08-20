@@ -1,4 +1,5 @@
-import { CommentService } from './comment.service';
+import { SharedModule } from './../shared/shared.module';
+import { CommentService } from '../core/services/comment.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,10 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommentListComponent,
     CommentListItemComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, SharedModule, ReactiveFormsModule],
   exports: [CreateCommentComponent, CommentListComponent],
-  providers: [
-    CommentService
-  ]
+  providers: [CommentService],
 })
 export class CommentModule {}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../core/_guards/auth.guard';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 import { QuestionCreateAndEditComponent } from './questions/question-create-and-edit/question-create-and-edit.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';

@@ -1,8 +1,9 @@
-import { CommentService } from './../../comment.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { CurrentUser } from 'src/app/auth/_models/auth.model';
-import { AuthService } from 'src/app/auth/_services/auth.service';
-import { IComment } from '../../comment.model';
+import { CommentService } from '../../../core/services/comment.service';
+import { UserService } from 'src/app/core/services/user.service';
+
+import { CurrentUser } from 'src/app/shared/interfaces/user';
+import { IComment } from '../../../shared/interfaces/comment';
 
 @Component({
   selector: 'app-comment-list-item',
@@ -15,13 +16,13 @@ export class CommentListItemComponent implements OnInit {
   comment!: IComment;
 
   constructor(
-    private authService: AuthService,
+    private userService: UserService,
     private commentService: CommentService,
   ) {}
 
   ngOnInit(): void {
     this.comment = this.commentData;
-    this.authService.currentUser$.subscribe((u) => (this.user = u));
+    this.userService.currentUser$.subscribe((u) => (this.user = u));
   }
 
   like(): void {
