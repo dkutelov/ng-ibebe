@@ -1,0 +1,37 @@
+<div *ngIf="question" class="question-card">
+  <div class="question-card-content">
+    <h2 class="question-card-title">
+      <a [routerLink]="['/questions', question?.id]">{{
+        question.title | shortenText: 75
+      }}</a>
+    </h2>
+  </div>
+  <div class="question-card-details">
+    <div class="question-card-info">
+      <p class="question-card-info-section">
+        <span>{{ question.upVotesCount - question.downVotesCount }}</span>
+        <span>{{
+          'vote' | pluralize: question.upVotesCount - question.downVotesCount
+        }}</span>
+      </p>
+      <p class="question-card-info-section">
+        <span>{{ question.answersCount }}</span
+        ><span>{{ 'answer' | pluralize: question.answersCount }}</span>
+      </p>
+      <p class="question-card-info-section">
+        <span> {{ question.views }} </span>
+        <span>{{ 'view' | pluralize: question.views }}</span>
+      </p>
+    </div>
+    <div class="question-date-and-author">
+      <p class="question-date-and-author-section">
+        <span>Asked:</span>
+        <span>{{ question.created | timeDifference }}</span>
+      </p>
+      <p class="question-date-and-author-section">
+        <span>Asked by:</span>
+        <span>{{ question.author.username || 'Anonymous' }}</span>
+      </p>
+    </div>
+  </div>
+</div>

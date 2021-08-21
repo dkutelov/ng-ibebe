@@ -1,0 +1,10 @@
+<section class="questions-container">
+  <ng-container *ngIf="questions">
+    <app-question-preview-list-item
+      *ngFor="let question of questions"
+      [questionData]="question"
+    >
+    </app-question-preview-list-item>
+  </ng-container>
+  <p *ngIf="questions.length === 0" class="no-show">No questions to show!</p>
+</section>

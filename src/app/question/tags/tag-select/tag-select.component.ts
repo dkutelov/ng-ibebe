@@ -55,6 +55,8 @@ export class TagSelectComponent implements OnInit {
   }
 
   onTagEnter() {
+    if (!this.searchTerm) return;
+
     this.selectedTags = this.selectedTags.concat({
       _id: undefined,
       name: this.searchTerm,

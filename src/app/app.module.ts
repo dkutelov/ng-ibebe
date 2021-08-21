@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { ToasterModule } from './toaster/toaster.module';
 import { AppRoutingModule } from './app-routing.module';
 import { UserModule } from './user/user.module';
 import { QuestionModule } from './question/question.module';
@@ -28,7 +27,6 @@ import { errorInterceptorProvider } from './core/interceptors/error.inteceptor';
     CommentModule,
     CoreModule,
     SharedModule,
-    ToasterModule,
     AppRoutingModule,
   ],
   providers: [authInterceptorProvider, errorInterceptorProvider],

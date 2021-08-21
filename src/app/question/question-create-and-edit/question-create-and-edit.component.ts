@@ -2,14 +2,14 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { ToasterService } from '../../../core/services/toaster.service';
-import { CategoriesService } from '../../../core/services/categories.service';
-import { QuestionService } from '../../../core/services//question.service';
-import { ImageService } from '../../../core/services/image.service';
+import { ToasterService } from '../../core/services/toaster.service';
+import { CategoriesService } from '../../core/services/categories.service';
+import { QuestionService } from '../../core/services/question.service';
+import { ImageService } from '../../core/services/image.service';
 
-import { ITag } from '../../../shared/interfaces/tag';
-import { IQuestionCreate } from '../../../shared/interfaces/question';
-import { ICategory } from '../../../shared/interfaces/category';
+import { ITag } from '../../shared/interfaces/tag';
+import { IQuestionCreate } from '../../shared/interfaces/question';
+import { ICategory } from '../../shared/interfaces/category';
 
 @Component({
   selector: 'app-question-create-and-edit',

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/guards/auth.guard';
 
-import { QuestionCreateAndEditComponent } from './questions/question-create-and-edit/question-create-and-edit.component';
+import { QuestionCreateAndEditComponent } from './question-create-and-edit/question-create-and-edit.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 import { QuestionsListComponent } from './questions/questions-list/questions-list.component';
 import { ProtectUnsavedChangesQuestionGuard } from './questions/protect-unsaved-changes-question.guard';

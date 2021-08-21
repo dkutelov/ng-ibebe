@@ -1,8 +1,13 @@
+.questions-previews {
+  margin: 5rem 0 8rem;
+}
+
 .short-listed-questions {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .short-listed-questions-heading {
   color: var(--lightblue);
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 3rem;
 }

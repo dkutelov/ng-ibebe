@@ -11,13 +11,17 @@ import { QuestionsListComponent } from './questions/questions-list/questions-lis
 import { QuestionsListItemComponent } from './questions/questions-list-item/questions-list-item.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 import { TagSelectComponent } from './tags/tag-select/tag-select.component';
-import { QuestionCreateAndEditComponent } from './questions/question-create-and-edit/question-create-and-edit.component';
+import { QuestionCreateAndEditComponent } from './question-create-and-edit/question-create-and-edit.component';
 import { QuestionCardDetailsComponent } from './question-card-details/question-card-details.component';
+import { QuestionPreviewListComponent } from './questions/question-preview-list/question-preview-list.component';
+import { QuestionPreviewListItemComponent } from './questions/question-preview-list-item/question-preview-list-item.component';
 
 @NgModule({
   declarations: [
     QuestionsListComponent,
     QuestionsListItemComponent,
+    QuestionPreviewListComponent,
+    QuestionPreviewListItemComponent,
     QuestionDetailComponent,
     TagSelectComponent,
     QuestionCreateAndEditComponent,
@@ -31,6 +35,6 @@ import { QuestionCardDetailsComponent } from './question-card-details/question-c
     SharedModule,
     QuestionRoutingModule,
   ],
-  exports: [QuestionsListComponent],
+  exports: [QuestionsListComponent, QuestionPreviewListComponent],
 })
 export class QuestionModule {}

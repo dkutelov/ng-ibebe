@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -30,10 +30,7 @@ export class QuestionService {
 
   loadQuestions(queryParams: MyMap = {}): void {
     let query = this.getAllQuery(queryParams);
-    console.log(query);
-
     this.questions.next(null);
-
     this.httpClient
       .get<IQuestion[]>(`/api/questions${query}`)
       .subscribe((questions) => {
@@ -41,6 +38,11 @@ export class QuestionService {
           this.questions.next(questions);
         }
       });
+  }
+
+  getQuestions(queryParams: MyMap = {}): Observable<IQuestion[]> {
+    let query = this.getAllQuery(queryParams);
+    return this.httpClient.get<IQuestion[]>(`/api/questions${query}`);
   }
 
   loadQuestion = (id: number) => {

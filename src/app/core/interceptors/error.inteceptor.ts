@@ -20,6 +20,8 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error) => {
+        console.log('interceptor', error);
+
         if (error) {
           switch (error.status) {
             case 400:

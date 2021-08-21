@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
-import { QuestionCreateAndEditComponent } from './question-create-and-edit/question-create-and-edit.component';
+import { QuestionCreateAndEditComponent } from '../question-create-and-edit/question-create-and-edit.component';
 
 @Injectable({
   providedIn: 'root',

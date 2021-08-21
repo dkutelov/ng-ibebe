@@ -1,8 +1,9 @@
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+
 import { IQuestion } from './../../shared/interfaces/question';
 import { QuestionService } from './../../core/services/question.service';
-import { ToasterService } from '../../core/services/toaster.service';
-import { Component, OnInit } from '@angular/core';
+
+const QUESTIONS_PER_SECTION = 6;
 
 @Component({
   selector: 'app-home',
@@ -11,13 +12,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   constructor(private questionService: QuestionService) {}
-  private lastQuestions!: IQuestion[];
+  public latestQuestions!: IQuestion[];
+  public viewedQuestions!: IQuestion[];
+  public votedQuestions!: IQuestion[];
 
   ngOnInit(): void {
+    this.loadLatestQuestions();
+    this.loadMostViewedQuestions();
+    this.loadVotedQuestions();
+  }
+
+  loadLatestQuestions() {
     let queryParams = {
-      limit: '5',
-      sort: 'top',
+      limit: `${QUESTIONS_PER_SECTION}`,
+      sortBy: 'latest',
     };
-    this.questionService.loadQuestions(queryParams);
+    this.questionService.getQuestions(queryParams).subscribe((questions) => {
+      this.latestQuestions = questions;
+    });
+  }
+
+  loadMostViewedQuestions() {
+    let queryParams = {
+      limit: `${QUESTIONS_PER_SECTION}`,
+      sortBy: 'views',
+    };
+    this.questionService.getQuestions(queryParams).subscribe((questions) => {
+      this.viewedQuestions = questions;
+    });
+  }
+
+  loadVotedQuestions() {
+    let queryParams = {
+      limit: `${QUESTIONS_PER_SECTION}`,
+      sortBy: 'votes',
+    };
+    this.questionService.getQuestions(queryParams).subscribe((questions) => {
+      this.votedQuestions = questions;
+    });
   }
 }
