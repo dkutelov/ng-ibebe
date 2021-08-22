@@ -1,3 +1,6 @@
+import { ILinkItem } from './../../shared/interfaces/link-item';
+import { TagsService } from './../../core/services/tags.service';
+import { CategoriesService } from './../../core/services/categories.service';
 import { Component, OnInit } from '@angular/core';
 
 import { IQuestion } from './../../shared/interfaces/question';
@@ -11,18 +14,24 @@ const QUESTIONS_PER_SECTION = 6;
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private questionService: QuestionService) {}
   public latestQuestions!: IQuestion[];
   public viewedQuestions!: IQuestion[];
   public votedQuestions!: IQuestion[];
 
+  constructor(
+    private questionService: QuestionService,
+    public categorieService: CategoriesService,
+    public tagService: TagsService,
+  ) {}
+
   ngOnInit(): void {
+    this.categorieService.loadCategories();
     this.loadLatestQuestions();
     this.loadMostViewedQuestions();
     this.loadVotedQuestions();
   }
 
-  loadLatestQuestions() {
+  loadLatestQuestions(): void {
     let queryParams = {
       limit: `${QUESTIONS_PER_SECTION}`,
       sortBy: 'latest',
@@ -32,7 +41,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  loadMostViewedQuestions() {
+  loadMostViewedQuestions(): void {
     let queryParams = {
       limit: `${QUESTIONS_PER_SECTION}`,
       sortBy: 'views',
@@ -42,7 +51,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  loadVotedQuestions() {
+  loadVotedQuestions(): void {
     let queryParams = {
       limit: `${QUESTIONS_PER_SECTION}`,
       sortBy: 'votes',

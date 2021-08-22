@@ -8,10 +8,7 @@ import {
   IQuestionVote,
 } from 'src/app/shared/interfaces/question';
 import { IComment } from 'src/app/shared/interfaces/comment';
-
-interface MyMap {
-  [key: string]: string | undefined;
-}
+import { IQueryMap } from 'src/app/shared/interfaces/query-map';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +25,7 @@ export class QuestionService {
 
   constructor(private httpClient: HttpClient) {}
 
-  loadQuestions(queryParams: MyMap = {}): void {
+  loadQuestions(queryParams: IQueryMap = {}): void {
     let query = this.getAllQuery(queryParams);
     this.questions.next(null);
     this.httpClient
@@ -40,7 +37,7 @@ export class QuestionService {
       });
   }
 
-  getQuestions(queryParams: MyMap = {}): Observable<IQuestion[]> {
+  getQuestions(queryParams: IQueryMap = {}): Observable<IQuestion[]> {
     let query = this.getAllQuery(queryParams);
     return this.httpClient.get<IQuestion[]>(`/api/questions${query}`);
   }
@@ -74,7 +71,7 @@ export class QuestionService {
       });
   }
 
-  getAllQuery(queryParams: MyMap): string {
+  getAllQuery(queryParams: IQueryMap): string {
     if (Object.keys(queryParams).length === 0) return '';
 
     let query = '?';

@@ -1,0 +1,7 @@
+<section>
+  <h2>{{ title }}</h2>
+  {{ links | json }}
+  <ul>
+    <app-link-item *ngFor="let link of links" [linkItem]="link"></app-link-item>
+  </ul>
+</section>

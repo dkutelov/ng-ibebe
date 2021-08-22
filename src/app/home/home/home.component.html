@@ -1,6 +1,9 @@
 <section class="container top-offset">
   <a class="btn" routerLink="/questions">Go To Questions</a>
-
+  <app-link-list
+    [title]="'Categories'"
+    [links]="this.categorieService.categories$ | async"
+  ></app-link-list>
   <div class="questions-previews">
     <div class="short-listed-questions">
       <h3 class="short-listed-questions-heading">
