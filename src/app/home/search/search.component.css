@@ -1,0 +1,22 @@
+.search-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  color: var(--lightblue);
+  font-weight: 400;
+  font-size: 3rem;
+  flex: 0 0 10%;
+}
+
+.search-icon {
+  display: inline-block;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+}
+
+.search-icon img {
+  max-width: 100%;
+}

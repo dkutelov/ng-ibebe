@@ -1,0 +1,12 @@
+<div class="nav-section">
+  <h3 class="nav-title">{{ title | titlecase }}</h3>
+  <ul *ngIf="menuItems" class="nav-container">
+    <li
+      *ngFor="let menuItem of menuItems"
+      (click)="handleMenuItemClick(menuItem._id)"
+      class="nav-item"
+    >
+      {{ menuItem.name }}
+    </li>
+  </ul>
+</div>

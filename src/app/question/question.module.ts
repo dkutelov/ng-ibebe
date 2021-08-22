@@ -15,6 +15,8 @@ import { QuestionCreateAndEditComponent } from './question-create-and-edit/quest
 import { QuestionCardDetailsComponent } from './question-card-details/question-card-details.component';
 import { QuestionPreviewListComponent } from './questions/question-preview-list/question-preview-list.component';
 import { QuestionPreviewListItemComponent } from './questions/question-preview-list-item/question-preview-list-item.component';
+import { NavigationListComponent } from './questions/navigation-list/navigation-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,10 +28,12 @@ import { QuestionPreviewListItemComponent } from './questions/question-preview-l
     TagSelectComponent,
     QuestionCreateAndEditComponent,
     QuestionCardDetailsComponent,
+    NavigationListComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
+    BrowserAnimationsModule,
     AnswerModule,
     CommentModule,
     SharedModule,

@@ -1,5 +1,27 @@
 <div class="container top-offset container-three-columns">
-  <aside class="aside-left">navigation</aside>
+  <aside class="aside-left">
+    <p
+      *ngIf="hasSelection"
+      [@inOutAnimation]
+      (click)="clearSelection()"
+      class="clear-selection"
+    >
+      <span>Clear Selection</span>
+      <i>
+        <img src="assets/images/cancel.svg" alt="cancel selection" />
+      </i>
+    </p>
+    <app-navigation-list
+      [title]="'categories'"
+      [menuItems]="this.categoriesService.categories$ | async"
+      (menuItemClicked)="categoryMenuItemSelected($event)"
+    ></app-navigation-list>
+    <app-navigation-list
+      [title]="'tags'"
+      [menuItems]="this.tagsService.tags$ | async"
+      (menuItemClicked)="tagMenuItemSelected($event)"
+    ></app-navigation-list>
+  </aside>
   <section class="main-content">
     <ng-container *ngIf="questions$ | async as questions">
       <app-questions-list-item
@@ -10,5 +32,5 @@
     </ng-container>
     <p *ngIf="!(questions$ | async)" class="no-show">No questions to show!</p>
   </section>
-  <aside class="aside-right">Something here</aside>
+  <aside class="aside-right"></aside>
 </div>

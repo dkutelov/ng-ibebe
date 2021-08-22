@@ -1,5 +1,5 @@
-<section>
-  <h2 class="title">Browse by {{ title }}</h2>
+<section class="link-section">
+  <h2 class="title">Browse By {{ title | titlecase }}</h2>
   <ul class="links-container">
     <app-link-item
       *ngFor="let link of links"
