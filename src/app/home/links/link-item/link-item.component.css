@@ -1,0 +1,48 @@
+.tag.link-item {
+  list-style: none;
+  font-size: 1.4rem;
+  display: inline-block;
+  color: #fff;
+  background-color: var(--lightblue);
+  padding: 1rem 1.5rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+
+.tag.link-item:hover {
+  background-color: var(--magento);
+  transform: scaleY(1.1);
+}
+
+.tag.link-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.category.link-item {
+  list-style: none;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  display: inline-block;
+  color: var(--magento);
+  background-color: rgba(245, 245, 245, 0.6);
+  border: 2px solid transparent;
+  padding: 1.5rem 3rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+
+.category.link-item:hover {
+  border-color: var(--magento);
+}
+
+.category.link-item a {
+  color: inherit;
+  text-decoration: none;
+}

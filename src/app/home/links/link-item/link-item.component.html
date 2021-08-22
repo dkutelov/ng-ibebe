@@ -1,5 +1,9 @@
-<li>
-  <a routerLink="questions" [queryParams]="{ category: linkItem._id }">{{
-    linkItem.name
-  }}</a>
+<li
+  [ngClass]="{
+    category: linkType === 'category',
+    tag: linkType === 'tag',
+    'link-item': true
+  }"
+>
+  <a routerLink="questions" [queryParams]="queryObj">{{ linkItem.name }}</a>
 </li>

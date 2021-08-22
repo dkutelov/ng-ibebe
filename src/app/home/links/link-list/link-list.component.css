@@ -1,0 +1,11 @@
+.links-container {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.title {
+  color: var(--lightblue);
+  font-weight: 400;
+  font-size: 3rem;
+}

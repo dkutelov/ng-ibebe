@@ -8,7 +8,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class LinkItemComponent implements OnInit {
   @Input() linkItem!: ILinkItem;
+  @Input() linkType: string = '';
+  public queryObj = {};
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.queryObj = {
+      [this.linkType]: this.linkItem._id,
+    };
+  }
 }

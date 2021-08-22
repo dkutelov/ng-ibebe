@@ -1,13 +1,25 @@
+.questions-navigation {
+  margin-top: 5rem;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 5rem;
+}
+
 .questions-previews {
-  margin: 5rem 0 8rem;
+  margin: 6rem 0;
 }
 
 .short-listed-questions {
   margin-bottom: 3rem;
 }
 
+.all-questions-heading,
 .short-listed-questions-heading {
   color: var(--lightblue);
   font-weight: 400;
   font-size: 3rem;
+}
+
+.link-all {
+  text-decoration: none;
+  color: var(--magento);
 }

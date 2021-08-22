@@ -1,7 +1,10 @@
 <section>
-  <h2>{{ title }}</h2>
-  {{ links | json }}
-  <ul>
-    <app-link-item *ngFor="let link of links" [linkItem]="link"></app-link-item>
+  <h2 class="title">Browse by {{ title }}</h2>
+  <ul class="links-container">
+    <app-link-item
+      *ngFor="let link of links"
+      [linkItem]="link"
+      [linkType]="linkType"
+    ></app-link-item>
   </ul>
 </section>

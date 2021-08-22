@@ -1,9 +1,20 @@
 <section class="container top-offset">
-  <a class="btn" routerLink="/questions">Go To Questions</a>
-  <app-link-list
-    [title]="'Categories'"
-    [links]="this.categorieService.categories$ | async"
-  ></app-link-list>
+  <div class="questions-navigation">
+    <app-link-list
+      [title]="'categories'"
+      [linkType]="'category'"
+      [links]="this.categorieService.categories$ | async"
+    ></app-link-list>
+    <app-link-list
+      [title]="'tags'"
+      [linkType]="'tag'"
+      [links]="this.tagService.tags$ | async"
+    ></app-link-list>
+    <div>
+      <h2 class="all-questions-heading">Go To All Questions</h2>
+      <a class="link-all" routerLink="/questions">All Questions</a>
+    </div>
+  </div>
   <div class="questions-previews">
     <div class="short-listed-questions">
       <h3 class="short-listed-questions-heading">

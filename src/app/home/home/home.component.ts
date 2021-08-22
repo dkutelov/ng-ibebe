@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.categorieService.loadCategories();
+    this.tagService.loadTags();
     this.loadLatestQuestions();
     this.loadMostViewedQuestions();
     this.loadVotedQuestions();

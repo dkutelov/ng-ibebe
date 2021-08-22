@@ -9,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class LinkListComponent implements OnInit {
   @Input() title: string = '';
   @Input() links!: ILinkItem[] | null;
+  @Input() linkType: string = '';
 
   constructor() {}
 
