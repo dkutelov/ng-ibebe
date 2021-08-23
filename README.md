@@ -26,9 +26,14 @@ pages:
 - '/' - home page
 - '/questions' - questions listing page
 - '/questions/questionId' - question detail page
+- '/profile' - user profile and his/ her questions and answers
+  -- '/profile/user' - display and update profile
+  -- '/profile/questions'
+  -- '/profile/answers'g
 
 ## Additional features
 
 - animations - ngIf animate in the navigation of Question module;
 - images are uploaded and stored in Cloudinary cloud service
 - social login with Google and Facebook
+- Angular template(register, login, question, answer) and reactive (user profile update, commment) forms

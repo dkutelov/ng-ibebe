@@ -1,1 +1,48 @@
-<p>questions-list works!</p>
+<section>
+  <h2 class="title">My Questions</h2>
+  <table *ngIf="myQuestions" class="table">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Votes</th>
+        <th>Views</th>
+        <th>Answers</th>
+        <th>Comments</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let question of myQuestions">
+        <td>
+          <a [routerLink]="['../../questions', question.id]">{{
+            question.title | shortenText: 30
+          }}</a>
+        </td>
+        <td>{{ question.category.name }}</td>
+        <td>{{ question.created | date: 'dd-MM-yyyy' }}</td>
+        <td class="center">
+          {{ question.upVotesCount - question.downVotesCount }}
+        </td>
+        <td class="center">
+          {{ question.views }}
+        </td>
+        <td class="center">{{ question.answers.length }}</td>
+        <td class="center">{{ question.comments.length }}</td>
+        <td class="icon" (click)="editQuestion(question.id)">
+          <i>
+            <img src="assets/icons/edit.svg" alt="delete answer" />
+          </i>
+        </td>
+        <td class="icon" (click)="deleteQuestion(question.id)">
+          <i>
+            <img src="assets/icons/cancelRed.svg" alt="delete answer" />
+          </i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-loader *ngIf="myQuestions === null" [size]="'7rem'"></app-loader>
+</section>

@@ -12,7 +12,10 @@ export interface IQuestion {
   tags: ITag[];
   answers: any[];
   comments: any[];
-  category: string;
+  category: {
+    _id: string;
+    name: string;
+  };
   created: Date;
   answersCount: number;
   id: string;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { IAnswer, IAnswerVote } from '../../shared/interfaces/answer';
@@ -27,11 +27,15 @@ export class AnswersService {
       });
   }
 
-  createAnswer(data: IAnswer) {
+  createAnswer(data: IAnswer): Observable<IAnswer> {
     return this.httpClient.post<IAnswer>(`/api/answers`, data);
   }
 
-  vote(answerId: string, voteType: string, userId: string) {
+  vote(
+    answerId: string,
+    voteType: string,
+    userId: string,
+  ): Observable<IAnswerVote> {
     return this.httpClient.post<IAnswerVote>(`/api/answers/vote`, {
       answerId,
       voteType,
@@ -39,7 +43,11 @@ export class AnswersService {
     });
   }
 
-  loadCommentsByAnswerId(answerId: string) {
+  loadCommentsByAnswerId(answerId: string): Observable<IComment[]> {
     return this.httpClient.get<IComment[]>(`/api/answers/${answerId}/comments`);
+  }
+
+  loadAnswersByUserId(userId: string): Observable<IAnswer[]> {
+    return this.httpClient.get<IAnswer[]>(`/api/answers/user/${userId}`);
   }
 }

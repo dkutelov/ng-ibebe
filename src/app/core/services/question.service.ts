@@ -17,8 +17,8 @@ export class QuestionService {
   private questions = new BehaviorSubject<IQuestion[] | null>(null);
   questions$ = this.questions.asObservable();
 
-  private question = new BehaviorSubject<IQuestion | null>(null);
-  question$ = this.question.asObservable();
+  // private question = new BehaviorSubject<IQuestion | null>(null);
+  // question$ = this.question.asObservable();
 
   private questionComments = new BehaviorSubject<IComment[] | null>(null);
   questionComments$ = this.questionComments.asObservable();
@@ -43,12 +43,10 @@ export class QuestionService {
   }
 
   loadQuestion = (id: number) => {
-    this.question.next(null);
-
     return this.httpClient.get<IQuestion>(`/api/questions/${id}`);
   };
 
-  createQuestion(data: IQuestionCreate) {
+  createQuestion(data: IQuestionCreate): Observable<IQuestion> {
     return this.httpClient.post<IQuestion>(`/api/questions`, data);
   }
 
@@ -60,15 +58,17 @@ export class QuestionService {
     });
   }
 
-  loadCommentsByQuestionId(questionId: string) {
+  loadCommentsByQuestionId(questionId: string): void {
     this.questionComments.next(null);
     this.httpClient
       .get<IComment[]>(`/api/questions/${questionId}/comments`)
       .subscribe((comments) => {
-        console.log(comments);
-
         this.questionComments.next(comments);
       });
+  }
+
+  loadQuestionsByUserId(userId: string): Observable<IQuestion[]> {
+    return this.httpClient.get<IQuestion[]>(`/api/questions/user/${userId}`);
   }
 
   getAllQuery(queryParams: IQueryMap): string {

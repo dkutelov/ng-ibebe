@@ -1,21 +1,23 @@
-import { ToasterService } from './toaster.service';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { SocialAuthService } from 'angularx-social-login';
 import { CookieService } from 'ngx-cookie-service';
 
+import { ToasterService } from './toaster.service';
 import { AuthUser, CurrentUser } from '../../shared/interfaces/user';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private token: string | null = null;
+
   private currentUser = new BehaviorSubject<CurrentUser | null>(null);
   currentUser$ = this.currentUser.asObservable();
+
   public usernameExists$ = new BehaviorSubject<boolean | null>(null);
   private isSocial: boolean = false;
 
@@ -34,6 +36,8 @@ export class UserService {
   autoAuthUser() {
     const token = this.cookieService.get('token');
     const userId = this.cookieService.get('userId');
+
+    this.currentUser.next(null);
 
     if (!token || !userId) return;
     this.token = token;
