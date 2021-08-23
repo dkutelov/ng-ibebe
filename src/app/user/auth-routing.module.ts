@@ -1,9 +1,12 @@
+import { AnswersListComponent } from './profile/answers-list/answers-list.component';
+import { QuestionsListComponent } from './profile/questions-list/questions-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from '../core/guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserComponent } from './profile/user/user.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
@@ -33,6 +36,25 @@ const routes: Routes = [
       authenticationRequired: true,
       authenticationFailureRedirectUrl: '/login',
     },
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/profile/user',
+      },
+      {
+        path: 'user',
+        component: UserComponent,
+      },
+      {
+        path: 'questions',
+        component: QuestionsListComponent,
+      },
+      {
+        path: 'answers',
+        component: AnswersListComponent,
+      },
+    ],
   },
 ];
 

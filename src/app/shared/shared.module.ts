@@ -5,6 +5,7 @@ import { ShortenTextPipe } from './pipes/shorten-text.pipe';
 import { PluralizePipe } from './pipes/pluralize.pipe';
 import { ImageGalleryComponent } from './image-gallery/image-gallery.component';
 import { TimeDifferencePipe } from './pipes/time-difference.pipe';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { TimeDifferencePipe } from './pipes/time-difference.pipe';
     PluralizePipe,
     ImageGalleryComponent,
     TimeDifferencePipe,
+    LoaderComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -21,6 +23,7 @@ import { TimeDifferencePipe } from './pipes/time-difference.pipe';
     PluralizePipe,
     ImageGalleryComponent,
     TimeDifferencePipe,
+    LoaderComponent,
   ],
 })
 export class SharedModule {}

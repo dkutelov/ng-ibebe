@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import {
   SocialLoginModule,
@@ -18,6 +18,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { environment } from '../../environments/environment';
 import { SharedModule } from '../shared/shared.module';
+import { QuestionsListComponent } from './profile/questions-list/questions-list.component';
+import { AnswersListComponent } from './profile/answers-list/answers-list.component';
+import { UserComponent } from './profile/user/user.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +28,14 @@ import { SharedModule } from '../shared/shared.module';
     RegisterComponent,
     SameValueDirective,
     ProfileComponent,
+    QuestionsListComponent,
+    AnswersListComponent,
+    UserComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     SocialLoginModule,
     SharedModule,
     AuthRoutingModule,

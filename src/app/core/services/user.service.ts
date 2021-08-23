@@ -2,7 +2,7 @@ import { ToasterService } from './toaster.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { SocialAuthService } from 'angularx-social-login';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -118,5 +118,15 @@ export class UserService {
           }
         },
       });
+  }
+
+  loadUserProfile(): Observable<CurrentUser> {
+    return this.httpClient.get<CurrentUser>(`/api/auth/profile`);
+  }
+
+  updateProfile(profile: CurrentUser): Observable<CurrentUser> {
+    return this.httpClient.put<CurrentUser>(`/api/auth/profile`, {
+      profile,
+    });
   }
 }

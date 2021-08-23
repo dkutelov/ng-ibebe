@@ -1,0 +1,102 @@
+.user-profile-container {
+  width: 100%;
+  max-width: 40rem;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* Image upload label and input */
+.photo-upload-label {
+  display: flex;
+  align-items: center;
+}
+
+.photo-upload-label span {
+  color: gray;
+  font-size: 1.4rem;
+}
+
+.photo-upload-icon,
+.loader {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
+}
+
+.loader {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 0.5rem;
+}
+
+.photo-upload-input {
+  display: none;
+}
+
+.input-field-error-wrapper {
+  font-size: 1rem;
+  color: var(--error);
+  font-weight: 300;
+  margin-left: 0.5rem;
+  padding-top: 0.5rem;
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+
+.input-field-error {
+  font-size: inherit;
+  color: inherit;
+}
+
+input.ng-valid {
+  border: 1px solid var(--lightgreen);
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid var(--error);
+}
+
+.btn-submit {
+  margin-top: 1rem;
+  background-color: #a740ff;
+  border-color: #a740ff;
+}
+
+.btn-submit:hover {
+  background-color: var(--violet);
+  border-color: var(--violet);
+}
+
+button[type='submit']:disabled {
+  background-color: var(--disabled);
+  border-color: var(--disabled);
+}
+
+.avatar-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.avatar-wrapper img {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.contnent-item,
+.avatar-wrapper {
+  margin-bottom: 3.5rem;
+}
+
+.content-label {
+  color: slategray;
+  margin-bottom: 1rem;
+}
+
+.content-value {
+  margin-top: 0;
+  color: var(--lightblue);
+}

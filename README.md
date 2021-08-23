@@ -30,4 +30,5 @@ pages:
 ## Additional features
 
 - animations - ngIf animate in the navigation of Question module;
-- images are uploaded and stored in Cloudinary
+- images are uploaded and stored in Cloudinary cloud service
+- social login with Google and Facebook

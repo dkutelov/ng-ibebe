@@ -1,1 +1,27 @@
-<p>profile works!</p>
+<section class="container top-offset container-three-columns">
+  <aside>
+    <nav class="nav-list">
+      <li class="nav-list-item">
+        <a routerLink="/profile/user" routerLinkActive="nav-list-item-active"
+          >My Profile</a
+        >
+      </li>
+      <li class="nav-list-item">
+        <a
+          routerLink="/profile/questions"
+          routerLinkActive="nav-list-item-active"
+          >My Questions</a
+        >
+      </li>
+      <li class="nav-list-item">
+        <a routerLink="/profile/answers" routerLinkActive="nav-list-item-active"
+          >My Answers</a
+        >
+      </li>
+    </nav>
+  </aside>
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
+  <aside></aside>
+</section>

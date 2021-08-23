@@ -1,0 +1,108 @@
+<section class="user-profile-container">
+  <div *ngIf="userProfile">
+    <div class="avatar-wrapper">
+      <img [src]="userProfile.avatar" alt="my avatar" />
+    </div>
+    <ng-container *ngIf="!isEditMode">
+      <div class="contnent-item">
+        <p class="content-label">Username</p>
+        <p class="content-value">{{ userProfile.username }}</p>
+      </div>
+      <div class="contnent-item">
+        <p class="content-label">Email</p>
+        <p class="content-value">{{ userProfile.email }}</p>
+      </div>
+      <button type="button" (click)="openEditMode()" class="btn">Edit</button>
+    </ng-container>
+    <ng-container *ngIf="isEditMode">
+      <div *ngIf="!isSavingForm">
+        <div class="input-group">
+          <label class="input-label">Avatar Photo</label>
+          <div>
+            <label class="photo-upload-label" for="file">
+              <img
+                *ngIf="!loading"
+                class="photo-upload-icon"
+                src="/assets/images/image.svg"
+                alt="photo upload"
+              />
+              <div *ngIf="loading" class="loader">
+                <img src="/assets/images/loader.svg" alt="loading" />
+              </div>
+              <span>Choose a photo</span>
+            </label>
+            <input
+              class="photo-upload-input"
+              id="file"
+              type="file"
+              #filePicker
+              (change)="onImagePicked($event)"
+            />
+          </div>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="updateProfile()">
+          <div class="input-group">
+            <label class="input-label" for="username">Username</label>
+            <input
+              class="input-field"
+              type="text"
+              id="username"
+              name="username"
+              formControlName="username"
+            />
+            <div
+              *ngIf="
+                form.get('username')!.invalid && form.get('username')!.touched
+              "
+              class="input-field-error-wrapper"
+            >
+              <span
+                *ngIf="form.get('username')!.errors?.required"
+                class="input-field-error"
+                >Username is required.
+              </span>
+              <span
+                *ngIf="form.get('username')!.errors?.minlength"
+                class="input-field-error"
+                >Username should be min 8 characters long.</span
+              >
+              <span
+                *ngIf="form.get('username')!.errors?.invalidUsername"
+                class="input-field-error"
+                >Username should contain only English letter and numbers!</span
+              >
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="email">Email</label>
+            <input
+              class="input-field"
+              type="email"
+              id="email"
+              name="email"
+              formControlName="email"
+            />
+            <div
+              *ngIf="form.get('email')!.invalid && form.get('email')!.touched"
+              class="input-field-error-wrapper"
+            >
+              <span
+                *ngIf="form.get('email')!.errors?.required"
+                class="input-field-error"
+                >Email is required.</span
+              >
+              <span
+                *ngIf="form.get('email')!.errors?.email"
+                class="input-field-error"
+                >Please, enter valid email.</span
+              >
+            </div>
+          </div>
+          <button class="btn" type="submit">Save</button>
+        </form>
+      </div>
+      <app-loader *ngIf="isSavingForm" [size]="'7rem'"></app-loader>
+    </ng-container>
+  </div>
+  <app-loader *ngIf="!userProfile" [size]="'7rem'"></app-loader>
+</section>

@@ -6,6 +6,8 @@ export interface AuthUser {
 
 export interface CurrentUser {
   id: string;
+  avatar: string;
   username: string;
+  email: string;
   token: string;
 }
