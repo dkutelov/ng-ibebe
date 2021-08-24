@@ -1,40 +1,30 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 
 import { TagsService } from '../../../core/services/tags.service';
 import { ITag } from '../../../shared/interfaces/tag';
-
-const TAGS: ITag[] = [
-  {
-    _id: '601175e6d67fd469c75e8df3',
-    name: 'Pregnancy',
-  },
-  {
-    _id: '60117602d67fd469c75e8df4',
-    name: 'Feeding',
-  },
-  {
-    _id: '6011760bd67fd469c75e8df5',
-    name: 'First teeth',
-  },
-  {
-    _id: '6012b62c5e04207183ea09ea',
-    name: 'Collics',
-  },
-];
 
 @Component({
   selector: 'app-tag-select',
   templateUrl: './tag-select.component.html',
   styleUrls: ['./tag-select.component.css'],
 })
-export class TagSelectComponent implements OnInit {
+export class TagSelectComponent implements OnInit, OnChanges {
+  @Input() existingTags!: ITag[];
+  @Output() updatedSelectedTags = new EventEmitter<ITag[]>();
+
   tags: ITag[] = [];
   tagsSuggestions: ITag[] = [];
   selectedTags: ITag[] = [];
   searchTerm: string = '';
   tagsPlaceholder = 'e.g. pregnancy';
-
-  @Output() updatedSelectedTags = new EventEmitter<ITag[]>();
 
   constructor(private tagsService: TagsService) {}
 
@@ -42,6 +32,15 @@ export class TagSelectComponent implements OnInit {
     this.tagsService.getTags().subscribe((tags) => {
       this.tags = tags;
     });
+    if (this.existingTags.length > 0) {
+      this.selectedTags = this.existingTags;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.existingTags.currentValue.length > 0) {
+      this.selectedTags = changes.existingTags.currentValue;
+    }
   }
 
   onInputChange(event: Event): void {

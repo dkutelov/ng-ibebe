@@ -1,4 +1,9 @@
-<div class="tags-wrapper">
+<div
+  [ngClass]="{
+    'tags-wrapper': true,
+    'tags-wrapper-not-empty': selectedTags.length
+  }"
+>
   <span class="selected-tags" *ngIf="selectedTags.length">
     <span *ngFor="let selectedTag of selectedTags" class="selected-tag"
       >{{ selectedTag.name }}

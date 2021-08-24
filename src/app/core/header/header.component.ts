@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserService } from '../services/user.service';
 
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   shrinkHeader = false;
   isMobileMenuOpen = false;
 
-  constructor(public userService: UserService) {}
+  constructor(public userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.handleHeaderSize();
@@ -37,5 +38,6 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userService.logoutUser();
+    this.router.navigate(['/']);
   }
 }

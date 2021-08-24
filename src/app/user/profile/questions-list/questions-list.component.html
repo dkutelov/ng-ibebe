@@ -1,6 +1,6 @@
 <section>
   <h2 class="title">My Questions</h2>
-  <table *ngIf="myQuestions" class="table">
+  <table *ngIf="myQuestions && myQuestions.length > 0" class="table">
     <thead>
       <tr>
         <th>Question</th>
@@ -44,5 +44,8 @@
       </tr>
     </tbody>
   </table>
+  <p *ngIf="myQuestions && myQuestions.length === 0" class="no-show">
+    You have not posted any questions yet!
+  </p>
   <app-loader *ngIf="myQuestions === null" [size]="'7rem'"></app-loader>
 </section>

@@ -6,6 +6,7 @@ import { ImageService } from 'src/app/core/services/image.service';
 import { UserService } from './../../../core/services/user.service';
 import { CurrentUser } from 'src/app/shared/interfaces/user';
 import { usernameValidator } from 'src/app/shared/form-validators/validators';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-user',
@@ -86,6 +87,7 @@ export class UserComponent implements OnInit {
         this.form.reset();
         this.isEditMode = false;
         this.isSavingForm = false;
+        this.userService.autoAuthUser();
       },
       error: (err) => {
         console.error(err);

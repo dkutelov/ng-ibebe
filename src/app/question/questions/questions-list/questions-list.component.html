@@ -23,14 +23,17 @@
     ></app-navigation-list>
   </aside>
   <section class="main-content">
+    <app-loader *ngIf="!(questions$ | async)" [size]="'7rem'"></app-loader>
     <ng-container *ngIf="questions$ | async as questions">
       <app-questions-list-item
         *ngFor="let question of questions"
         [question]="question"
       >
       </app-questions-list-item>
+      <p *ngIf="questions.length === 0" class="no-show">
+        No questions to show!
+      </p>
     </ng-container>
-    <p *ngIf="!(questions$ | async)" class="no-show">No questions to show!</p>
   </section>
   <aside class="aside-right"></aside>
 </div>

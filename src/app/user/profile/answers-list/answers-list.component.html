@@ -1,36 +1,41 @@
 <section>
-  <h2 class="title">My Answers</h2>
-  <table *ngIf="myAnswers" class="table">
-    <thead>
-      <tr>
-        <th>Answer</th>
-        <th>Date</th>
-        <th>Votes</th>
-        <th>Comments</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let answer of myAnswers">
-        <td>{{ answer.text | shortenText: 50 }}</td>
-        <td>{{ answer.created | date: 'dd-MM-yyyy' }}</td>
-        <td class="center">
-          {{ answer.upVotesCount - answer.downVotesCount }}
-        </td>
-        <td class="center">{{ answer.comments.length }}</td>
-        <td class="icon" (click)="editAnswer(answer._id!)">
-          <i>
-            <img src="assets/icons/edit.svg" alt="delete answer" />
-          </i>
-        </td>
-        <td class="icon" (click)="deleteAnswer(answer._id!)">
-          <i>
-            <img src="assets/icons/cancelRed.svg" alt="delete answer" />
-          </i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <ng-container *ngIf="myAnswers !== null">
+    <h2 class="title">My Answers</h2>
+    <table *ngIf="myAnswers.length > 0" class="table">
+      <thead>
+        <tr>
+          <th>Answer</th>
+          <th>Date</th>
+          <th>Votes</th>
+          <th>Comments</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let answer of myAnswers">
+          <td>{{ answer.text | shortenText: 50 }}</td>
+          <td>{{ answer.created | date: 'dd-MM-yyyy' }}</td>
+          <td class="center">
+            {{ answer.upVotesCount - answer.downVotesCount }}
+          </td>
+          <td class="center">{{ answer.comments.length }}</td>
+          <td class="icon" (click)="editAnswer(answer._id!)">
+            <i>
+              <img src="assets/icons/edit.svg" alt="delete answer" />
+            </i>
+          </td>
+          <td class="icon" (click)="deleteAnswer(answer._id!)">
+            <i>
+              <img src="assets/icons/cancelRed.svg" alt="delete answer" />
+            </i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="myAnswers.length === 0" class="no-show">
+      You have not posted any answers yet!
+    </p>
+  </ng-container>
   <app-loader *ngIf="myAnswers === null" [size]="'7rem'"></app-loader>
 </section>

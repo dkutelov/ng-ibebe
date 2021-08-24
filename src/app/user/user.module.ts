@@ -21,6 +21,7 @@ import { SharedModule } from '../shared/shared.module';
 import { QuestionsListComponent } from './profile/questions-list/questions-list.component';
 import { AnswersListComponent } from './profile/answers-list/answers-list.component';
 import { UserComponent } from './profile/user/user.component';
+import { QuestionModule } from '../question/question.module';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { UserComponent } from './profile/user/user.component';
     ReactiveFormsModule,
     SocialLoginModule,
     SharedModule,
+    QuestionModule,
     AuthRoutingModule,
   ],
   providers: [

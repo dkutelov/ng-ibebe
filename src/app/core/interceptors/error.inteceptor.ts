@@ -20,12 +20,11 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error) => {
-        console.log('interceptor', error);
-
         if (error) {
           switch (error.status) {
             case 400:
-              this.toasterService.error(error.error.message);
+              const message = error.error.message;
+              this.toasterService.error(message);
               break;
             case 500:
               this.toasterService.error('Something went wrong!');

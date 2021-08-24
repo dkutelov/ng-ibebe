@@ -28,12 +28,16 @@ pages:
 - '/questions/questionId' - question detail page
 - '/profile' - user profile and his/ her questions and answers
   -- '/profile/user' - display and update profile
-  -- '/profile/questions'
-  -- '/profile/answers'g
+  -- '/profile/questions' - list read, update, delete user's questions
+  -- '/profile/answers' - list read, update, delete user's answers
 
-## Additional features
+## Features
 
 - animations - ngIf animate in the navigation of Question module;
 - images are uploaded and stored in Cloudinary cloud service
 - social login with Google and Facebook
 - Angular template(register, login, question, answer) and reactive (user profile update, commment) forms
+- template and reactive form validation, including custom validators for username and passwords
+- routing, forChild routing for questions and users; nested children routing for user profile page;
+- guards for both authenticated and non authenticated users;
+- http interceptors for authentication and errors

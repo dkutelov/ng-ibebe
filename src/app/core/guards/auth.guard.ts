@@ -27,6 +27,7 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     const { authenticationRequired, authenticationFailureRedirectUrl } =
       route.data;
+
     if (
       typeof authenticationRequired === 'boolean' &&
       authenticationRequired === !!this.userService.getToken

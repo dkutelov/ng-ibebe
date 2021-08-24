@@ -60,7 +60,6 @@ export class CreateCommentComponent implements OnInit {
         });
     } else if (this.commentTo === 'answer') {
       const answerId = this.questionOrAnswerId;
-      console.log(answerId);
       this.commentService
         .createCommentToAnswer(answerId, this.comment)
         .subscribe((c) => {
@@ -68,5 +67,6 @@ export class CreateCommentComponent implements OnInit {
           this.commentCreated.emit(true);
         });
     }
+    this.isCommentOpen = false;
   }
 }

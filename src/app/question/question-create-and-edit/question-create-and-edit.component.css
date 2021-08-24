@@ -1,13 +1,12 @@
 .section-content {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 5rem;
 }
 
 .section-title--new-question {
   text-align: center;
   margin-bottom: 7rem;
-  font-weight: 200;
-  color: var(--blue);
+  font-weight: 400;
+  color: var(--magento);
 }
 
 @media screen and (min-width: 75rem) {
@@ -35,8 +34,14 @@
 
 .input-label,
 .input-field {
-  color: rgb(86, 66, 255);
+  color: var(--lightblue);
   font-size: 1.4rem;
+}
+
+.input-field {
+  color: slategray;
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 
 .input-label {
@@ -45,13 +50,13 @@
 }
 
 .input-field {
-  border-color: rgba(86, 66, 255, 0.3);
+  border-color: rgba(38, 169, 191, 0.5);
   padding: 1.5rem 1rem;
 }
 
 .input-field:focus,
 .input-field:active {
-  border-color: var(--violet);
+  border-color: var(--lightblue);
 }
 
 .input-group--half-width {
@@ -89,7 +94,7 @@ select {
   margin: 0;
   outline: 0;
   border: 1px solid transparent;
-  border-color: rgba(86, 66, 255, 0.3);
+  border-color: rgba(38, 169, 191, 0.5);
   border-radius: 0.5rem;
   padding: 1.5rem 20px;
   -webkit-appearance: none;
@@ -103,7 +108,8 @@ select {
   overflow: hidden;
   background-position: 95% 60%;
   font-size: 0.9em;
-  color: #9da3a8;
+  color: slategray;
+  font-weight: 400;
   background: url('/assets/images/down-arrow.svg') no-repeat #fff;
   background-size: 15px;
   background-position: 97.5% 50%;
@@ -111,7 +117,7 @@ select {
 
 select:focus,
 select:active {
-  border-color: var(--violet);
+  border-color: var(--lightblue);
 }
 
 select::-ms-expand {
@@ -132,6 +138,7 @@ select::-ms-expand {
   border-radius: 0.5rem;
   overflow: hidden;
   margin-right: 1rem;
+  position: relative;
 }
 
 .img-preview-wrapper {
@@ -141,6 +148,18 @@ select::-ms-expand {
 
 .img-preview-wrapper img {
   height: 100%;
+}
+
+.image-delete-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.image-delete-icon img {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* Image upload label and input */
@@ -174,7 +193,7 @@ select::-ms-expand {
 input.ng-valid,
 textarea.ng-valid,
 select.ng-valid {
-  border: 1px solid var(--lightgreen);
+  border: 1px solid var(--magento);
 }
 
 input.ng-touched.ng-invalid,
@@ -186,5 +205,14 @@ select.ng-touched.ng-invalid {
 /* Aside */
 
 .instructions {
-  padding: 5rem;
+  padding: 1rem;
+  color: slategray;
+}
+
+.instructions h3 {
+  margin-bottom: 2.5rem;
+}
+.instructions p,
+.instructions li {
+  font-weight: 300;
 }

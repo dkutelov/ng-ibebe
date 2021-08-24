@@ -19,6 +19,10 @@ export class AnswersListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadAnswers();
+  }
+
+  loadAnswers(): void {
     this.userService
       .loadUserProfile()
       .pipe(
@@ -31,6 +35,6 @@ export class AnswersListComponent implements OnInit {
       });
   }
 
-  editAnswer(answerId: string) {}
-  deleteAnswer(answerId: string) {}
+  editAnswer(answerId: string): void {}
+  deleteAnswer(answerId: string): void {}
 }

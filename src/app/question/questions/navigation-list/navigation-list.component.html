@@ -1,8 +1,9 @@
 <div class="nav-section">
   <h3 class="nav-title">{{ title | titlecase }}</h3>
-  <ul *ngIf="menuItems" class="nav-container">
+  <app-loader *ngIf="!items" [size]="'7rem'"></app-loader>
+  <ul *ngIf="items" class="nav-container">
     <li
-      *ngFor="let menuItem of menuItems"
+      *ngFor="let menuItem of items"
       (click)="handleMenuItemClick(menuItem._id)"
       class="nav-item"
     >

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { SocialAuthService } from 'angularx-social-login';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -23,7 +22,6 @@ export class UserService {
 
   constructor(
     private httpClient: HttpClient,
-    private router: Router,
     private cookieService: CookieService,
     private socialAuthService: SocialAuthService,
     private toasterService: ToasterService,
@@ -59,12 +57,7 @@ export class UserService {
       .pipe(tap((response) => this.setAuth(response)));
   }
 
-  socialLogin(data: {
-    email: string;
-    authToken: string;
-    photoUrl: string;
-    provider: string;
-  }) {
+  socialLogin(data: { email: string; authToken: string; provider: string }) {
     this.isSocial = true;
     return this.httpClient
       .post<AuthUser>(`/api/auth/social-login`, data)
@@ -80,6 +73,7 @@ export class UserService {
 
   setAuth(response: AuthUser): void {
     const { user, expiresIn } = response;
+
     if (user.token) {
       this.token = user.token;
       this.setCookie(user.token, user.id, expiresIn);
@@ -89,20 +83,20 @@ export class UserService {
 
   logoutUser() {
     this.clearCookie();
+    this.token = null;
     this.currentUser.next(null);
     if (this.isSocial) {
       this.socialAuthService.signOut();
       this.isSocial = false;
     }
-    this.router.navigate(['/']);
   }
 
-  private setCookie(token: string, userId: string, expiresIn: number) {
+  setCookie(token: string, userId: string, expiresIn: number) {
     this.cookieService.set('token', token, { expires: expiresIn });
     this.cookieService.set('userId', userId, { expires: expiresIn });
   }
 
-  private clearCookie() {
+  clearCookie() {
     this.cookieService.delete('token');
     this.cookieService.delete('userId');
   }

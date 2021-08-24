@@ -50,6 +50,20 @@ export class QuestionService {
     return this.httpClient.post<IQuestion>(`/api/questions`, data);
   }
 
+  deleteQuestion(questionId: string) {
+    return this.httpClient.delete<IQuestion>(`/api/questions/${questionId}`);
+  }
+
+  updateQuestion(
+    questionData: IQuestionCreate,
+    questionId: string,
+  ): Observable<IQuestion> {
+    return this.httpClient.put<IQuestion>(`/api/questions`, {
+      questionData,
+      questionId,
+    });
+  }
+
   vote(questionId: string, voteType: string, userId: string) {
     return this.httpClient.post<IQuestionVote>(`/api/questions/vote`, {
       questionId,

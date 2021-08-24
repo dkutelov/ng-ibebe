@@ -37,3 +37,8 @@ tr {
   cursor: pointer;
   padding: 0 1rem;
 }
+
+.no-show {
+  color: slategray;
+  padding-left: 2rem;
+}

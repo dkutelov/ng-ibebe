@@ -9,7 +9,7 @@
   text-transform: uppercase;
   font-size: 2rem;
   position: relative;
-  color: #fff;
+  color: var(--magento);
 }
 
 .login-title::after {
@@ -19,7 +19,7 @@
   left: -6rem;
   width: 22rem;
   height: 22rem;
-  background-image: url('/assets/images/bg-green.svg');
+  /* background-image: url('/assets/images/bg-green.svg'); */
   background-repeat: no-repeat;
   z-index: -1;
   background-repeat: no-repeat;
@@ -54,7 +54,7 @@
   left: -20rem;
   width: 45rem;
   height: 45rem;
-  background-image: url('/assets/images/bg-green.svg');
+  /* background-image: url('/assets/images/bg-green.svg'); */
   background-repeat: no-repeat;
   transform: rotate(30deg);
   z-index: -1;
@@ -67,7 +67,7 @@
   right: -13rem;
   width: 33rem;
   height: 33rem;
-  background-image: url('/assets/images/bg-green.svg');
+  /* background-image: url('/assets/images/bg-green.svg'); */
   background-repeat: no-repeat;
   z-index: -1;
   transform: rotate(-70deg);
@@ -126,9 +126,15 @@ input.ng-touched.ng-invalid {
 }
 
 .register-text {
-  margin-top: 1rem;
-  color: #444;
+  margin-top: 3rem;
+  color: slategray;
   font-size: 1.3rem;
+}
+
+.register-text a {
+  text-decoration: none;
+  font-size: inherit;
+  color: var(--lightblue);
 }
 
 button[type='submit']:disabled {
@@ -195,11 +201,21 @@ button[type='submit']:disabled {
   margin-left: 3rem;
 }
 
+.username-icon-container {
+  background: #fff;
+  position: absolute;
+  top: 2.5rem;
+  right: -4rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .approve-icon,
 .disapprove-icon {
   width: 1.25rem;
   height: 1.25rem;
-  position: absolute;
-  top: 3.2rem;
-  right: -3rem;
 }

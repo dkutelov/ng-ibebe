@@ -16,7 +16,10 @@
           (focusout)="checkUsernameExists(usernameInput)"
         />
 
-        <span *ngIf="userService.usernameExists$ | async">
+        <span
+          *ngIf="userService.usernameExists$ | async"
+          class="username-icon-container"
+        >
           <img
             class="approve-icon"
             src="assets/icons/approved.svg"
@@ -29,6 +32,7 @@
             !(userService.usernameExists$ | async) &&
             (userService.usernameExists$ | async) !== null
           "
+          class="username-icon-container"
         >
           <img
             class="disapprove-icon"
@@ -106,6 +110,6 @@
   </div>
 
   <div class="register-text">
-    Do not have an account? <a routerLink="/register">Register here</a>.
+    Do not have an account? Register <a routerLink="/register">here</a>.
   </div>
 </section>

@@ -55,19 +55,18 @@ export class LoginComponent {
 
   socialLogin(socialReponse: Observable<SocialUser>): void {
     socialReponse.subscribe((response) => {
-      const { authToken, photoUrl, email, provider } = response;
-      this.userService
-        .socialLogin({ authToken, photoUrl, email, provider })
-        .subscribe({
-          next: () => {
-            this.router.navigate(['/']);
-          },
-        });
+      const { authToken, email, provider } = response;
+      this.userService.socialLogin({ authToken, email, provider }).subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+      });
     });
   }
 
   checkUsernameExists(inputElement: NgModel): void {
     const username = inputElement.control.value;
+    if (!username) return;
     this.userService.checkUsernameExists(username);
   }
 }

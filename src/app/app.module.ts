@@ -8,7 +8,6 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { UserModule } from './user/user.module';
-import { QuestionModule } from './question/question.module';
 import { AppComponent } from './app.component';
 import { AnswerModule } from './answer/answer.module';
 
@@ -21,7 +20,6 @@ import { errorInterceptorProvider } from './core/interceptors/error.inteceptor';
     BrowserModule,
     HttpClientModule,
     UserModule,
-    QuestionModule,
     AnswerModule,
     HomeModule,
     CommentModule,

@@ -1,10 +1,13 @@
-<div class="container top-offset">
-  <h2 class="section-title section-title--new-question">Ask New Question</h2>
+<div class="container top-offset container-three-columns">
+  <aside></aside>
   <div class="section-content">
+    <h2 class="section-title section-title--new-question">
+      {{ isEditMode ? 'Edit Your' : 'Ask New' }} Question
+    </h2>
     <div class="form-wrapper">
       <form
         #questionForm="ngForm"
-        (ngSubmit)="createQuestion()"
+        (ngSubmit)="onQuestionFormSubmit()"
         id="questionForm"
       >
         <div class="input-group">
@@ -14,7 +17,7 @@
             type="text"
             id="title"
             name="title"
-            ngModel
+            [ngModel]="question.title"
             #titleInput="ngModel"
             required
             [minlength]="15"
@@ -36,7 +39,7 @@
             id="text"
             name="text"
             rows="8"
-            ngModel
+            [ngModel]="question.text"
             #textInput="ngModel"
             required
             [minlength]="15"
@@ -54,7 +57,7 @@
         <div class="input-group input-group--half-width">
           <label class="input-label" for="category">Category</label>
           <select
-            ngModel
+            [ngModel]="question.category"
             #categoryInput="ngModel"
             name="category"
             id="category"
@@ -80,6 +83,7 @@
       <div class="input-group">
         <label class="input-label" for="tags">Tags</label>
         <app-tag-select
+          [existingTags]="question.tags"
           (updatedSelectedTags)="updateTagsHandler($event)"
         ></app-tag-select>
       </div>
@@ -92,6 +96,13 @@
             class="img-preview-wrapper"
           >
             <img [src]="imageURL" alt="uploaded image {{ imageURL }}" />
+            <div
+              *ngIf="isEditMode"
+              class="image-delete-icon"
+              (click)="removeImage(imageURL)"
+            >
+              <img src="assets/icons/cancelRed.svg" alt="delete image" />
+            </div>
           </div>
         </div>
         <div>
@@ -123,20 +134,29 @@
           type="submit"
           [disabled]="!questionForm.dirty"
         >
-          Ask Question
+          {{ isEditMode ? 'Save' : 'Ask' }} Question
         </button>
       </div>
     </div>
-    <aside class="instructions">
-      <p>
-        The community is here to help you with specific coding, algorithm, or
-        language problems. Avoid asking opinion-based questions. Asking a good
-        question You’re ready to ask your first programming-related question and
-        the community is here to help! To get you the best answers, we’ve
-        provided some guidance: Before you post, search the site to make sure
-        your question hasn’t been answered. 1. Summarize the problem 2. Describe
-        what you’ve tried 3. When appropriate, show some code
-      </p>
-    </aside>
   </div>
+  <aside class="instructions">
+    <ng-container *ngIf="!isEditMode">
+      <h3>Asking A Good Quesiton</h3>
+      <p>
+        The community is here to help you with specific problems about
+        maternity, pregnancy, babies, toddlers and any other questions related
+        to raising a child.
+      </p>
+      <p>
+        To get you the best answers, we’ve provided some guidance: Before you
+        post, search the site to make sure your question hasn’t been answered.
+      </p>
+      <ol>
+        <li>Summarize the problem</li>
+        <li>Describe what you’ve tried</li>
+        <li>When appropriate, attach some photos</li>
+      </ol>
+      <p>Avoid asking opinion-based questions.</p>
+    </ng-container>
+  </aside>
 </div>

@@ -1,6 +1,9 @@
+import { IQuestion } from './../../shared/interfaces/question';
+import { switchMap, tap } from 'rxjs/operators';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 import { ToasterService } from '../../core/services/toaster.service';
 import { CategoriesService } from '../../core/services/categories.service';
@@ -27,6 +30,9 @@ export class QuestionCreateAndEditComponent implements OnInit {
   };
   categories!: ICategory[];
   loading = false;
+  isLoading = false;
+  isEditMode = false;
+  questionId = '';
 
   @HostListener('window:beforeunload', ['$event']) unloadNotification(
     $event: any,
@@ -41,6 +47,7 @@ export class QuestionCreateAndEditComponent implements OnInit {
     private categoriesService: CategoriesService,
     private imageService: ImageService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private toasterService: ToasterService,
   ) {}
 
@@ -50,6 +57,32 @@ export class QuestionCreateAndEditComponent implements OnInit {
         this.categories = categories;
       },
     });
+
+    this.activatedRoute.params
+      .pipe(
+        tap(({ questionId }) => {
+          if (questionId) {
+            this.isEditMode = true;
+            this.isLoading = true;
+          }
+        }),
+        switchMap(({ questionId }) => {
+          if (questionId) return this.questionService.loadQuestion(questionId);
+          return of(null);
+        }),
+      )
+      .subscribe((question) => {
+        console.log(question);
+
+        if (question) {
+          this.question.title = question.title;
+          this.question.text = question.text;
+          this.question.category = question.category._id;
+          this.question.tags = question.tags;
+          this.question.imageURL = question.imageURL.map((i) => i.imageURL);
+          this.questionId = question.id;
+        }
+      });
   }
 
   onImagePicked(event: Event) {
@@ -68,19 +101,38 @@ export class QuestionCreateAndEditComponent implements OnInit {
       });
   }
 
+  removeImage(imageURL: string) {
+    this.question.imageURL = this.question.imageURL.filter(
+      (i) => i !== imageURL,
+    );
+  }
+
   updateTagsHandler(tags: ITag[]) {
     this.question.tags = [...tags];
   }
 
-  createQuestion() {
+  onQuestionFormSubmit() {
     if (this.questionForm.invalid) return;
     this.question = { ...this.question, ...this.questionForm.value };
-    this.questionService.createQuestion(this.question).subscribe({
-      next: () => {
-        this.questionForm.resetForm();
-        this.toasterService.success('Question created successfully!');
-        this.router.navigate(['/']);
-      },
-    });
+
+    if (!this.isEditMode) {
+      this.questionService.createQuestion(this.question).subscribe({
+        next: () => {
+          this.questionForm.resetForm();
+          this.toasterService.success('Question created successfully!');
+          this.router.navigate(['/']);
+        },
+      });
+    } else {
+      this.questionService
+        .updateQuestion(this.question, this.questionId)
+        .subscribe({
+          next: () => {
+            this.questionForm.resetForm();
+            this.toasterService.success('Question updated successfully!');
+            this.router.navigate(['/profile/questions']);
+          },
+        });
+    }
   }
 }

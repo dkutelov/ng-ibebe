@@ -17,20 +17,30 @@ const routes: Routes = [
         component: QuestionsListComponent,
       },
       {
+        path: 'create',
+        component: QuestionCreateAndEditComponent,
+        canActivate: [AuthGuard],
+        data: {
+          authenticationRequired: true,
+          authenticationFailureRedirectUrl: '/login',
+        },
+        canDeactivate: [ProtectUnsavedChangesQuestionGuard],
+      },
+      {
         path: ':questionId',
         component: QuestionDetailComponent,
       },
+      {
+        path: ':questionId/edit',
+        component: QuestionCreateAndEditComponent,
+        canActivate: [AuthGuard],
+        data: {
+          authenticationRequired: true,
+          authenticationFailureRedirectUrl: '/login',
+        },
+        canDeactivate: [ProtectUnsavedChangesQuestionGuard],
+      },
     ],
-  },
-  {
-    path: 'question-create',
-    component: QuestionCreateAndEditComponent,
-    canActivate: [AuthGuard],
-    data: {
-      authenticationRequired: true,
-      authenticationFailureRedirectUrl: '/login',
-    },
-    canDeactivate: [ProtectUnsavedChangesQuestionGuard],
   },
 ];
 

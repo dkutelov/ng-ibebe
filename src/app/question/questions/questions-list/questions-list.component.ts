@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 import { TagsService } from './../../../core/services/tags.service';
 import { CategoriesService } from './../../../core/services/categories.service';
@@ -31,7 +25,7 @@ import { IQueryMap } from 'src/app/shared/interfaces/query-map';
   ],
 })
 export class QuestionsListComponent implements OnInit {
-  questions$ = this.questionService.questions$;
+  questions$ = this.questionService.questions$ || null;
   hasSelection = false;
 
   constructor(
@@ -52,6 +46,7 @@ export class QuestionsListComponent implements OnInit {
 
     const category = this.activatedRoute.snapshot.queryParamMap.get('category');
     if (category) queryParams.category = category;
+
     const tag = this.activatedRoute.snapshot.queryParamMap.get('tag');
     if (tag) queryParams.tag = tag;
 
