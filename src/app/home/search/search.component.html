@@ -1,9 +1,23 @@
-<section class="search-wrapper">
-  <h2 class="title">Search</h2>
-  <div>
-    <input type="text" />
-    <i class="search-icon">
+<section class="search-section">
+  <h2 class="title">Search Questions</h2>
+  <div class="search-wrapper">
+    <input
+      #searchInput
+      type="text"
+      class="search-input"
+      (keyup.enter)="handleSearch(searchInput)"
+    />
+    <i class="search-icon" (click)="handleSearch(searchInput)">
       <img src="assets/icons/search.svg" alt="search CAT" />
     </i>
   </div>
+  <ul *ngIf="suggestedQuestions" class="suggestions">
+    <li
+      *ngFor="let suggestedQuestion of suggestedQuestions"
+      class="suggestion-item"
+      (click)="onSuggestionClick(suggestedQuestion.id)"
+    >
+      {{ suggestedQuestion.title }}
+    </li>
+  </ul>
 </section>

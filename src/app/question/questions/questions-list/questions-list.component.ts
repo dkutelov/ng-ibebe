@@ -50,6 +50,9 @@ export class QuestionsListComponent implements OnInit {
     const tag = this.activatedRoute.snapshot.queryParamMap.get('tag');
     if (tag) queryParams.tag = tag;
 
+    const search = this.activatedRoute.snapshot.queryParamMap.get('search');
+    if (search) queryParams.search = search;
+
     this.questionService.loadQuestions(queryParams);
   }
 

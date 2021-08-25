@@ -1,13 +1,33 @@
-.search-wrapper {
+.search-section {
+  margin-bottom: 6rem;
   display: flex;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
 .title {
   color: var(--lightblue);
   font-weight: 400;
-  font-size: 3rem;
+  font-size: 5rem;
   flex: 0 0 10%;
+}
+
+.search-wrapper {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: calc(100% - 35px);
+  margin-right: 1rem;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid var(--lightblue);
+  padding-bottom: 0.5rem;
+  color: var(--lightblue);
+  font-size: 1.6rem;
 }
 
 .search-icon {
@@ -19,4 +39,25 @@
 
 .search-icon img {
   max-width: 100%;
+}
+
+.suggestions {
+  width: 50%;
+  padding: 0;
+  list-style: none;
+}
+
+.suggestion-item {
+  width: 100%;
+  text-align: left;
+  color: slategray;
+  font-size: 1.6rem;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  color: var(--magento);
+  background-color: lightgray;
 }

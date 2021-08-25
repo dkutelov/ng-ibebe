@@ -1,8 +1,8 @@
 .questions-search,
 .questions-navigation {
-  margin-top: 5rem;
+  margin-top: 4rem;
   border-bottom: 1px solid lightgray;
-  padding-bottom: 5rem;
+  padding-bottom: 10rem;
 }
 
 .questions-previews {
