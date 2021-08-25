@@ -27,9 +27,9 @@ pages:
 - '/questions' - questions listing page
 - '/questions/questionId' - question detail page
 - '/profile' - user profile and his/ her questions and answers
-  -- '/profile/user' - display and update profile
-  -- '/profile/questions' - list read, update, delete user's questions
-  -- '/profile/answers' - list read, update, delete user's answers
+- '/profile/user' - display and update profile
+- '/profile/questions' - list read, update, delete user's questions
+- '/profile/answers' - list read, update, delete user's answers
 
 ## Features
 

@@ -1,19 +1,29 @@
-import { CommentModule } from './../comment/comment.module';
-import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
+import { CommentModule } from './../comment/comment.module';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from './../shared/shared.module';
+import { AnswerRoutingModule } from './answer-routing.module';
+
 import { AnswerListComponent } from './answers/answer-list/answer-list.component';
 import { AnswerListItemComponent } from './answers/answer-list-item/answer-list-item.component';
-import { AnswerCreateAndEditComponent } from './answer-create-and-edit/answer-create-and-edit.component';
-import { FormsModule } from '@angular/forms';
+import { AnswerCreate } from './answer-create/answer-create.component';
+import { AnswerEditComponent } from './answer-edit/answer-edit.component';
 
 @NgModule({
   declarations: [
     AnswerListComponent,
     AnswerListItemComponent,
-    AnswerCreateAndEditComponent,
+    AnswerCreate,
+    AnswerEditComponent,
   ],
-  imports: [CommonModule, SharedModule, FormsModule, CommentModule],
-  exports: [AnswerListComponent, AnswerCreateAndEditComponent],
+  imports: [
+    CommonModule,
+    SharedModule,
+    FormsModule,
+    CommentModule,
+    AnswerRoutingModule,
+  ],
+  exports: [AnswerListComponent, AnswerCreate],
 })
 export class AnswerModule {}

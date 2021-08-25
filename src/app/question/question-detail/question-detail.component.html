@@ -50,14 +50,14 @@
       <app-answer-list [questionId]="question!.id"></app-answer-list>
     </section>
     <section>
-      <app-answer-create-and-edit
+      <app-answer-create
         *ngIf="user && question"
         [questionData]="{
           questionId: question.id,
           userId: user.id,
           authorId: question.author._id
         }"
-      ></app-answer-create-and-edit>
+      ></app-answer-create>
       <p *ngIf="!user" class="auth-invitaiton">
         You have a valuable answer for this question? Log in
         <a routerLink="/login">here</a>

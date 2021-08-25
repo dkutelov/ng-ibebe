@@ -1,0 +1,83 @@
+<div class="container top-offset container-three-columns">
+  <aside></aside>
+  <div class="main-content">
+    <h2 class="section-title section-title--new-answer">Edit Your Answer</h2>
+    <div class="section-content" *ngIf="answer">
+      <div class="form-wrapper">
+        <form #answerForm="ngForm" (ngSubmit)="editAnswer()" id="answerForm">
+          <div class="input-group">
+            <textarea
+              class="input-field"
+              id="text"
+              name="text"
+              rows="8"
+              [ngModel]="answer.text"
+              #textInput="ngModel"
+              required
+              [minlength]="15"
+            ></textarea>
+            <ng-container *ngIf="textInput.touched">
+              <span *ngIf="textInput.errors?.required" class="input-field-error"
+                >Answer text is required</span
+              >
+              <span
+                *ngIf="textInput.errors?.minlength"
+                class="input-field-error"
+                >Your answer should be minumum 15 characters long!</span
+              >
+            </ng-container>
+          </div>
+        </form>
+        <div class="input-group">
+          <label class="input-label-photos">Photos</label>
+          <div *ngIf="answer.imageURL.length" class="img-preview">
+            <div
+              *ngFor="let image of answer.imageURL"
+              class="img-preview-wrapper"
+            >
+              <img [src]="image.imageURL" alt="uploaded image" />
+            </div>
+          </div>
+          <div class="upload-section">
+            <label class="photo-upload-label" for="file">
+              <img
+                *ngIf="!loading"
+                class="photo-upload-icon"
+                src="/assets/images/image.svg"
+                alt="photo upload"
+              />
+              <div *ngIf="loading" class="loader">
+                <img src="/assets/images/loader.svg" alt="loading" />
+              </div>
+              <span class="photos-placeholder"
+                >You can add up to 5 photos to support your answer</span
+              >
+            </label>
+            <input
+              class="photo-upload-input"
+              id="file"
+              type="file"
+              #filePicker
+              (change)="onImagePicked($event)"
+            />
+          </div>
+        </div>
+        <div>
+          <button
+            form="answerForm"
+            class="btn btn-submit btn-spinner"
+            type="submit"
+            [disabled]="answerForm.invalid"
+          >
+            <span *ngIf="!saving">Save Your Answer</span>
+            <div *ngIf="saving" class="loader">
+              <img src="/assets/images/loader.svg" alt="loading" />
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <app-loader *ngIf="answer === null" [size]="'7rem'"></app-loader>
+  </div>
+  <aside></aside>
+</div>

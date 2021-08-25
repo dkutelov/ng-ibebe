@@ -31,6 +31,10 @@ export class AnswersService {
     return this.httpClient.post<IAnswer>(`/api/answers`, data);
   }
 
+  updateAnswer(answer: IAnswer): Observable<IAnswer> {
+    return this.httpClient.put<IAnswer>(`/api/answers`, { answer });
+  }
+
   vote(
     answerId: string,
     voteType: string,
@@ -47,7 +51,15 @@ export class AnswersService {
     return this.httpClient.get<IComment[]>(`/api/answers/${answerId}/comments`);
   }
 
+  loadAnswerById = (id: number) => {
+    return this.httpClient.get<IAnswer>(`/api/answers/${id}`);
+  };
+
   loadAnswersByUserId(userId: string): Observable<IAnswer[]> {
     return this.httpClient.get<IAnswer[]>(`/api/answers/user/${userId}`);
+  }
+
+  deleteAnswer(answerId: string) {
+    return this.httpClient.delete<IAnswer>(`/api/answers/${answerId}`);
   }
 }

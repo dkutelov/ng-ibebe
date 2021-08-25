@@ -5,7 +5,7 @@ import { AuthGuard } from '../core/guards/auth.guard';
 import { QuestionCreateAndEditComponent } from './question-create-and-edit/question-create-and-edit.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 import { QuestionsListComponent } from './questions/questions-list/questions-list.component';
-import { ProtectUnsavedChangesQuestionGuard } from './questions/protect-unsaved-changes-question.guard';
+import { ProtectUnsavedChangesQuestionGuard } from '../core/guards/protect-unsaved-changes-question.guard';
 
 const routes: Routes = [
   {

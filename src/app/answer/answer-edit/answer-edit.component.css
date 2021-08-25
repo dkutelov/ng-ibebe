@@ -1,0 +1,151 @@
+.section-title--new-answer {
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: var(--magento);
+}
+
+.form-wrapper {
+}
+
+@media screen and (min-width: 75rem) {
+  .form-wrapper {
+  }
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-label {
+  color: rgb(86, 66, 255);
+  font-size: 1.4rem;
+}
+
+.input-field {
+  color: #333;
+  font-size: 1.4rem;
+}
+.input-label {
+  font-weight: 400;
+  font-size: 1.7rem;
+}
+
+.input-field {
+  border-color: var(--magento);
+  padding: 1.5rem 1rem;
+}
+
+.input-field:focus,
+.input-field:active {
+  border-color: var(--lightblue);
+}
+
+.input-field-error {
+  font-size: 1rem;
+  color: var(--error);
+  font-weight: 300;
+  margin-left: 0.5rem;
+  position: absolute;
+  left: 0;
+  bottom: -1.5rem;
+}
+
+.btn-submit {
+  margin-top: 1rem;
+  background-color: var(--magento);
+  border-color: var(--magento);
+}
+
+.btn-submit:hover {
+  background-color: var(--lightblue);
+  border-color: var(--lightblue);
+}
+
+.btn-submit:disabled {
+  opacity: 0.5;
+}
+
+/* Uploaded Images Preview  */
+.img-preview {
+  height: 15rem;
+  display: flex;
+  background-color: #fff;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.img-preview-wrapper {
+  height: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.img-preview-wrapper {
+  height: 100%;
+  width: fit-content;
+}
+
+.img-preview-wrapper img {
+  height: 100%;
+}
+
+/* Image upload label and input */
+.photo-upload-label {
+  display: flex;
+  align-items: center;
+}
+
+.photo-upload-label span {
+  color: gray;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.photo-upload-icon,
+.loader {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+}
+
+.loader {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
+}
+
+.photo-upload-input {
+  display: none;
+}
+
+input.ng-valid,
+textarea.ng-valid,
+select.ng-valid {
+  border: 1px solid var(--lightgreen);
+}
+
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border: 1px solid var(--error);
+}
+
+.input-label-photos {
+  font-size: 1.2rem;
+  color: var(--blue);
+}
+
+.upload-section {
+  margin-top: 0.5rem;
+}
+
+.btn-spinner {
+  width: 17rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

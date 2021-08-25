@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
-import { QuestionCreateAndEditComponent } from '../question-create-and-edit/question-create-and-edit.component';
+import { AnswerEditComponent } from 'src/app/answer/answer-edit/answer-edit.component';
 
 @Injectable({
   providedIn: 'root',
@@ -8,8 +8,8 @@ import { QuestionCreateAndEditComponent } from '../question-create-and-edit/ques
 export class ProtectUnsavedChangesQuestionGuard
   implements CanDeactivate<unknown>
 {
-  canDeactivate(component: QuestionCreateAndEditComponent): boolean {
-    if (component.questionForm.dirty) {
+  canDeactivate(component: AnswerEditComponent): boolean {
+    if (component.answerForm.dirty) {
       return confirm(
         'Are you sure you want to leave this page? Any unsaved changes will be lost!',
       );

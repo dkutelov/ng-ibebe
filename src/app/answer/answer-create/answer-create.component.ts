@@ -6,11 +6,11 @@ import { ImageService } from 'src/app/core/services/image.service';
 import { AnswersService } from 'src/app/core/services/answers.service';
 
 @Component({
-  selector: 'app-answer-create-and-edit',
-  templateUrl: './answer-create-and-edit.component.html',
-  styleUrls: ['./answer-create-and-edit.component.css'],
+  selector: 'app-answer-create',
+  templateUrl: './answer-create.component.html',
+  styleUrls: ['./answer-create.component.css'],
 })
-export class AnswerCreateAndEditComponent implements OnInit {
+export class AnswerCreate implements OnInit {
   @Input() questionData!: {
     questionId: string;
     userId: string;

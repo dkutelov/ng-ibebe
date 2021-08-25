@@ -44,7 +44,7 @@ export class QuestionsListComponent implements OnInit {
   }
 
   deleteQuestion(questionId: string): void {
-    if (confirm('Are you sure that you want to delete this questions?')) {
+    if (confirm('Are you sure that you want to delete this question?')) {
       this.questionService
         .deleteQuestion(questionId)
         .subscribe((question: IQuestion) => {
