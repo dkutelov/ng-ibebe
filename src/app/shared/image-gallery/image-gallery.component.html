@@ -1,5 +1,24 @@
 <div *ngIf="imageArr.length > 0" class="images-wrapper">
-  <div *ngFor="let image of imageArr" class="image-wrapper">
+  <div
+    *ngFor="let image of imageArr; index as i"
+    class="image-wrapper"
+    (click)="showImagePreview(i)"
+  >
     <img [src]="image.imageURL" [alt]="image.imageURL" />
+  </div>
+  <div *ngIf="isPreviewMode" class="image-preview-container">
+    <i class="nav-icon-wrapper" (click)="prevImage()">
+      <img
+        src="assets/icons/left-arrow.svg"
+        alt="left arrow"
+        class="nav-icon"
+      />
+    </i>
+    <div class="image-container">
+      <img [src]="currentImageUrl" alt="current preview" />
+    </div>
+    <i class="nav-icon-wrapper" (click)="nextImage()">
+      <img src="assets/icons/right-arrow.svg" alt="left arrow" class="nav-icon"
+    /></i>
   </div>
 </div>

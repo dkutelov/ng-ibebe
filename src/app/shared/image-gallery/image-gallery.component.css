@@ -13,5 +13,40 @@
 }
 
 .image-wrapper img {
+  cursor: pointer;
   height: 100%;
+}
+
+.image-preview-container {
+  position: absolute;
+  z-index: 999;
+  max-width: 80%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(211, 211, 211);
+  background-color: rgba(248, 248, 248, 0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 2rem;
+}
+
+.image-container {
+  margin: 3rem 0;
+}
+
+.image-container img {
+  max-width: 100%;
+}
+
+.nav-icon-wrapper {
+  display: inline-block;
+  margin: 4rem;
+  cursor: pointer;
+}
+
+.nav-icon {
+  width: 2rem;
+  height: 2rem;
 }

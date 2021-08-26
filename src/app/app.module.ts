@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentModule } from './comment/comment.module';
 import { HomeModule } from './home/home.module';
 import { NgModule } from '@angular/core';
@@ -23,6 +24,7 @@ import { GlobalEffects } from './_store/effects';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     UserModule,
     AnswerModule,

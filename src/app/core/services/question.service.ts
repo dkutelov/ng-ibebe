@@ -31,8 +31,6 @@ export class QuestionService {
     this.httpClient
       .get<IQuestion[]>(`/api/questions${query}`)
       .subscribe((questions) => {
-        console.log(questions);
-
         if (questions.length > 0) {
           this.questions.next(questions);
         }
@@ -40,8 +38,6 @@ export class QuestionService {
   }
 
   getQuestions(queryParams: IQueryMap = {}): Observable<IQuestion[]> {
-    console.log('queryParams', queryParams);
-
     let query = this.getAllQuery(queryParams);
     return this.httpClient.get<IQuestion[]>(`/api/questions${query}`);
   }

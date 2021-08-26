@@ -12,6 +12,11 @@
         alt="лого на ibebe"
     /></a>
     <ul class="nav-list">
+      <li class="nav-list-item">
+        <a routerLink="questions" routerLinkActive="nav-active"
+          >All Questions</a
+        >
+      </li>
       <ng-container *ngIf="!(userService.currentUser$ | async)">
         <li class="nav-list-item">
           <a routerLink="register" routerLinkActive="nav-active">Register</a>
