@@ -7,7 +7,7 @@
       (click)="handleMenuItemClick(menuItem._id)"
       class="nav-item"
     >
-      {{ menuItem.name }}
+      {{ menuItem.name | titlecase }}
     </li>
   </ul>
 </div>

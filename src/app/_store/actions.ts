@@ -4,10 +4,7 @@ import { IQueryMap } from '../shared/interfaces/query-map';
 
 const namespace = '[GLOBAL]';
 
-export const setQuestionsCount = createAction(
-  `${namespace} set questions count`,
-  props<{ count: number }>(),
-);
+export const loadQuestions = createAction(`${namespace} load questions`);
 
 export const loadQuestionsSuccess = createAction(
   `${namespace} load questions success`,
@@ -19,6 +16,10 @@ export const loadQuestionsFailure = createAction(
   props<{ error: Error }>(),
 );
 
+export const loadQuestionsCancel = createAction(
+  `${namespace} load questions cancel`,
+);
+
 export const setQueryParams = createAction(
   `${namespace} set questions query params`,
   props<{ queryParams: IQueryMap }>(),
@@ -27,8 +28,6 @@ export const setQueryParams = createAction(
 export const clearQueryParams = createAction(
   `${namespace} set questions query params`,
 );
-
-export const loadUsersCancel = createAction(`${namespace} load users cancel`);
 
 export const clearGlobalState = createAction(`${namespace} clear global state`);
 

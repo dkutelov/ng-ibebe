@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { Store } from '@ngrx/store';
 
 import { TagsService } from './../../../core/services/tags.service';
 import { CategoriesService } from './../../../core/services/categories.service';
 import { QuestionService } from '../../../core/services/question.service';
 import { IQueryMap } from 'src/app/shared/interfaces/query-map';
+import { selectGlobalQuestions } from 'src/app/_store/selectors';
+import { setQueryParams } from 'src/app/_store/actions';
 
 @Component({
   selector: 'app-questions-list',
@@ -25,65 +28,99 @@ import { IQueryMap } from 'src/app/shared/interfaces/query-map';
   ],
 })
 export class QuestionsListComponent implements OnInit {
-  questions$ = this.questionService.questions$ || null;
+  //questions$ = this.questionService.questions$ || null;
+  questionsStore$ = this.store.select(selectGlobalQuestions);
   hasSelection = false;
-  questionsPerPage = 3;
-  currentPageIndex = 1;
-  currentQuestionsCount = 3;
+  queryParams: IQueryMap = {
+    pageIndex: '1',
+    pageSize: '4',
+    sortBy: '',
+    tag: '',
+    category: '',
+  };
+  questionCount = 0;
 
   constructor(
     public questionService: QuestionService,
     public categoriesService: CategoriesService,
     public tagsService: TagsService,
     private activatedRoute: ActivatedRoute,
+    private store: Store<any>,
   ) {}
 
   ngOnInit(): void {
-    this.loadQuestions();
+    //this.loadQuestions();
+    this.loadQuestionStore();
     this.categoriesService.loadCategories();
     this.tagsService.loadTags();
   }
 
-  loadQuestions() {
-    let queryParams: IQueryMap = {
-      pageIndex: String(this.currentPageIndex),
-      pageSize: String(this.questionsPerPage),
-    };
-
+  loadQuestionStore() {
     const category = this.activatedRoute.snapshot.queryParamMap.get('category');
-    if (category) queryParams.category = category;
+    if (category) this.queryParams.category = category;
 
     const tag = this.activatedRoute.snapshot.queryParamMap.get('tag');
-    if (tag) queryParams.tag = tag;
+    if (tag) this.queryParams.tag = tag;
 
     const search = this.activatedRoute.snapshot.queryParamMap.get('search');
-    if (search) queryParams.search = search;
+    if (search) this.queryParams.search = search;
 
-    this.questionService.loadQuestions(queryParams);
+    this.questionCount = 0;
+    this.store.dispatch(setQueryParams({ queryParams: this.queryParams }));
+    this.updateQuestionsCount();
   }
 
   categoryMenuItemSelected(event: string) {
     this.hasSelection = true;
-    this.questionService.loadQuestions({ category: event });
+    this.queryParams = {
+      ...this.queryParams,
+      pageIndex: '1',
+      category: event,
+    };
+    this.loadQuestionStore();
   }
 
   tagMenuItemSelected(event: string) {
     this.hasSelection = true;
-    this.questionService.loadQuestions({ tag: event });
+    this.queryParams = {
+      ...this.queryParams,
+      pageIndex: '1',
+      tag: event,
+    };
+    this.loadQuestionStore();
   }
 
   clearSelection() {
     this.hasSelection = false;
-    this.loadQuestions();
+    this.queryParams = {
+      ...this.queryParams,
+      category: '',
+      tag: '',
+    };
+    this.loadQuestionStore();
   }
 
   onNextPage() {
-    this.currentPageIndex++;
-    this.loadQuestions();
+    this.queryParams = {
+      ...this.queryParams,
+      pageIndex: `${Number(this.queryParams.pageIndex) + 1}`,
+    };
+    this.loadQuestionStore();
   }
 
   onPreviousPage() {
-    this.currentPageIndex--;
-    this.loadQuestions();
+    this.queryParams = {
+      ...this.queryParams,
+      pageIndex: `${Number(this.queryParams.pageIndex) - 1}`,
+    };
+    this.loadQuestionStore();
+  }
+
+  updateQuestionsCount(): void {
+    this.questionService
+      .getQuestionsCount(this.queryParams)
+      .subscribe((count) => {
+        this.questionCount = count;
+      });
   }
 }

@@ -40,6 +40,8 @@ export class QuestionService {
   }
 
   getQuestions(queryParams: IQueryMap = {}): Observable<IQuestion[]> {
+    console.log('queryParams', queryParams);
+
     let query = this.getAllQuery(queryParams);
     return this.httpClient.get<IQuestion[]>(`/api/questions${query}`);
   }
@@ -91,10 +93,18 @@ export class QuestionService {
     if (Object.keys(queryParams).length === 0) return '';
 
     let query = '?';
-    const params: string[] = Object.keys(queryParams).map((k: string) => {
-      return `${k}=${queryParams[k]}`;
+    const params: string[] = [];
+    Object.keys(queryParams).forEach((k: string) => {
+      if (queryParams[k]) {
+        params.push(`${k}=${queryParams[k]}`);
+      }
     });
 
     return query.concat(params.join('&'));
+  }
+
+  getQuestionsCount(queryParams: IQueryMap = {}): Observable<number> {
+    let query = this.getAllQuery(queryParams);
+    return this.httpClient.get<number>(`/api/questions/count${query}`);
   }
 }

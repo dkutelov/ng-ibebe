@@ -1,3 +1,8 @@
+.main-content {
+  position: relative;
+  margin-bottom: 10rem;
+}
+
 .no-show {
   text-align: center;
   color: var(--disabled);
@@ -32,6 +37,7 @@ img {
   position: absolute;
   left: 0;
   right: 0;
+  bottom: -14rem;
 }
 
 .pagination-content {

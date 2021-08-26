@@ -23,8 +23,8 @@
     ></app-navigation-list>
   </aside>
   <section class="main-content">
-    <app-loader *ngIf="!(questions$ | async)" [size]="'7rem'"></app-loader>
-    <ng-container *ngIf="questions$ | async as questions">
+    <app-loader *ngIf="!(questionsStore$ | async)" [size]="'7rem'"></app-loader>
+    <ng-container *ngIf="questionsStore$ | async as questions">
       <app-questions-list-item
         *ngFor="let question of questions"
         [question]="question"
@@ -37,13 +37,19 @@
     <div class="pagination-navigation">
       <button
         class="btn btn-pagination"
-        *ngIf="currentPageIndex > 1"
+        *ngIf="+queryParams.pageIndex! > 1"
         (click)="onPreviousPage()"
       >
         Previous
       </button>
-      <p class="pagination-content">Page {{ currentPageIndex }}</p>
-      <button class="btn btn-pagination" *ngIf="true" (click)="onNextPage()">
+      <p class="pagination-content">Page {{ queryParams.pageIndex }}</p>
+      <button
+        class="btn btn-pagination"
+        *ngIf="
+          questionCount - +queryParams.pageIndex! * +queryParams.pageSize! > 0
+        "
+        (click)="onNextPage()"
+      >
         Next
       </button>
     </div>

@@ -1,10 +1,10 @@
-import { ILinkItem } from './../../shared/interfaces/link-item';
-import { TagsService } from './../../core/services/tags.service';
-import { CategoriesService } from './../../core/services/categories.service';
 import { Component, OnInit } from '@angular/core';
 
-import { IQuestion } from './../../shared/interfaces/question';
 import { QuestionService } from './../../core/services/question.service';
+import { TagsService } from './../../core/services/tags.service';
+import { CategoriesService } from './../../core/services/categories.service';
+
+import { IQuestion } from './../../shared/interfaces/question';
 
 const QUESTIONS_PER_SECTION = 6;
 

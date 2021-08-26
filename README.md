@@ -9,7 +9,7 @@ To run the application you need to download the zip file or clone the repo to ru
 - install dependencies
 
 ```
-npm i
+npm install --legacy-peer-deps
 ```
 
 ### `Functionalities`
@@ -49,6 +49,7 @@ pages:
 
 ### `Features`
 
+- NgRX implemented for questions state;
 - animations - ngIf animate in the navigation of Question module;
 - images are uploaded and stored in Cloudinary cloud service
 - social login with Google and Facebook

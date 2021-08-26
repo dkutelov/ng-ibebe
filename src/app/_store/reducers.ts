@@ -3,7 +3,6 @@ import { createReducer, on } from '@ngrx/store';
 import {
   clearGlobalState,
   loadQuestionsSuccess,
-  setQuestionsCount,
   setQueryParams,
   clearQueryParams,
 } from './actions';
@@ -11,29 +10,22 @@ import { IQueryMap } from '../shared/interfaces/query-map';
 
 export interface IGlobalState {
   readonly questions: IQuestion[] | null;
-  readonly queryParams: IQueryMap;
-  readonly questionsCount: number;
+  readonly queryParams: IQueryMap | null;
 }
 
 const initialState: IGlobalState = {
   questions: null,
-  questionsCount: 0,
-  queryParams: {
-    pageIndex: '1',
-    pageSize: '3',
-  },
+  queryParams: null,
 };
 
 export const globalReducer = createReducer(
   initialState,
-  on(setQuestionsCount, (state, { count }) => ({ ...state, count })),
-  on(setQueryParams, (state, { queryParams }) => ({
-    ...state,
-    queryParams: {
-      ...state.queryParams,
-      ...queryParams,
-    },
-  })),
+  on(setQueryParams, (state, { queryParams }) => {
+    return {
+      ...state,
+      queryParams,
+    };
+  }),
   on(clearQueryParams, (state) => ({
     ...state,
     queryParams: initialState.queryParams,
