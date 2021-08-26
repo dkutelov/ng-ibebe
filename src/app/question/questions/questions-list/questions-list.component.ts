@@ -27,6 +27,9 @@ import { IQueryMap } from 'src/app/shared/interfaces/query-map';
 export class QuestionsListComponent implements OnInit {
   questions$ = this.questionService.questions$ || null;
   hasSelection = false;
+  questionsPerPage = 3;
+  currentPageIndex = 1;
+  currentQuestionsCount = 3;
 
   constructor(
     public questionService: QuestionService,
@@ -42,7 +45,10 @@ export class QuestionsListComponent implements OnInit {
   }
 
   loadQuestions() {
-    let queryParams: IQueryMap = {};
+    let queryParams: IQueryMap = {
+      pageIndex: String(this.currentPageIndex),
+      pageSize: String(this.questionsPerPage),
+    };
 
     const category = this.activatedRoute.snapshot.queryParamMap.get('category');
     if (category) queryParams.category = category;
@@ -68,6 +74,16 @@ export class QuestionsListComponent implements OnInit {
 
   clearSelection() {
     this.hasSelection = false;
+    this.loadQuestions();
+  }
+
+  onNextPage() {
+    this.currentPageIndex++;
+    this.loadQuestions();
+  }
+
+  onPreviousPage() {
+    this.currentPageIndex--;
     this.loadQuestions();
   }
 }

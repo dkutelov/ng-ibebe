@@ -31,6 +31,8 @@ export class QuestionService {
     this.httpClient
       .get<IQuestion[]>(`/api/questions${query}`)
       .subscribe((questions) => {
+        console.log(questions);
+
         if (questions.length > 0) {
           this.questions.next(questions);
         }

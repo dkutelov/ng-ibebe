@@ -1,6 +1,6 @@
 # iBebe Questions
 
-## Description
+### `Description`
 
 This project is Stackoverflow alike SPA application but it is themed to mother and babies. The frontend of the applicatin is written using Angular 12.1 framework. The application is an exam project for Softuni Angular course 7/2021. The project is using a backend written in Node/ Express (see the link to the repo in the backend section). The backend is using a MongoDB database in Atlas cloud. All images are stored in Cloudinary cloud storage.
 
@@ -12,7 +12,7 @@ To run the application you need to download the zip file or clone the repo to ru
 npm i
 ```
 
-###c Functionalities
+### `Functionalities`
 
 - all users(unauthenticated and authenitcated) users can browse questions and their answer and/or comments
 - all users can search questions and filter question by category or tag
@@ -21,7 +21,7 @@ npm i
 - authenticated user can edit or deleted their questions and answers
 - users can register, login and logout
 
-### Project Structure
+### `Project Structure`
 
 - user module - handles authentication and user profile
 - question module - question list page, create a question
@@ -47,7 +47,7 @@ pages:
 - '/profile/answers' - list, update, delete user's answers
 - '/answers/answerId/edit - edit answer page
 
-### Features
+### `Features`
 
 - animations - ngIf animate in the navigation of Question module;
 - images are uploaded and stored in Cloudinary cloud service
@@ -61,7 +61,7 @@ pages:
 ### `Backend`
 
 - for backend code link to repo:
-  [tbd](https://github.com/dkutelov/)
+  [https://github.com/dkutelov/ibebe-backend](https://github.com/dkutelov/ibebe-backend)
 
 - backend is deployed on Heroku:
-  [tbd](https://some-link.com/)
+  [https://warm-dusk-99357.herokuapp.com/api/](https://warm-dusk-99357.herokuapp.com/api/)

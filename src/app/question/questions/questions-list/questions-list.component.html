@@ -34,6 +34,19 @@
         No questions to show!
       </p>
     </ng-container>
+    <div class="pagination-navigation">
+      <button
+        class="btn btn-pagination"
+        *ngIf="currentPageIndex > 1"
+        (click)="onPreviousPage()"
+      >
+        Previous
+      </button>
+      <p class="pagination-content">Page {{ currentPageIndex }}</p>
+      <button class="btn btn-pagination" *ngIf="true" (click)="onNextPage()">
+        Next
+      </button>
+    </div>
   </section>
   <aside class="aside-right"></aside>
 </div>

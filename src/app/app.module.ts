@@ -13,6 +13,9 @@ import { AnswerModule } from './answer/answer.module';
 
 import { authInterceptorProvider } from './core/interceptors/auth.interceptor';
 import { errorInterceptorProvider } from './core/interceptors/error.inteceptor';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers } from './_store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +29,8 @@ import { errorInterceptorProvider } from './core/interceptors/error.inteceptor';
     CoreModule,
     SharedModule,
     AppRoutingModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [authInterceptorProvider, errorInterceptorProvider],
   bootstrap: [AppComponent],
