@@ -7,9 +7,15 @@
 
 .register-title {
   text-transform: uppercase;
-  font-size: 2rem;
+  font-size: 1.5rem;
   position: relative;
   color: var(--magento);
+}
+
+@media only screen and (min-width: 75rem) {
+  .register-title {
+    font-size: 2rem;
+  }
 }
 
 .register-title::after {
@@ -27,7 +33,7 @@
 }
 
 .register-form {
-  margin-top: 4.5rem;
+  margin-top: 2rem;
   padding: 0.2rem;
   max-width: 40rem;
   width: 100%;
@@ -36,6 +42,12 @@
   border-bottom-right-radius: 3rem;
   position: relative;
   background-color: rgba(245, 245, 245, 0.5);
+}
+
+@media only screen and (min-width: 75rem) {
+  .register-form {
+    margin-top: 4.5rem;
+  }
 }
 
 .form-inner-wrapper {

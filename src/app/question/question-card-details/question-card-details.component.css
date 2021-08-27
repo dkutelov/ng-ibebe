@@ -2,17 +2,32 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 1.5rem;
-  padding-right: 2rem;
+  padding-right: 0rem;
+}
+
+@media screen and (min-width: 75rem) {
+  .question-details {
+    padding-right: 2rem;
+  }
 }
 
 .question-tag {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   display: inline-block;
   color: #fff;
   background-color: #9a8fff;
   padding: 0.5rem 1rem;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   border-radius: 0.5rem;
+  margin-bottom: 0.5;
+}
+
+@media screen and (min-width: 75rem) {
+  .question-tag {
+    font-size: 1.4rem;
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
 }
 
 .question-author {

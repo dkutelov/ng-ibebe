@@ -27,7 +27,7 @@
 }
 
 .logo {
-  width: 12.5rem;
+  width: 9rem;
   margin: 0 auto;
   padding: 0.5rem 0;
   display: block;
@@ -38,7 +38,7 @@
 .logo-small {
   cursor: pointer;
   padding: 0.5rem 0;
-  width: 10rem;
+  width: 7rem;
   transition: all 0.3s ease-out;
 }
 
@@ -47,6 +47,12 @@
     width: 17rem;
     margin: 0;
     padding: 1.5rem 0;
+  }
+  .logo-small {
+    cursor: pointer;
+    padding: 0.5rem 0;
+    width: 10rem;
+    transition: all 0.3s ease-out;
   }
 }
 
@@ -105,12 +111,20 @@
   background-color: transparent;
   border: none;
   outline: none;
-  font-size: 1.3rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   display: inline-block;
-  padding: 1rem 2rem;
+  padding: 0 0.5rem;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 75rem) {
+  .nav-list-item a,
+  .nav-list-item button {
+    font-size: 1.3rem;
+    padding: 1rem 2rem;
+  }
 }
 
 .nav-list .nav-active {
@@ -122,8 +136,15 @@
   border-color: var(--violet);
   border-radius: 2rem;
   font-weight: 500;
-  font-size: 1.7rem;
+  font-size: 1rem;
 }
+
+@media only screen and (min-width: 75rem) {
+  .nav-list-item-button .btn {
+    font-size: 1.7rem;
+  }
+}
+
 
 .nav-list-item-button .btn {
   text-decoration: none;
@@ -138,7 +159,13 @@
 
 .avatar-wrapper {
   position: relative;
-  margin-left: 2rem;
+  margin-left: 0.5rem;
+}
+
+@media only screen and (min-width: 75rem) {
+  .avatar-wrapper {
+    margin-left: 2rem;
+  }
 }
 
 .avatar-link {

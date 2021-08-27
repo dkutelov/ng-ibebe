@@ -61,6 +61,7 @@ pages:
 - guards for both authenticated users; guard for unsaved changes;
 - http interceptors for authentication and errors
 - pagination of question list
+- responsive design
 
 ### `Backend`
 

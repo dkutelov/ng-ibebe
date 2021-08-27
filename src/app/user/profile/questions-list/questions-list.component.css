@@ -19,8 +19,14 @@ i img {
 th {
   text-align: left;
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 0.9rem;
   padding-bottom: 1rem;
+}
+
+@media screen and (min-width: 75rem) {
+  th {
+    font-size: 1.6rem;
+  }
 }
 
 td a {
@@ -34,9 +40,15 @@ td a {
 }
 
 tr {
-  font-size: 1.5rem;
+  font-size: 0.9rem;
   font-weight: 300;
   padding-bottom: 1rem;
+}
+
+@media screen and (min-width: 75rem) {
+  tr {
+    font-size: 1.5rem;
+  }
 }
 
 .icon {

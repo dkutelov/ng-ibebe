@@ -1,7 +1,13 @@
 .questions-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   column-gap: 1.5rem;
   row-gap: 1rem;
   margin-bottom: 5rem;
+}
+
+@media only screen and (min-width: 75rem) {
+  .questions-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

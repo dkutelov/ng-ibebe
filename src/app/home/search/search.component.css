@@ -9,15 +9,28 @@
 .title {
   color: var(--lightblue);
   font-weight: 400;
-  font-size: 5rem;
+  font-size: 3rem;
   flex: 0 0 10%;
 }
 
+@media only screen and (min-width: 75rem) {
+  .title {
+    font-size: 5rem;
+  }
+}
+
 .search-wrapper {
-  width: 50%;
+  width: 90%;
   display: flex;
   align-items: center;
 }
+
+@media only screen and (min-width: 75rem) {
+  .search-wrapper {
+    width: 50%;
+  }
+}
+
 
 .search-input {
   width: calc(100% - 35px);

@@ -24,18 +24,25 @@
 
 .category.link-item {
   list-style: none;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   text-transform: uppercase;
   display: inline-block;
   color: var(--magento);
   background-color: rgba(245, 245, 245, 0.6);
   border: 2px solid transparent;
-  padding: 1.5rem 3rem;
+  padding: 0.5rem 1rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.5s ease-out;
+}
+
+@media only screen and (min-width: 75rem) {
+  .category.link-item {
+    font-size: 1.8rem;
+    padding: 1.5rem 3rem;
+  }
 }
 
 .category.link-item:hover {

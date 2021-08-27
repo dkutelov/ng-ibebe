@@ -3,6 +3,10 @@
     <app-search></app-search>
   </div>
   <div class="questions-navigation">
+    <div class="mobile-only">
+      <h2 class="all-questions-heading">Go To All Questions</h2>
+      <a class="link-all" routerLink="/questions">All Questions</a>
+    </div>
     <app-link-list
       [title]="'categories'"
       [linkType]="'category'"
@@ -13,10 +17,6 @@
       [linkType]="'tag'"
       [links]="this.tagService.tags$ | async"
     ></app-link-list>
-    <!-- <div>
-      <h2 class="all-questions-heading">Go To All Questions</h2>
-      <a class="link-all" routerLink="/questions">All Questions</a>
-    </div> -->
   </div>
   <div class="questions-previews">
     <div class="short-listed-questions">

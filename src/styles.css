@@ -31,6 +31,7 @@ body {
 /* Typography */
 body {
   font-family: 'Roboto', sans-serif;
+  width: 100%;
 }
 
 h1,
@@ -44,7 +45,7 @@ h6 {
 
 /* Generic */
 .page-content {
-  min-height: calc(100vh - 250px);
+  min-height: calc(100vh - 300px);
 }
 
 .container {
@@ -61,7 +62,33 @@ h6 {
 }
 
 .top-offset {
-  margin-top: 15rem;
+  margin-top: 12rem;
+}
+
+@media screen and (min-width: 75rem) {
+  .top-offset {
+    margin-top: 15rem;
+  }
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media screen and (min-width: 75rem) {
+  .desktop-only {
+    display: block;
+  }
+}
+
+.mobile-only {
+  display: block;
+}
+
+@media screen and (min-width: 75rem) {
+  .mobile-only {
+    display: none;
+  }
 }
 
 .section-title {
@@ -72,8 +99,14 @@ h6 {
 
 .container-three-columns {
   display: grid;
-  grid-template-columns: 15% 1fr 20%;
-  column-gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 75rem) {
+  .container-three-columns {
+    grid-template-columns: 15% 1fr 20%;
+    column-gap: 2rem;
+  }
 }
 
 /* Form */
