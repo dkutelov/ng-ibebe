@@ -69,3 +69,8 @@ pages:
 
 - backend is deployed on Heroku:
   [https://warm-dusk-99357.herokuapp.com/api/](https://warm-dusk-99357.herokuapp.com/api/)
+
+### `Project Demo`
+
+- project deployed to Firebase hosting. Be patient with first page load for heroku backend to get out fo sleeping mode.
+  [https://ngibebe.web.app/](demo)
