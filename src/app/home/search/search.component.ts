@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { fromEvent, of, Observable, Subscription } from 'rxjs';
+import { fromEvent, of, Subscription } from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -52,7 +52,6 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         }),
       )
       .subscribe((questions) => {
-        console.log(questions);
         if (questions) {
           this.suggestedQuestions = questions;
         }

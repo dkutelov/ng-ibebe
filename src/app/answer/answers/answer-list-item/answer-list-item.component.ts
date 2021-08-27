@@ -33,6 +33,8 @@ export class AnswerListItemComponent implements OnInit {
   }
 
   vote(answerId: string, voteType: string) {
+    if (!this.user) return;
+
     this.answersService
       .vote(answerId, voteType, this.user!.id)
       .subscribe((response: IAnswerVote) => {

@@ -85,7 +85,10 @@ export class UserService {
     this.clearCookie();
     this.token = null;
     this.currentUser.next(null);
+
     if (this.isSocial) {
+      console.log('social sign out');
+
       this.socialAuthService.signOut();
       this.isSocial = false;
     }
@@ -99,6 +102,7 @@ export class UserService {
   clearCookie() {
     this.cookieService.delete('token');
     this.cookieService.delete('userId');
+    this.cookieService.deleteAll();
   }
 
   checkUsernameExists(username: string): void {

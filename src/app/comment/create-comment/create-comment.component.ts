@@ -36,8 +36,10 @@ export class CreateCommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.currentUser$.subscribe((u) => (this.user = u));
-    this.comment.author = this.user!.id;
+    this.userService.currentUser$.subscribe((u) => {
+      this.user = u;
+      this.comment.author = u ? u.id : '';
+    });
   }
 
   toggleComment(state: boolean) {

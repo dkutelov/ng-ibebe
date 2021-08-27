@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { Store } from '@ngrx/store';
 
@@ -45,8 +45,18 @@ export class QuestionsListComponent implements OnInit {
     public categoriesService: CategoriesService,
     public tagsService: TagsService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private store: Store<any>,
-  ) {}
+  ) {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.queryParams = {
+        ...this.queryParams,
+        category: params['category'] || '',
+        tag: params['tag'] || '',
+        search: params['search'] || '',
+      };
+    });
+  }
 
   ngOnInit(): void {
     //this.loadQuestions();
@@ -56,36 +66,40 @@ export class QuestionsListComponent implements OnInit {
   }
 
   loadQuestionStore() {
-    const category = this.activatedRoute.snapshot.queryParamMap.get('category');
-    if (category) this.queryParams.category = category;
-
-    const tag = this.activatedRoute.snapshot.queryParamMap.get('tag');
-    if (tag) this.queryParams.tag = tag;
-
-    const search = this.activatedRoute.snapshot.queryParamMap.get('search');
-    if (search) this.queryParams.search = search;
-
     this.questionCount = 0;
     this.store.dispatch(setQueryParams({ queryParams: this.queryParams }));
     this.updateQuestionsCount();
   }
 
   categoryMenuItemSelected(event: string) {
+    this.router.navigate(['questions']);
+
     this.hasSelection = true;
+    console.log('1 ', this.queryParams);
+
     this.queryParams = {
       ...this.queryParams,
       pageIndex: '1',
       category: event,
+      tag: '',
+      search: '',
     };
+
+    console.log('2 ', this.queryParams);
+
     this.loadQuestionStore();
   }
 
   tagMenuItemSelected(event: string) {
+    this.router.navigate(['questions']);
+
     this.hasSelection = true;
     this.queryParams = {
       ...this.queryParams,
       pageIndex: '1',
       tag: event,
+      category: '',
+      search: '',
     };
     this.loadQuestionStore();
   }

@@ -1,8 +1,7 @@
-import { IQuestion } from './../../shared/interfaces/question';
-import { switchMap, tap } from 'rxjs/operators';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { ToasterService } from '../../core/services/toaster.service';
@@ -101,17 +100,17 @@ export class QuestionCreateAndEditComponent implements OnInit {
       });
   }
 
-  removeImage(imageURL: string) {
+  removeImage(imageURL: string): void {
     this.question.imageURL = this.question.imageURL.filter(
       (i) => i !== imageURL,
     );
   }
 
-  updateTagsHandler(tags: ITag[]) {
+  updateTagsHandler(tags: ITag[]): void {
     this.question.tags = [...tags];
   }
 
-  onQuestionFormSubmit() {
+  onQuestionFormSubmit(): void {
     if (this.questionForm.invalid) return;
     this.question = { ...this.question, ...this.questionForm.value };
 
@@ -120,7 +119,7 @@ export class QuestionCreateAndEditComponent implements OnInit {
         next: () => {
           this.questionForm.resetForm();
           this.toasterService.success('Question created successfully!');
-          this.router.navigate(['/']);
+          this.router.navigate(['/profile/questions']);
         },
       });
     } else {

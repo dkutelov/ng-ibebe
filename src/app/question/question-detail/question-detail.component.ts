@@ -42,6 +42,8 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   vote(questionId: string, voteType: string): void {
+    if (!this.user) return;
+
     this.questionService
       .vote(questionId, voteType, this.user!.id)
       .subscribe((response: IQuestionVote) => {

@@ -1,4 +1,8 @@
-<p *ngIf="!isCommentOpen" (click)="toggleComment(true)" class="comment-CTA">
+<p
+  *ngIf="!isCommentOpen && user"
+  (click)="toggleComment(true)"
+  class="comment-CTA"
+>
   Add a comment
 </p>
 <form

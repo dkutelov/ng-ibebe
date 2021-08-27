@@ -26,8 +26,10 @@ export class CommentListItemComponent implements OnInit {
   }
 
   like(): void {
+    if (!this.user) return;
+
     this.commentService
-      .likeComment(this.user!.id, this.comment!._id!)
+      .likeComment(this.user.id, this.comment!._id!)
       .subscribe((response) => {
         this.comment.likes = response.likes;
       });
