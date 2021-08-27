@@ -4,7 +4,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnInit,
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
@@ -26,7 +25,7 @@ export class NavigationListComponent implements OnChanges {
     this.items = changes.menuItems.currentValue;
   }
 
-  handleMenuItemClick(id: string) {
+  handleMenuItemClick(id: string): void {
     this.menuItemClicked.emit(id);
   }
 }

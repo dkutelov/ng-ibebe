@@ -4,6 +4,7 @@
   background: rgba(245, 245, 245, 0.6);
   border-radius: 1rem;
   padding: 1.5rem;
+  position: relative;
 }
 
 .question-card-votes {

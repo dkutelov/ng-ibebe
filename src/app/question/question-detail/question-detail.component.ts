@@ -30,7 +30,7 @@ export class QuestionDetailComponent implements OnInit {
     this.userService.currentUser$.subscribe((u) => (this.user = u));
   }
 
-  loadQuestion() {
+  loadQuestion(): void {
     this.activatedRoute.params.subscribe(({ questionId }) => {
       this.questionService
         .loadQuestion(questionId)
@@ -41,7 +41,7 @@ export class QuestionDetailComponent implements OnInit {
     });
   }
 
-  vote(questionId: string, voteType: string) {
+  vote(questionId: string, voteType: string): void {
     this.questionService
       .vote(questionId, voteType, this.user!.id)
       .subscribe((response: IQuestionVote) => {
@@ -52,11 +52,11 @@ export class QuestionDetailComponent implements OnInit {
       });
   }
 
-  openComment() {
+  openComment(): void {
     this.isCommentOpen = true;
   }
 
-  updateComments() {
+  updateComments(): void {
     this.questionService.loadCommentsByQuestionId(this.question!.id);
   }
 }

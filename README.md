@@ -50,7 +50,7 @@ pages:
 ### `Features`
 
 - NgRX implemented for questions state;
-- animations - ngIf animate in the navigation of Question module;
+- animations - ngIf animate (question-list, image-gallery components), router animation;
 - images are uploaded and stored in Cloudinary cloud service
 - social login with Google and Facebook
 - Angular template(register, login, question, answer) and reactive (user profile update, commment) forms
