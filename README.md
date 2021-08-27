@@ -73,4 +73,4 @@ pages:
 ### `Project Demo`
 
 - project deployed to Firebase hosting. Be patient with first page load for heroku backend to get out fo sleeping mode.
-  [https://ngibebe.web.app/](demo)
+  [DEMO](https://ngibebe.web.app/)
