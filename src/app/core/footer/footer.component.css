@@ -1,5 +1,5 @@
 .footer {
-  margin-top: 3rem;
+  margin-top: 7rem;
   position: relative;
   background: #fff;
   bottom: 0;
@@ -7,7 +7,7 @@
 
 .footer-content {
   width: 100%;
-  padding: 1em 0;
+  padding: 2em 0;
   text-align: center;
 }
 
@@ -26,4 +26,9 @@
     #fdfd0f,
     #ff4014
   );
+}
+
+.footer-content span a {
+  text-decoration: none;
+  color: var(--lightblue);
 }

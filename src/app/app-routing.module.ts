@@ -1,5 +1,6 @@
+import { AboutPageComponent } from './about/about-page/about-page.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { HomeComponent } from './home/home/home.component';
@@ -11,13 +12,20 @@ const routes: Routes = [
     data: { animation: 'fader' },
   },
   {
+    path: 'about',
+    loadChildren: () =>
+      import('./about/about.module').then((m) => m.AboutModule),
+  },
+  {
     path: '**',
     component: NotFoundComponent,
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

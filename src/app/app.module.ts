@@ -1,17 +1,18 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommentModule } from './comment/comment.module';
-import { HomeModule } from './home/home.module';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 
 import { CoreModule } from './core/core.module';
+import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { UserModule } from './user/user.module';
-import { AppComponent } from './app.component';
+import { CommentModule } from './comment/comment.module';
 import { AnswerModule } from './answer/answer.module';
+
+import { AppComponent } from './app.component';
 
 import { authInterceptorProvider } from './core/interceptors/auth.interceptor';
 import { errorInterceptorProvider } from './core/interceptors/error.inteceptor';

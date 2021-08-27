@@ -9,7 +9,12 @@ import { LinkListComponent } from './links/link-list/link-list.component';
 import { SearchComponent } from './search/search.component';
 
 @NgModule({
-  declarations: [HomeComponent, LinkItemComponent, LinkListComponent, SearchComponent],
+  declarations: [
+    HomeComponent,
+    LinkItemComponent,
+    LinkListComponent,
+    SearchComponent,
+  ],
   imports: [CommonModule, QuestionModule, RouterModule],
 })
 export class HomeModule {}

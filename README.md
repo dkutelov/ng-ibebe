@@ -46,18 +46,21 @@ pages:
 - '/profile/questions' - list, update, delete user's questions
 - '/profile/answers' - list, update, delete user's answers
 - '/answers/answerId/edit - edit answer page
+- '/about' - about page
 
 ### `Features`
 
-- NgRX implemented for questions state;
-- animations - ngIf animate (question-list, image-gallery components), router animation;
+- NgRX implemented for questions state
+- animations - ngIf animate (question-list, image-gallery components), router animation
 - images are uploaded and stored in Cloudinary cloud service
 - social login with Google and Facebook
 - Angular template(register, login, question, answer) and reactive (user profile update, commment) forms
 - template and reactive form validation, including custom validators for username and passwords
-- routing, forChild routing for questions and users; nested children routing for user profile page;
-- guards for both authenticated and non authenticated users;
+- routing, forChild routing for questions and users; nested children routing for user profile page
+- lazy loading of about page module
+- guards for both authenticated users; guard for unsaved changes;
 - http interceptors for authentication and errors
+- pagination of question list
 
 ### `Backend`
 
