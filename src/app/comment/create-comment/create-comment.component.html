@@ -7,8 +7,8 @@
 </p>
 <form
   *ngIf="isCommentOpen"
-  [formGroup]="form"
-  (ngSubmit)="addComment()"
+  #commentForm="ngForm"
+  (ngSubmit)="addComment(commentForm)"
   class="comment-form"
 >
   <div class="input-group">
@@ -18,21 +18,22 @@
       id="commentText"
       name="commentText"
       rows="2"
-      formControlName="commentText"
+      ngModel
+      #commentText="ngModel"
       placehoder="Post your comment here"
+      required
+      minlength="10"
     ></textarea>
-    <ng-container *ngIf="form.get('commentText')?.touched">
-      <span
-        *ngIf="form.get('commentText')?.errors?.required"
-        class="input-field-error"
+    <ng-container
+      *ngIf="commentText.errors && commentText.touched && commentText.dirty"
+    >
+      <span *ngIf="commentText.errors.required" class="input-field-error"
         >Plase, write your comment!</span
       >
-      <span
-        *ngIf="form.get('commentText')?.errors?.minlength"
-        class="input-field-error"
+      <span *ngIf="commentText.errors.minlength" class="input-field-error"
         >Your answer should be minumum 10 characters long!</span
       >
     </ng-container>
   </div>
-  <button class="btn btn-submit" [disabled]="form.invalid">Post</button>
+  <button class="btn btn-submit" [disabled]="commentForm.invalid">Post</button>
 </form>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 import { CommentService } from '../../core/services/comment.service';
 import { UserService } from '../../core/services/user.service';
@@ -13,7 +13,6 @@ import { CurrentUser } from 'src/app/shared/interfaces/user';
   styleUrls: ['./create-comment.component.css'],
 })
 export class CreateCommentComponent implements OnInit {
-  form: FormGroup;
   user: CurrentUser | null = null;
   comment: ICommentCreate = {
     text: '',
@@ -21,19 +20,15 @@ export class CreateCommentComponent implements OnInit {
   };
   isCommentOpen = false;
   @Input() questionOrAnswerAuthor!: string;
+  //TODO: - Create Enum - Question, Answer
   @Input() commentTo!: string;
   @Input() questionOrAnswerId!: string;
   @Output() commentCreated = new EventEmitter<boolean>();
 
   constructor(
-    private formBuilder: FormBuilder,
     private userService: UserService,
-    private commentService: CommentService,
-  ) {
-    this.form = this.formBuilder.group({
-      commentText: ['', [Validators.required, Validators.minLength(10)]],
-    });
-  }
+    private commentService: CommentService
+  ) {}
 
   ngOnInit(): void {
     this.userService.currentUser$.subscribe((u) => {
@@ -46,10 +41,10 @@ export class CreateCommentComponent implements OnInit {
     this.isCommentOpen = state;
   }
 
-  addComment(): void {
-    if (this.form.invalid) return;
+  addComment(commentForm: NgForm) {
+    if (commentForm.invalid) return;
 
-    const { commentText } = this.form.value;
+    const { commentText } = commentForm.value;
     this.comment.text = commentText;
 
     if (this.commentTo === 'question') {
@@ -57,7 +52,8 @@ export class CreateCommentComponent implements OnInit {
       this.commentService
         .createCommentToQuestion(questionId, this.comment)
         .subscribe((c) => {
-          this.form.reset();
+          //TODO: Reset template form
+          commentForm.resetForm();
           this.commentCreated.emit(true);
         });
     } else if (this.commentTo === 'answer') {
@@ -65,7 +61,8 @@ export class CreateCommentComponent implements OnInit {
       this.commentService
         .createCommentToAnswer(answerId, this.comment)
         .subscribe((c) => {
-          this.form.reset();
+          //TODO: Reset template form
+          commentForm.resetForm();
           this.commentCreated.emit(true);
         });
     }
