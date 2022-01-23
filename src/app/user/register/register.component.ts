@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
       /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,}$/gm
     ),
   ]);
-  confirmPassword = new FormControl('', [Validators.required]);
+  confirmPassword = new FormControl('');
 
   registerForm = new FormGroup(
     {
@@ -44,8 +44,9 @@ export class RegisterComponent implements OnInit {
   register() {
     if (this.registerForm.invalid) return;
 
-    const { username, email, password, rePassword } = this.registerForm.value;
-    if (password !== rePassword) return;
+    const { username, email, password, confirmPassword } =
+      this.registerForm.value;
+    if (password !== confirmPassword) return;
 
     this.isLoading = true;
     this.userService.registerUser(username, email, password).subscribe({

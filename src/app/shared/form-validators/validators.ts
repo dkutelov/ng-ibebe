@@ -5,7 +5,7 @@ export function usernameValidator(): ValidatorFn {
     if (!control.value) {
       return null;
     }
-    return /^[a-zA-Z0-9]+$/.test(control.value)
+    return /^[a-zA-Z0-9_]+$/.test(control.value)
       ? null
       : {
           invalidUsername: true,

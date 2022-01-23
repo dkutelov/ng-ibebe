@@ -28,7 +28,7 @@
   color: inherit;
 }
 
-input.ng-valid {
+input.ng-touched.ng-valid {
   border: 1px solid var(--lightgreen);
 }
 
