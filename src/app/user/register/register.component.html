@@ -1,5 +1,5 @@
 <section class="register top-offset">
-  <h2 class="section-title register-title">Register</h2>
+  <h2 class="section-title register-title">Регистрация</h2>
   <form
     [formGroup]="registerForm"
     (ngSubmit)="register()"
@@ -7,21 +7,25 @@
   >
     <div class="form-inner-wrapper">
       <div class="input-group">
-        <label class="input-label" for="username">Username</label>
+        <label class="input-label" for="username">Потребителско име</label>
         <app-auth-input [control]="username"></app-auth-input>
       </div>
-      <!-- <div class="input-group">
-        <label class="input-label" for="email">Email</label>
-        <input
-          class="input-field"
-          type="email"
-          id="email"
-          name="email"
-          ngModel
-          #emailInput="ngModel"
-          required
-          email
-        />
+      <div class="input-group">
+        <label class="input-label" for="username">Имейл</label>
+        <app-auth-input [control]="email" type="email"></app-auth-input>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="password">Парола</label>
+        <app-auth-input [control]="password" type="password"></app-auth-input>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="password">Повтори паролата</label>
+        <app-auth-input
+          [control]="confirmPassword"
+          type="password"
+        ></app-auth-input>
+      </div>
+      <!-- 
         <div *ngIf="emailInput.touched" class="input-field-error-wrapper">
           <span *ngIf="emailInput.errors?.required" class="input-field-error"
             >Email is required.</span
@@ -92,13 +96,13 @@
           class="btn btn-submit"
           type="submit"
         >
-          Register
+          Регистрирай
         </button>
       </div>
     </div>
   </form>
   <div class="register-text">
-    You already have an account? Login
-    <a routerLink="/login">here</a>.
+    Вече имате акаунт? Моля, влезте в него от
+    <a routerLink="/login">тук</a>.
   </div>
 </section>

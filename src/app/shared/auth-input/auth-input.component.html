@@ -6,46 +6,28 @@
   [mask]="format"
   [dropSpecialCharacters]="false"
 />
-<div *ngIf="control.touched && control.dirty" class="input-field-error-wrapper">
+<div *ngIf="control.touched" class="input-field-error-wrapper">
   <p class="input-field-error" *ngIf="control.errors?.['required']">
-    Field is required!
+    Задължително поле!
   </p>
   <p class="input-field-error" *ngIf="control.errors?.['minlength']">
-    The value is
-    {{control.errors?.['minlength'].actualLength}}
-    characters long! It must be at least
-    {{control.errors?.['minlength'].requiredLength}}
-    long.
+    Полето трябва да е поне
+    {{control.errors?.['minlength'].requiredLength}} символа. Въвели сте
+    {{control.errors?.['minlength'].actualLength}} символа.
   </p>
   <p class="input-field-error" *ngIf="control.errors?.['email']">
-    You must enter a valid email!
+    Нужно е да въведете валиден имейл!
   </p>
-  <p class="input-field-error" *ngIf="control.errors?.['min']">
-    Age is too low!
-  </p>
-  <p class="input-field-error" *ngIf="control.errors?.['max']">
-    Age is too high!
-  </p>
+
   <p class="input-field-error" *ngIf="control.errors?.['pattern']">
-    Password must be at least 8 characters long and contain an uppercase letter,
-    an lowercase letter, and a number!
+    Паролата трябва да съдържа поне 8 символа и минимум една главна буква, една
+    малка буква, едно число и един специален символ.
+  </p>
+
+  <p class="input-field-error" *ngIf="control.errors?.invalidUsername">
+    Потребителското име маже да съдържа латински букви, цифри или _.
   </p>
   <p class="input-field-error" *ngIf="control.errors?.['noMatch']">
-    Passwords to not match!
+    Паролите не съвпадат!
   </p>
 </div>
-<!-- <div *ngIf="usernameInput.touched" class="input-field-error-wrapper">
-          <span *ngIf="usernameInput.errors?.required" class="input-field-error"
-            >Username is required.
-          </span>
-          <span
-            *ngIf="usernameInput.errors?.minlength"
-            class="input-field-error"
-            >Username should be min 8 characters long.</span
-          >
-          <span
-            *ngIf="usernameInput.errors?.invalidUsername"
-            class="input-field-error"
-            >Username should contain only English letter and numbers!</span
-          >
-        </div> -->

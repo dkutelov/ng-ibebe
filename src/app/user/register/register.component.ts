@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../core/services/user.service';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  usernameValidator,
-  passwordValidator,
-} from '../../shared/form-validators/validators';
+import { usernameValidator } from '../../shared/form-validators/validators';
 import { RegisterValidators } from './validators/register-validators';
 @Component({
   selector: 'app-register',
@@ -14,14 +11,13 @@ import { RegisterValidators } from './validators/register-validators';
 })
 export class RegisterComponent implements OnInit {
   isLoading = false;
-  usernameValidator = usernameValidator;
-  passwordValidator = passwordValidator;
+
   // Form fields
   email = new FormControl('', [Validators.required, Validators.email]);
   username = new FormControl('', [
     Validators.required,
     Validators.minLength(8),
-    Validators.pattern(/^[a-zA-Z0-9]+$/gm),
+    usernameValidator(),
   ]);
   password = new FormControl('', [
     Validators.required,
