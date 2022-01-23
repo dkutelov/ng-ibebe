@@ -1,0 +1,33 @@
+.input-field {
+  border-color: rgba(167, 64, 255, 0.5);
+  padding: 0.75rem 1rem;
+}
+
+.input-field:focus,
+.input-field:active {
+  border-color: var(--violet);
+}
+
+.input-field-error-wrapper {
+  font-size: 1rem;
+  color: var(--error);
+  font-weight: 300;
+  margin-left: 0.5rem;
+  padding-top: 0.5rem;
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+
+.input-field-error {
+  font-size: inherit;
+  color: inherit;
+}
+
+input.ng-valid {
+  border: 1px solid var(--lightgreen);
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid var(--error);
+}

@@ -1,37 +1,16 @@
 <section class="register top-offset">
   <h2 class="section-title register-title">Register</h2>
-  <form #form="ngForm" (ngSubmit)="saveForm(form)" class="register-form">
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="register()"
+    class="register-form"
+  >
     <div class="form-inner-wrapper">
       <div class="input-group">
         <label class="input-label" for="username">Username</label>
-        <input
-          class="input-field"
-          type="text"
-          id="username"
-          name="username"
-          ngModel
-          #usernameInput="ngModel"
-          required
-          [minlength]="8"
-          [appCustomValidator]="usernameValidator"
-        />
-        <div *ngIf="usernameInput.touched" class="input-field-error-wrapper">
-          <span *ngIf="usernameInput.errors?.required" class="input-field-error"
-            >Username is required.
-          </span>
-          <span
-            *ngIf="usernameInput.errors?.minlength"
-            class="input-field-error"
-            >Username should be min 8 characters long.</span
-          >
-          <span
-            *ngIf="usernameInput.errors?.invalidUsername"
-            class="input-field-error"
-            >Username should contain only English letter and numbers!</span
-          >
-        </div>
+        <app-auth-input [control]="username"></app-auth-input>
       </div>
-      <div class="input-group">
+      <!-- <div class="input-group">
         <label class="input-label" for="email">Email</label>
         <input
           class="input-field"
@@ -51,8 +30,8 @@
             >Please, enter valid email.</span
           >
         </div>
-      </div>
-      <div class="input-group">
+      </div> -->
+      <!-- <div class="input-group">
         <label class="input-label" for="password">Password</label>
         <input
           class="input-field"
@@ -81,8 +60,8 @@
             lowercase letter, one special characters and one number!</span
           >
         </div>
-      </div>
-      <div class="input-group">
+      </div> -->
+      <!-- <div class="input-group">
         <label class="input-label" for="re-password">Confirm Password</label>
         <input
           class="input-field"
@@ -106,9 +85,13 @@
             >Passwords do not match!</span
           >
         </div>
-      </div>
+      </div> -->
       <div>
-        <button [disabled]="form.invalid" class="btn btn-submit" type="submit">
+        <button
+          [disabled]="registerForm.invalid"
+          class="btn btn-submit"
+          type="submit"
+        >
           Register
         </button>
       </div>

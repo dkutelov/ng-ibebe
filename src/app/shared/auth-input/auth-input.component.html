@@ -1,0 +1,51 @@
+<input
+  [formControl]="control"
+  [type]="type"
+  class="input-field"
+  [placeholder]="placeholder"
+  [mask]="format"
+  [dropSpecialCharacters]="false"
+/>
+<div *ngIf="control.touched && control.dirty" class="input-field-error-wrapper">
+  <p class="input-field-error" *ngIf="control.errors?.['required']">
+    Field is required!
+  </p>
+  <p class="input-field-error" *ngIf="control.errors?.['minlength']">
+    The value is
+    {{control.errors?.['minlength'].actualLength}}
+    characters long! It must be at least
+    {{control.errors?.['minlength'].requiredLength}}
+    long.
+  </p>
+  <p class="input-field-error" *ngIf="control.errors?.['email']">
+    You must enter a valid email!
+  </p>
+  <p class="input-field-error" *ngIf="control.errors?.['min']">
+    Age is too low!
+  </p>
+  <p class="input-field-error" *ngIf="control.errors?.['max']">
+    Age is too high!
+  </p>
+  <p class="input-field-error" *ngIf="control.errors?.['pattern']">
+    Password must be at least 8 characters long and contain an uppercase letter,
+    an lowercase letter, and a number!
+  </p>
+  <p class="input-field-error" *ngIf="control.errors?.['noMatch']">
+    Passwords to not match!
+  </p>
+</div>
+<!-- <div *ngIf="usernameInput.touched" class="input-field-error-wrapper">
+          <span *ngIf="usernameInput.errors?.required" class="input-field-error"
+            >Username is required.
+          </span>
+          <span
+            *ngIf="usernameInput.errors?.minlength"
+            class="input-field-error"
+            >Username should be min 8 characters long.</span
+          >
+          <span
+            *ngIf="usernameInput.errors?.invalidUsername"
+            class="input-field-error"
+            >Username should contain only English letter and numbers!</span
+          >
+        </div> -->
