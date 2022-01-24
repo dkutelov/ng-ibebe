@@ -5,8 +5,7 @@ import { tap } from 'rxjs/operators';
 import { ImageService } from 'src/app/core/services/image.service';
 import { UserService } from './../../../core/services/user.service';
 import { CurrentUser } from 'src/app/shared/interfaces/user';
-import { usernameValidator } from 'src/app/shared/form-validators/validators';
-import { ThrowStmt } from '@angular/compiler';
+import { usernameValidator } from '../../validators/validators';
 
 @Component({
   selector: 'app-user',
@@ -23,7 +22,7 @@ export class UserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private imageService: ImageService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {
     this.form = this.formBuilder.group({
       username: [

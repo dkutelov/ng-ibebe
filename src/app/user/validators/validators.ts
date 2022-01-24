@@ -13,6 +13,7 @@ export function usernameValidator(): ValidatorFn {
   };
 }
 
+//TODO: Remove
 export function passwordValidator(
   control: AbstractControl
 ): ValidationErrors | null {
